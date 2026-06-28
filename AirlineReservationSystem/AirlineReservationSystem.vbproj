@@ -89,12 +89,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DatabaseHelper.vb" />
-    <Compile Include="Form1.Designer.vb">
-      <DependentUpon>Form1.vb</DependentUpon>
+    <Compile Include="frmDestination.Designer.vb">
+      <DependentUpon>frmDestination.vb</DependentUpon>
     </Compile>
-    <Compile Include="Form1.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="frmDestination.vb" />
     <Compile Include="frmLogin.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -125,8 +123,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.vb</DependentUpon>
+    <EmbeddedResource Include="frmDestination.resx">
+      <DependentUpon>frmDestination.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.vb</DependentUpon>

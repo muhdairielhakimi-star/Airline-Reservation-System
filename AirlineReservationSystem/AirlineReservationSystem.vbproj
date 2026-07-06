@@ -107,6 +107,12 @@
     <Compile Include="frmSignUp.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmTicketSelect.Designer.vb">
+      <DependentUpon>frmTicketSelect.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmTicketSelect.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -133,6 +139,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmSignUp.resx">
       <DependentUpon>frmSignUp.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTicketSelect.resx">
+      <DependentUpon>frmTicketSelect.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

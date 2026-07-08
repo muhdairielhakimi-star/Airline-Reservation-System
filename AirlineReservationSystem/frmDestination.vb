@@ -1,4 +1,4 @@
-﻿Public Class frmDestination
+﻿Public Class frmPath
     ' Track passenger counts globally
     Private adultCount As Integer = 1
     Private childCount As Integer = 0
@@ -11,15 +11,7 @@
         UpdateUI()
     End Sub
 
-    ' ==========================================
-    ' POPUP VISIBILITY CONTROLLER
-    ' ==========================================
-    ' Note: If you have a main button that opens/closes this panel, 
-    ' change "btnMainSelector" to match that button's actual name.
-    Private Sub btnMainSelector_Click(sender As Object, e As EventArgs) Handles btnMainSelector.Click
-        pnlPassengerPopup.Visible = Not pnlPassengerPopup.Visible
-        pnlPassengerPopup.BringToFront()
-    End Sub
+
 
     ' ==========================================
     ' ADULTS COUNTER LOGIC
@@ -142,14 +134,21 @@
     ' ==========================================
     Private Sub UpdateUI()
         ' Sync counting values with UI label elements
-        lblAdultCount.Text = adultCount.ToString()
+        lblAdultsCount.Text = adultCount.ToString()
         lblChildrenCount.Text = childCount.ToString()
-        lblInfantCount.Text = infantCount.ToString()
+        lblInfantsCount.Text = infantCount.ToString()
 
         ' Calculate overall total passengers
         Dim totalPass As Integer = adultCount + childCount + infantCount
 
-        ' Updates the text on the button that triggers the dropdown panel
-        btnMainSelector.Text = $"{totalPass} Passengers, {selectedClass}"
+
+    End Sub
+
+    Private Sub lblAdultsCount_Click(sender As Object, e As EventArgs) Handles lblAdultsCount.Click
+
+    End Sub
+
+    Private Sub Panel1_Paint(sender As Object, e As PaintEventArgs) Handles Panel1.Paint
+
     End Sub
 End Class

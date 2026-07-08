@@ -11,7 +11,7 @@
     <AssemblyName>AirlineReservationSystem</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <IsWebBootstrapper>false</IsWebBootstrapper>
@@ -96,7 +96,9 @@
     <Compile Include="frmDestination.Designer.vb">
       <DependentUpon>frmDestination.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmDestination.vb" />
+    <Compile Include="frmDestination.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmLogin.vb">
       <SubType>Form</SubType>
     </Compile>

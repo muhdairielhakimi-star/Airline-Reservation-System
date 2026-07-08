@@ -32,7 +32,7 @@ Namespace My
         
         <Global.System.Diagnostics.DebuggerStepThroughAttribute()>  _
         Protected Overrides Sub OnCreateMainForm()
-            Me.MainForm = Global.AirlineReservationSystem.frmPath
+            Me.MainForm = Global.AirlineReservationSystem.payment
         End Sub
     End Class
 End Namespace

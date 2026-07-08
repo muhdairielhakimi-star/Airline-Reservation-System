@@ -29,6 +29,7 @@
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -89,10 +90,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DatabaseHelper.vb" />
+    <Compile Include="PassangerDetail.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmDestination.Designer.vb">
       <DependentUpon>frmDestination.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmDestination.vb" />
+    <Compile Include="frmDestination.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmLogin.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -106,10 +112,17 @@
     <Compile Include="frmSignUp.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmTicketSelect.Designer.vb">
+      <DependentUpon>frmTicketSelect.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmTicketSelect.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
       <DependentUpon>Application.myapp</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="My Project\Resources.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -120,6 +133,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="payment.Designer.vb">
+      <DependentUpon>payment.vb</DependentUpon>
+    </Compile>
+    <Compile Include="payment.vb">
+      <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -132,11 +151,17 @@
     <EmbeddedResource Include="frmSignUp.resx">
       <DependentUpon>frmSignUp.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmTicketSelect.resx">
+      <DependentUpon>frmTicketSelect.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="payment.resx">
+      <DependentUpon>payment.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

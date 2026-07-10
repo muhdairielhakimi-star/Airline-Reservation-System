@@ -90,6 +90,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DatabaseHelper.vb" />
+    <Compile Include="selectSeat.Designer.vb">
+      <DependentUpon>selectSeat.vb</DependentUpon>
+    </Compile>
+    <Compile Include="selectSeat.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="PassangerDetail.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -134,6 +140,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="selectSeat.resx">
+      <DependentUpon>selectSeat.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmDestination.resx">
       <DependentUpon>frmDestination.vb</DependentUpon>
     </EmbeddedResource>

@@ -46,21 +46,26 @@ Partial Class frmPath
         Me.btnAdultsMinus = New System.Windows.Forms.Button()
         Me.lblAdults = New System.Windows.Forms.Label()
         Me.btnFind = New System.Windows.Forms.Button()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         Me.pnlPassengerPopup.SuspendLayout()
         Me.SuspendLayout()
         '
         'txtFrom
         '
-        Me.txtFrom.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtFrom.Location = New System.Drawing.Point(19, 40)
+        Me.txtFrom.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtFrom.Location = New System.Drawing.Point(36, 53)
         Me.txtFrom.Name = "txtFrom"
-        Me.txtFrom.Size = New System.Drawing.Size(80, 26)
+        Me.txtFrom.Size = New System.Drawing.Size(80, 31)
         Me.txtFrom.TabIndex = 0
         Me.txtFrom.Text = "From"
         '
         'Panel1
         '
+        Me.Panel1.BackColor = System.Drawing.SystemColors.ActiveCaption
+        Me.Panel1.Controls.Add(Me.Label5)
         Me.Panel1.Controls.Add(Me.Label2)
         Me.Panel1.Controls.Add(Me.Label1)
         Me.Panel1.Controls.Add(Me.dateReturn)
@@ -68,16 +73,16 @@ Partial Class frmPath
         Me.Panel1.Controls.Add(Me.txtTo)
         Me.Panel1.Controls.Add(Me.btnWay)
         Me.Panel1.Controls.Add(Me.txtFrom)
-        Me.Panel1.Location = New System.Drawing.Point(74, 43)
+        Me.Panel1.Location = New System.Drawing.Point(75, 116)
         Me.Panel1.Margin = New System.Windows.Forms.Padding(2)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(641, 113)
+        Me.Panel1.Size = New System.Drawing.Size(859, 137)
         Me.Panel1.TabIndex = 1
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(514, 28)
+        Me.Label2.Location = New System.Drawing.Point(704, 38)
         Me.Label2.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(39, 13)
@@ -87,7 +92,7 @@ Partial Class frmPath
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(356, 28)
+        Me.Label1.Location = New System.Drawing.Point(523, 38)
         Me.Label1.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(39, 13)
@@ -96,47 +101,50 @@ Partial Class frmPath
         '
         'dateReturn
         '
-        Me.dateReturn.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dateReturn.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dateReturn.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.dateReturn.Location = New System.Drawing.Point(516, 45)
+        Me.dateReturn.Location = New System.Drawing.Point(707, 53)
         Me.dateReturn.Margin = New System.Windows.Forms.Padding(2)
         Me.dateReturn.Name = "dateReturn"
-        Me.dateReturn.Size = New System.Drawing.Size(115, 26)
+        Me.dateReturn.Size = New System.Drawing.Size(115, 31)
         Me.dateReturn.TabIndex = 4
         '
         'dateDepart
         '
-        Me.dateDepart.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dateDepart.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dateDepart.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.dateDepart.Location = New System.Drawing.Point(358, 45)
+        Me.dateDepart.Location = New System.Drawing.Point(526, 53)
         Me.dateDepart.Margin = New System.Windows.Forms.Padding(2)
         Me.dateDepart.Name = "dateDepart"
-        Me.dateDepart.Size = New System.Drawing.Size(115, 26)
+        Me.dateDepart.Size = New System.Drawing.Size(115, 31)
         Me.dateDepart.TabIndex = 3
         '
         'txtTo
         '
-        Me.txtTo.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtTo.Location = New System.Drawing.Point(218, 43)
+        Me.txtTo.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtTo.Location = New System.Drawing.Point(243, 53)
         Me.txtTo.Margin = New System.Windows.Forms.Padding(2)
         Me.txtTo.Name = "txtTo"
-        Me.txtTo.Size = New System.Drawing.Size(76, 26)
+        Me.txtTo.Size = New System.Drawing.Size(76, 31)
         Me.txtTo.TabIndex = 2
         Me.txtTo.Text = "To"
         '
         'btnWay
         '
-        Me.btnWay.Font = New System.Drawing.Font("Microsoft Sans Serif", 13.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnWay.Location = New System.Drawing.Point(118, 40)
+        Me.btnWay.BackColor = System.Drawing.SystemColors.HotTrack
+        Me.btnWay.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnWay.ForeColor = System.Drawing.SystemColors.ControlLight
+        Me.btnWay.Location = New System.Drawing.Point(135, 49)
         Me.btnWay.Margin = New System.Windows.Forms.Padding(2)
         Me.btnWay.Name = "btnWay"
-        Me.btnWay.Size = New System.Drawing.Size(74, 29)
+        Me.btnWay.Size = New System.Drawing.Size(81, 38)
         Me.btnWay.TabIndex = 1
         Me.btnWay.Text = "⇄"
-        Me.btnWay.UseVisualStyleBackColor = True
+        Me.btnWay.UseVisualStyleBackColor = False
         '
         'pnlPassengerPopup
         '
+        Me.pnlPassengerPopup.BackColor = System.Drawing.SystemColors.ActiveCaption
         Me.pnlPassengerPopup.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.pnlPassengerPopup.Controls.Add(Me.btnInfantsMinus)
         Me.pnlPassengerPopup.Controls.Add(Me.btnInfantsPlus)
@@ -152,7 +160,7 @@ Partial Class frmPath
         Me.pnlPassengerPopup.Controls.Add(Me.lblAdultsCount)
         Me.pnlPassengerPopup.Controls.Add(Me.btnAdultsMinus)
         Me.pnlPassengerPopup.Controls.Add(Me.lblAdults)
-        Me.pnlPassengerPopup.Location = New System.Drawing.Point(74, 170)
+        Me.pnlPassengerPopup.Location = New System.Drawing.Point(75, 269)
         Me.pnlPassengerPopup.Name = "pnlPassengerPopup"
         Me.pnlPassengerPopup.Size = New System.Drawing.Size(247, 268)
         Me.pnlPassengerPopup.TabIndex = 4
@@ -305,28 +313,64 @@ Partial Class frmPath
         Me.btnFind.BackColor = System.Drawing.SystemColors.ControlDark
         Me.btnFind.FlatStyle = System.Windows.Forms.FlatStyle.System
         Me.btnFind.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnFind.Location = New System.Drawing.Point(327, 391)
+        Me.btnFind.Location = New System.Drawing.Point(72, 554)
         Me.btnFind.Name = "btnFind"
         Me.btnFind.Size = New System.Drawing.Size(147, 47)
         Me.btnFind.TabIndex = 5
         Me.btnFind.Text = "Find me a flight now"
         Me.btnFind.UseVisualStyleBackColor = False
         '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 36.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.ForeColor = System.Drawing.SystemColors.HotTrack
+        Me.Label3.Location = New System.Drawing.Point(230, 9)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(549, 55)
+        Me.Label3.TabIndex = 6
+        Me.Label3.Text = "Book your next trip now"
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.ForeColor = System.Drawing.SystemColors.HotTrack
+        Me.Label4.Location = New System.Drawing.Point(332, 64)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(344, 29)
+        Me.Label4.TabIndex = 7
+        Me.Label4.Text = "Fly with us to get more benefits"
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.Location = New System.Drawing.Point(662, 53)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(25, 33)
+        Me.Label5.TabIndex = 7
+        Me.Label5.Text = "-"
+        '
         'frmPath
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.BackColor = System.Drawing.SystemColors.ActiveBorder
+        Me.ClientSize = New System.Drawing.Size(1008, 729)
+        Me.Controls.Add(Me.Label4)
+        Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.btnFind)
         Me.Controls.Add(Me.pnlPassengerPopup)
         Me.Controls.Add(Me.Panel1)
         Me.Name = "frmPath"
-        Me.Text = "⇄"
+        Me.Text = "Flight Path"
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         Me.pnlPassengerPopup.ResumeLayout(False)
         Me.pnlPassengerPopup.PerformLayout()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
@@ -354,4 +398,7 @@ Partial Class frmPath
     Friend WithEvents btnInfantsPlus As Button
     Friend WithEvents lblInfantsCount As Label
     Friend WithEvents btnFind As Button
+    Friend WithEvents Label5 As Label
+    Friend WithEvents Label3 As Label
+    Friend WithEvents Label4 As Label
 End Class

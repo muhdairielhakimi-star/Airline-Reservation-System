@@ -11,7 +11,7 @@
     <AssemblyName>AirlineReservationSystem</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <IsWebBootstrapper>false</IsWebBootstrapper>
@@ -102,7 +102,9 @@
     <Compile Include="frmDestination.Designer.vb">
       <DependentUpon>frmDestination.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmDestination.vb" />
+    <Compile Include="frmDestination.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmLogin.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -138,6 +140,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="payment.Designer.vb">
+      <DependentUpon>payment.vb</DependentUpon>
+    </Compile>
+    <Compile Include="payment.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="selectSeat.resx">
@@ -160,6 +168,9 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="payment.resx">
+      <DependentUpon>payment.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

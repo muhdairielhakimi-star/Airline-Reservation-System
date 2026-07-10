@@ -11,7 +11,7 @@
     <AssemblyName>AirlineReservationSystem</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <IsWebBootstrapper>false</IsWebBootstrapper>
@@ -90,6 +90,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DatabaseHelper.vb" />
+    <Compile Include="DisplayTicket.Designer.vb">
+      <DependentUpon>DisplayTicket.vb</DependentUpon>
+    </Compile>
+    <Compile Include="DisplayTicket.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="selectSeat.Designer.vb">
       <DependentUpon>selectSeat.vb</DependentUpon>
     </Compile>
@@ -148,6 +154,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="DisplayTicket.resx">
+      <DependentUpon>DisplayTicket.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="selectSeat.resx">
       <DependentUpon>selectSeat.vb</DependentUpon>
     </EmbeddedResource>

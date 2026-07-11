@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class selectSeat
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
+Partial Class PassengerDetails
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class selectSeat
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.lblTitle = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -52,18 +52,20 @@ Partial Class selectSeat
         Me.lblTitle.AutoSize = True
         Me.lblTitle.Font = New System.Drawing.Font("Tahoma", 13.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblTitle.ForeColor = System.Drawing.SystemColors.MenuHighlight
-        Me.lblTitle.Location = New System.Drawing.Point(252, 3)
+        Me.lblTitle.Location = New System.Drawing.Point(189, 2)
+        Me.lblTitle.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblTitle.Name = "lblTitle"
-        Me.lblTitle.Size = New System.Drawing.Size(212, 29)
+        Me.lblTitle.Size = New System.Drawing.Size(169, 23)
         Me.lblTitle.TabIndex = 0
         Me.lblTitle.Text = "Passenger Detail"
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(23, 15)
+        Me.Label2.Location = New System.Drawing.Point(17, 12)
+        Me.Label2.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(0, 17)
+        Me.Label2.Size = New System.Drawing.Size(0, 13)
         Me.Label2.TabIndex = 1
         '
         'grpPersonal
@@ -73,9 +75,11 @@ Partial Class selectSeat
         Me.grpPersonal.Controls.Add(Me.cmbTitle)
         Me.grpPersonal.Font = New System.Drawing.Font("Tahoma", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.grpPersonal.ForeColor = System.Drawing.SystemColors.MenuHighlight
-        Me.grpPersonal.Location = New System.Drawing.Point(26, 54)
+        Me.grpPersonal.Location = New System.Drawing.Point(20, 44)
+        Me.grpPersonal.Margin = New System.Windows.Forms.Padding(2)
         Me.grpPersonal.Name = "grpPersonal"
-        Me.grpPersonal.Size = New System.Drawing.Size(743, 124)
+        Me.grpPersonal.Padding = New System.Windows.Forms.Padding(2)
+        Me.grpPersonal.Size = New System.Drawing.Size(557, 101)
         Me.grpPersonal.TabIndex = 2
         Me.grpPersonal.TabStop = False
         Me.grpPersonal.Text = "Personal Information"
@@ -83,17 +87,19 @@ Partial Class selectSeat
         'txtLastName
         '
         Me.txtLastName.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtLastName.Location = New System.Drawing.Point(480, 81)
+        Me.txtLastName.Location = New System.Drawing.Point(360, 66)
+        Me.txtLastName.Margin = New System.Windows.Forms.Padding(2)
         Me.txtLastName.Name = "txtLastName"
-        Me.txtLastName.Size = New System.Drawing.Size(204, 26)
+        Me.txtLastName.Size = New System.Drawing.Size(154, 22)
         Me.txtLastName.TabIndex = 5
         '
         'txtFirstName
         '
         Me.txtFirstName.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtFirstName.Location = New System.Drawing.Point(10, 81)
+        Me.txtFirstName.Location = New System.Drawing.Point(8, 66)
+        Me.txtFirstName.Margin = New System.Windows.Forms.Padding(2)
         Me.txtFirstName.Name = "txtFirstName"
-        Me.txtFirstName.Size = New System.Drawing.Size(204, 26)
+        Me.txtFirstName.Size = New System.Drawing.Size(154, 22)
         Me.txtFirstName.TabIndex = 4
         '
         'cmbTitle
@@ -101,9 +107,10 @@ Partial Class selectSeat
         Me.cmbTitle.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbTitle.FormattingEnabled = True
         Me.cmbTitle.Items.AddRange(New Object() {"Mr", "Ms", "Mrs", "Dr"})
-        Me.cmbTitle.Location = New System.Drawing.Point(15, 40)
+        Me.cmbTitle.Location = New System.Drawing.Point(11, 32)
+        Me.cmbTitle.Margin = New System.Windows.Forms.Padding(2)
         Me.cmbTitle.Name = "cmbTitle"
-        Me.cmbTitle.Size = New System.Drawing.Size(134, 26)
+        Me.cmbTitle.Size = New System.Drawing.Size(102, 22)
         Me.cmbTitle.TabIndex = 3
         Me.cmbTitle.Text = "Choose a Title"
         '
@@ -112,9 +119,10 @@ Partial Class selectSeat
         Me.lblPass.AutoSize = True
         Me.lblPass.Font = New System.Drawing.Font("Tahoma", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblPass.ForeColor = System.Drawing.SystemColors.MenuHighlight
-        Me.lblPass.Location = New System.Drawing.Point(29, 30)
+        Me.lblPass.Location = New System.Drawing.Point(22, 24)
+        Me.lblPass.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblPass.Name = "lblPass"
-        Me.lblPass.Size = New System.Drawing.Size(114, 21)
+        Me.lblPass.Size = New System.Drawing.Size(92, 17)
         Me.lblPass.TabIndex = 0
         Me.lblPass.Text = "Passenger 1"
         '
@@ -125,9 +133,11 @@ Partial Class selectSeat
         Me.GroupBox2.Controls.Add(Me.Label1)
         Me.GroupBox2.Font = New System.Drawing.Font("Tahoma", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox2.ForeColor = System.Drawing.SystemColors.MenuHighlight
-        Me.GroupBox2.Location = New System.Drawing.Point(26, 184)
+        Me.GroupBox2.Location = New System.Drawing.Point(20, 150)
+        Me.GroupBox2.Margin = New System.Windows.Forms.Padding(2)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(743, 71)
+        Me.GroupBox2.Padding = New System.Windows.Forms.Padding(2)
+        Me.GroupBox2.Size = New System.Drawing.Size(557, 58)
         Me.GroupBox2.TabIndex = 3
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Frequent Flyer Card"
@@ -137,18 +147,20 @@ Partial Class selectSeat
         Me.cmbProgram.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbProgram.FormattingEnabled = True
         Me.cmbProgram.Items.AddRange(New Object() {"None", "AirAsia Rewards", "Enrich", "Singapore KrisFlyer", "Cathay"})
-        Me.cmbProgram.Location = New System.Drawing.Point(15, 37)
+        Me.cmbProgram.Location = New System.Drawing.Point(11, 30)
+        Me.cmbProgram.Margin = New System.Windows.Forms.Padding(2)
         Me.cmbProgram.Name = "cmbProgram"
-        Me.cmbProgram.Size = New System.Drawing.Size(167, 26)
+        Me.cmbProgram.Size = New System.Drawing.Size(126, 22)
         Me.cmbProgram.TabIndex = 6
         Me.cmbProgram.Text = "Choose a Program"
         '
         'txtFlyerNo
         '
         Me.txtFlyerNo.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtFlyerNo.Location = New System.Drawing.Point(480, 37)
+        Me.txtFlyerNo.Location = New System.Drawing.Point(360, 30)
+        Me.txtFlyerNo.Margin = New System.Windows.Forms.Padding(2)
         Me.txtFlyerNo.Name = "txtFlyerNo"
-        Me.txtFlyerNo.Size = New System.Drawing.Size(204, 26)
+        Me.txtFlyerNo.Size = New System.Drawing.Size(154, 22)
         Me.txtFlyerNo.TabIndex = 7
         '
         'Label1
@@ -156,9 +168,10 @@ Partial Class selectSeat
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Tahoma", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.SystemColors.MenuHighlight
-        Me.Label1.Location = New System.Drawing.Point(6, 18)
+        Me.Label1.Location = New System.Drawing.Point(4, 15)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(0, 21)
+        Me.Label1.Size = New System.Drawing.Size(0, 17)
         Me.Label1.TabIndex = 4
         '
         'gpContact
@@ -171,9 +184,11 @@ Partial Class selectSeat
         Me.gpContact.Controls.Add(Me.Label3)
         Me.gpContact.Font = New System.Drawing.Font("Tahoma", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gpContact.ForeColor = System.Drawing.SystemColors.MenuHighlight
-        Me.gpContact.Location = New System.Drawing.Point(26, 271)
+        Me.gpContact.Location = New System.Drawing.Point(20, 220)
+        Me.gpContact.Margin = New System.Windows.Forms.Padding(2)
         Me.gpContact.Name = "gpContact"
-        Me.gpContact.Size = New System.Drawing.Size(743, 134)
+        Me.gpContact.Padding = New System.Windows.Forms.Padding(2)
+        Me.gpContact.Size = New System.Drawing.Size(557, 109)
         Me.gpContact.TabIndex = 5
         Me.gpContact.TabStop = False
         Me.gpContact.Text = "Contact Information"
@@ -183,34 +198,38 @@ Partial Class selectSeat
         Me.cmbCountryCode.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbCountryCode.FormattingEnabled = True
         Me.cmbCountryCode.Items.AddRange(New Object() {"+60", "+65", "+66", "+62", "+1"})
-        Me.cmbCountryCode.Location = New System.Drawing.Point(480, 50)
+        Me.cmbCountryCode.Location = New System.Drawing.Point(360, 41)
+        Me.cmbCountryCode.Margin = New System.Windows.Forms.Padding(2)
         Me.cmbCountryCode.Name = "cmbCountryCode"
-        Me.cmbCountryCode.Size = New System.Drawing.Size(204, 26)
+        Me.cmbCountryCode.Size = New System.Drawing.Size(154, 22)
         Me.cmbCountryCode.TabIndex = 12
         Me.cmbCountryCode.Text = "Country Calling Code"
         '
         'txtPhoneNumber
         '
         Me.txtPhoneNumber.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtPhoneNumber.Location = New System.Drawing.Point(480, 94)
+        Me.txtPhoneNumber.Location = New System.Drawing.Point(360, 76)
+        Me.txtPhoneNumber.Margin = New System.Windows.Forms.Padding(2)
         Me.txtPhoneNumber.Name = "txtPhoneNumber"
-        Me.txtPhoneNumber.Size = New System.Drawing.Size(204, 26)
+        Me.txtPhoneNumber.Size = New System.Drawing.Size(154, 22)
         Me.txtPhoneNumber.TabIndex = 11
         '
         'txtConfirmEmail
         '
         Me.txtConfirmEmail.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtConfirmEmail.Location = New System.Drawing.Point(10, 94)
+        Me.txtConfirmEmail.Location = New System.Drawing.Point(8, 76)
+        Me.txtConfirmEmail.Margin = New System.Windows.Forms.Padding(2)
         Me.txtConfirmEmail.Name = "txtConfirmEmail"
-        Me.txtConfirmEmail.Size = New System.Drawing.Size(204, 26)
+        Me.txtConfirmEmail.Size = New System.Drawing.Size(154, 22)
         Me.txtConfirmEmail.TabIndex = 10
         '
         'txtEmail
         '
         Me.txtEmail.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtEmail.Location = New System.Drawing.Point(10, 50)
+        Me.txtEmail.Location = New System.Drawing.Point(8, 41)
+        Me.txtEmail.Margin = New System.Windows.Forms.Padding(2)
         Me.txtEmail.Name = "txtEmail"
-        Me.txtEmail.Size = New System.Drawing.Size(204, 26)
+        Me.txtEmail.Size = New System.Drawing.Size(154, 22)
         Me.txtEmail.TabIndex = 8
         '
         'lblContact
@@ -218,9 +237,10 @@ Partial Class selectSeat
         Me.lblContact.AutoSize = True
         Me.lblContact.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblContact.ForeColor = System.Drawing.SystemColors.MenuText
-        Me.lblContact.Location = New System.Drawing.Point(12, 24)
+        Me.lblContact.Location = New System.Drawing.Point(9, 20)
+        Me.lblContact.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblContact.Name = "lblContact"
-        Me.lblContact.Size = New System.Drawing.Size(519, 17)
+        Me.lblContact.Size = New System.Drawing.Size(403, 13)
         Me.lblContact.TabIndex = 6
         Me.lblContact.Text = "Enter your Email and phone number to receive booking information and trip update"
         '
@@ -229,17 +249,19 @@ Partial Class selectSeat
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Tahoma", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.SystemColors.MenuHighlight
-        Me.Label3.Location = New System.Drawing.Point(6, 18)
+        Me.Label3.Location = New System.Drawing.Point(4, 15)
+        Me.Label3.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(0, 21)
+        Me.Label3.Size = New System.Drawing.Size(0, 17)
         Me.Label3.TabIndex = 4
         '
         'btnClear
         '
         Me.btnClear.Font = New System.Drawing.Font("Tahoma", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnClear.Location = New System.Drawing.Point(506, 422)
+        Me.btnClear.Location = New System.Drawing.Point(380, 343)
+        Me.btnClear.Margin = New System.Windows.Forms.Padding(2)
         Me.btnClear.Name = "btnClear"
-        Me.btnClear.Size = New System.Drawing.Size(94, 32)
+        Me.btnClear.Size = New System.Drawing.Size(70, 26)
         Me.btnClear.TabIndex = 7
         Me.btnClear.Text = "Clear"
         Me.btnClear.UseVisualStyleBackColor = True
@@ -247,18 +269,19 @@ Partial Class selectSeat
         'btnConfirm
         '
         Me.btnConfirm.Font = New System.Drawing.Font("Tahoma", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnConfirm.Location = New System.Drawing.Point(657, 422)
+        Me.btnConfirm.Location = New System.Drawing.Point(493, 343)
+        Me.btnConfirm.Margin = New System.Windows.Forms.Padding(2)
         Me.btnConfirm.Name = "btnConfirm"
-        Me.btnConfirm.Size = New System.Drawing.Size(112, 32)
+        Me.btnConfirm.Size = New System.Drawing.Size(84, 26)
         Me.btnConfirm.TabIndex = 8
         Me.btnConfirm.Text = "Confirm"
         Me.btnConfirm.UseVisualStyleBackColor = True
         '
-        'Form1
+        'PassengerDetails
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 466)
+        Me.ClientSize = New System.Drawing.Size(600, 379)
         Me.Controls.Add(Me.btnConfirm)
         Me.Controls.Add(Me.btnClear)
         Me.Controls.Add(Me.gpContact)
@@ -267,7 +290,8 @@ Partial Class selectSeat
         Me.Controls.Add(Me.grpPersonal)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.lblTitle)
-        Me.Name = "Form1"
+        Me.Margin = New System.Windows.Forms.Padding(2)
+        Me.Name = "PassengerDetails"
         Me.Text = "Passenger Detail"
         Me.grpPersonal.ResumeLayout(False)
         Me.grpPersonal.PerformLayout()
@@ -280,24 +304,93 @@ Partial Class selectSeat
 
     End Sub
 
-    Friend WithEvents lblTitle As Label
-    Friend WithEvents Label2 As Label
-    Friend WithEvents grpPersonal As GroupBox
-    Friend WithEvents txtLastName As TextBox
-    Friend WithEvents txtFirstName As TextBox
-    Friend WithEvents cmbTitle As ComboBox
-    Friend WithEvents lblPass As Label
-    Friend WithEvents GroupBox2 As GroupBox
-    Friend WithEvents cmbProgram As ComboBox
-    Friend WithEvents txtFlyerNo As TextBox
-    Friend WithEvents Label1 As Label
-    Friend WithEvents gpContact As GroupBox
-    Friend WithEvents cmbCountryCode As ComboBox
-    Friend WithEvents txtPhoneNumber As TextBox
-    Friend WithEvents txtConfirmEmail As TextBox
-    Friend WithEvents txtEmail As TextBox
-    Friend WithEvents lblContact As Label
-    Friend WithEvents Label3 As Label
-    Friend WithEvents btnClear As Button
-    Friend WithEvents btnConfirm As Button
+    Friend WithEvents lblTitle As System.Windows.Forms.Label
+    Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents grpPersonal As System.Windows.Forms.GroupBox
+    Friend WithEvents txtLastName As System.Windows.Forms.TextBox
+    Friend WithEvents txtFirstName As System.Windows.Forms.TextBox
+    Friend WithEvents cmbTitle As System.Windows.Forms.ComboBox
+    Friend WithEvents lblPass As System.Windows.Forms.Label
+    Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
+    Friend WithEvents cmbProgram As System.Windows.Forms.ComboBox
+    Friend WithEvents txtFlyerNo As System.Windows.Forms.TextBox
+    Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents gpContact As System.Windows.Forms.GroupBox
+    Friend WithEvents cmbCountryCode As System.Windows.Forms.ComboBox
+    Friend WithEvents txtPhoneNumber As System.Windows.Forms.TextBox
+    Friend WithEvents txtConfirmEmail As System.Windows.Forms.TextBox
+    Friend WithEvents txtEmail As System.Windows.Forms.TextBox
+    Friend WithEvents lblContact As System.Windows.Forms.Label
+    Friend WithEvents Label3 As System.Windows.Forms.Label
+    Friend WithEvents btnClear As System.Windows.Forms.Button
+    Friend WithEvents btnConfirm As System.Windows.Forms.Button
+
+    Private Sub PassengerDetails_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ' Setup the UI to show which passenger we are currently entering
+        ' Example: "Passenger 1 of 3"
+        lblPass.Text = $"Passenger {BookingSession.CurrentPassengerIndex} of {BookingSession.TotalPassengers}"
+    End Sub
+
+    Private Sub btnConfirm_Click(sender As Object, e As EventArgs) Handles btnConfirm.Click
+        ' 1. Basic validation: Make sure they typed a name
+        If txtFirstName.Text.Trim() = "" Or txtLastName.Text.Trim() = "" Then
+            MsgBox("Please enter the passenger's first and last name.", MsgBoxStyle.Exclamation, "Missing Information")
+            Exit Sub
+        End If
+
+        ' 2. Save THIS passenger to our Brain's List
+        Dim fullName As String = txtFirstName.Text.Trim() & " " & txtLastName.Text.Trim()
+        BookingSession.PassengerNames.Add(fullName)
+
+        ' We only save the frequent flyer program for the very first person (the main booker)
+        If BookingSession.CurrentPassengerIndex = 1 Then
+            If cmbProgram.SelectedIndex <> -1 Then
+                BookingSession.FrequentFlyerProgram = cmbProgram.Text
+            Else
+                BookingSession.FrequentFlyerProgram = "None"
+            End If
+        End If
+
+        ' 3. THE LOOP CHECK: Are there more passengers to enter?
+        If BookingSession.CurrentPassengerIndex < BookingSession.TotalPassengers Then
+            ' Increase the counter
+            BookingSession.CurrentPassengerIndex += 1
+
+            MessageBox.Show($"Passenger saved! Please enter details for Passenger {BookingSession.CurrentPassengerIndex}.", "Next Passenger", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+            ' Clear the text boxes so the screen is blank for the next person!
+            txtFirstName.Clear()
+            txtLastName.Clear()
+            txtFlyerNo.Clear()
+            cmbTitle.SelectedIndex = -1
+
+            ' Update the label at the top to say "Passenger 2 of 3"
+            lblPass.Text = $"Passenger {BookingSession.CurrentPassengerIndex} of {BookingSession.TotalPassengers}"
+
+            ' Put the blinking cursor back in the first name box
+            txtFirstName.Focus()
+        Else
+            ' EVERYONE IS ENTERED! Move to the Seat Selection screen!
+            Me.Hide()
+            Dim seatForm As New selectSeat()
+            seatForm.Show()
+        End If
+    End Sub
+
+    Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
+        ' Clears absolutely everything if they make a mistake
+        txtFirstName.Clear()
+        txtLastName.Clear()
+        txtFlyerNo.Clear()
+        txtEmail.Clear()
+        txtPhoneNumber.Clear()
+        txtConfirmEmail.Clear()
+        cmbTitle.SelectedIndex = -1
+        cmbProgram.SelectedIndex = -1
+        cmbCountryCode.SelectedIndex = -1
+    End Sub
+
+    Private Sub grpPersonal_Enter(sender As Object, e As EventArgs) Handles grpPersonal.Enter
+        ' Leave empty
+    End Sub
 End Class

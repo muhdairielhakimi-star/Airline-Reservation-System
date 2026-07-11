@@ -1,20 +1,16 @@
-﻿Public Class selectSeat
+﻿Imports System.Data.SqlClient
 
-    ' Structure to hold seat properties in our array
+Public Class selectSeat
     Private Structure SeatData
         Dim SeatNumber As String
         Dim CabinClass As String
         Dim IsBooked As Boolean
     End Structure
 
-    ' The Master Array holding all 60 plane seats
     Private seatArray(59) As SeatData
-
-    ' Global tracking variables for selection
     Private selectedButtons As New List(Of Button)
-    Private totalPrice As Decimal = 0
+    Private seatSelectionFeeTotal As Decimal = 0
 
-    ' Pricing Dictionary mapping category to price
     Private seatPriceMap As New Dictionary(Of String, Decimal) From {
         {"First", 150.0},
         {"Business", 80.0},
@@ -22,57 +18,65 @@
     }
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ' 1. Set up your dropdown selection items
-        cmbCabinClass.Items.Add("First Class ($150)")
-        cmbCabinClass.Items.Add("Business Class ($80)")
-        cmbCabinClass.Items.Add("Economy Class ($40)")
+        Me.BackColor = SystemColors.Control ' REMOVED PURPLE BACKGROUND
 
-        lblPriceTotal.Text = "Seat Price Total: $0.00"
+        ' Lock the UI to the Class they chose in frmPath!
+        cmbCabinClass.Items.Clear()
+        cmbCabinClass.Items.Add("LOCKED TO: " & BookingSession.CabinClass & " CLASS")
+        cmbCabinClass.SelectedIndex = 0
+        cmbCabinClass.Enabled = False ' Prevent them from changing it
 
-        ' 2. Initialize our hardcoded layout data into the array
-        SetupHardcodedSeats()
+        lblPriceTotal.Text = "Seat Add-on Fee: RM 0.00"
 
-        ' 3. Render the full plane layout immediately so it's always showing
+        SetupSeatsAndCheckDatabase()
         RenderEntirePlaneGrid()
     End Sub
 
-    ''' <summary>
-    ''' Hardcodes all 60 seats with their specific categories and initial booking status
-    ''' </summary>
-    Private Sub SetupHardcodedSeats()
+    Private Sub SetupSeatsAndCheckDatabase()
         Dim index As Integer = 0
 
-        For r As Integer = 0 To 9 ' 10 Rows (0 to 9)
-            For c As Integer = 0 To 5 ' 6 Columns (A to F)
-                Dim letter As String = Chr(65 + c) ' Converts 0->A, 1->B, etc.
-                Dim seatNo As String = (r + 1).ToString() & letter
-
+        For r As Integer = 0 To 9
+            For c As Integer = 0 To 5
+                Dim seatNo As String = (r + 1).ToString() & Chr(65 + c)
                 seatArray(index).SeatNumber = seatNo
+                seatArray(index).IsBooked = False
 
-                ' Hardcoding categories by rows
                 If r < 2 Then
-                    seatArray(index).CabinClass = "First"   ' Rows 1-2
+                    seatArray(index).CabinClass = "First"
                 ElseIf r < 5 Then
-                    seatArray(index).CabinClass = "Business" ' Rows 3-5
+                    seatArray(index).CabinClass = "Business"
                 Else
-                    seatArray(index).CabinClass = "Economy"  ' Rows 6-10
+                    seatArray(index).CabinClass = "Economy"
                 End If
-
-                ' Hardcoding some random pre-booked seats to show the grey color working
-                If seatNo = "1A" Or seatNo = "4C" Or seatNo = "8E" Then
-                    seatArray(index).IsBooked = True
-                Else
-                    seatArray(index).IsBooked = False
-                End If
-
                 index += 1
             Next
         Next
+
+        ' LIVE DATABASE CHECK FOR TAKEN SEATS
+        Dim query As String = "SELECT p.SeatNumber FROM Passengers p INNER JOIN Bookings b ON p.BookingID = b.BookingID WHERE b.FlightID = @FlightID"
+        Using conn As New SqlConnection(DatabaseHelper.strConn)
+            Using cmd As New SqlCommand(query, conn)
+                cmd.Parameters.AddWithValue("@FlightID", BookingSession.SelectedFlightID)
+                Try
+                    conn.Open()
+                    Using reader As SqlDataReader = cmd.ExecuteReader()
+                        While reader.Read()
+                            Dim dbSeat As String = reader("SeatNumber").ToString()
+                            For i As Integer = 0 To seatArray.Length - 1
+                                If seatArray(i).SeatNumber = dbSeat Then
+                                    seatArray(i).IsBooked = True
+                                    Exit For
+                                End If
+                            Next
+                        End While
+                    End Using
+                Catch ex As Exception
+                    MessageBox.Show("Error loading occupied seats: " & ex.Message)
+                End Try
+            End Using
+        End Using
     End Sub
 
-    ''' <summary>
-    ''' Draws the complete plane structure inside TableLayoutPanel1 and TableLayoutPanel2
-    ''' </summary>
     Private Sub RenderEntirePlaneGrid()
         TableLayoutPanel1.Controls.Clear()
         TableLayoutPanel2.Controls.Clear()
@@ -81,25 +85,13 @@
         Dim colsPerPanel As Integer = 3
 
         For r As Integer = 0 To rows - 1
-
-            ' --- LEFT SEATING BLOCK (Columns A, B, C) ---
             For c As Integer = 0 To colsPerPanel - 1
-                Dim seatLetter As String = Chr(65 + c)
-                Dim targetSeatName As String = (r + 1).ToString() & seatLetter
-
-                Dim seatObj As SeatData = FindSeatInArray(targetSeatName)
-                Dim btn As Button = BuildSeatButton(seatObj)
-                TableLayoutPanel1.Controls.Add(btn, c, r)
+                Dim targetSeatName As String = (r + 1).ToString() & Chr(65 + c)
+                TableLayoutPanel1.Controls.Add(BuildSeatButton(FindSeatInArray(targetSeatName)), c, r)
             Next
-
-            ' --- RIGHT SEATING BLOCK (Columns D, E, F) ---
             For c As Integer = 0 To colsPerPanel - 1
-                Dim seatLetter As String = Chr(68 + c)
-                Dim targetSeatName As String = (r + 1).ToString() & seatLetter
-
-                Dim seatObj As SeatData = FindSeatInArray(targetSeatName)
-                Dim btn As Button = BuildSeatButton(seatObj)
-                TableLayoutPanel2.Controls.Add(btn, c, r)
+                Dim targetSeatName As String = (r + 1).ToString() & Chr(68 + c)
+                TableLayoutPanel2.Controls.Add(BuildSeatButton(FindSeatInArray(targetSeatName)), c, r)
             Next
         Next
     End Sub
@@ -110,9 +102,8 @@
         btnSeat.Text = seat.SeatNumber
         btnSeat.FlatStyle = FlatStyle.Flat
         btnSeat.FlatAppearance.BorderSize = 1
-        btnSeat.Tag = seat ' Attaches our structural data right to the button control
+        btnSeat.Tag = seat
 
-        ' If it's pre-booked, turn it grey immediately
         If seat.IsBooked Then
             btnSeat.BackColor = Color.DarkGray
             btnSeat.Enabled = False
@@ -120,83 +111,62 @@
             btnSeat.BackColor = Color.White
             AddHandler btnSeat.Click, AddressOf Seat_Click
         End If
-
         Return btnSeat
     End Function
 
-    ''' <summary>
-    ''' Handles clicking a seat. Validates if it matches the chosen dropdown cabin class.
-    ''' </summary>
     Private Sub Seat_Click(sender As Object, e As EventArgs)
-        ' Check if a class has been selected first
-        If cmbCabinClass.SelectedIndex = -1 Then
-            MessageBox.Show("Please select your desired Cabin Class first!", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Information)
-            Exit Sub
-        End If
-
         Dim btn As Button = CType(sender, Button)
         Dim seat As SeatData = CType(btn.Tag, SeatData)
 
-        ' Translate dropdown text into standard keys ("First", "Business", "Economy")
-        Dim currentSelectedClass As String = ""
-        If cmbCabinClass.SelectedItem.ToString().Contains("First Class") Then currentSelectedClass = "First"
-        If cmbCabinClass.SelectedItem.ToString().Contains("Business Class") Then currentSelectedClass = "Business"
-        If cmbCabinClass.SelectedItem.ToString().Contains("Economy Class") Then currentSelectedClass = "Economy"
+        ' 1. STRICT CLASS LOCK CHECK
+        If seat.CabinClass <> BookingSession.CabinClass Then
+            MessageBox.Show($"You paid for a {BookingSession.CabinClass} ticket! You cannot select a seat in the {seat.CabinClass} section.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Exit Sub
+        End If
 
-        ' Mismatch validation rule
-        If seat.CabinClass <> currentSelectedClass Then
-            MessageBox.Show($"This seat is a {seat.CabinClass} Class seat. Please select a seat inside the {currentSelectedClass} section.", "Class Mismatch", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        ' 2. PASSENGER LIMIT CHECK (Only Adults & Children get seats. Infants sit on laps!)
+        Dim maxSeatsAllowed As Integer = BookingSession.AdultCount + BookingSession.ChildCount
+        If selectedButtons.Count >= maxSeatsAllowed AndAlso btn.BackColor = Color.White Then
+            MessageBox.Show($"You only have {maxSeatsAllowed} seat-requiring passengers on this booking. You cannot select extra seats.", "Seat Limit Reached", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Exit Sub
         End If
 
         Dim standardCost As Decimal = seatPriceMap(seat.CabinClass)
 
-        ' Toggle selection color (White <--> Lime Green)
         If btn.BackColor = Color.White Then
             btn.BackColor = Color.Lime
             selectedButtons.Add(btn)
-            totalPrice += standardCost
+            seatSelectionFeeTotal += standardCost
         ElseIf btn.BackColor = Color.Lime Then
             btn.BackColor = Color.White
             selectedButtons.Remove(btn)
-            totalPrice -= standardCost
+            seatSelectionFeeTotal -= standardCost
         End If
 
-        lblPriceTotal.Text = "Seat Price Total: $" & totalPrice.ToString("N2")
+        lblPriceTotal.Text = "Seat Add-on Fee: RM " & seatSelectionFeeTotal.ToString("N2")
     End Sub
 
-    ''' <summary>
-    ''' Fires when the Continue button is hit. Turns green selections to Grey permanently.
-    ''' </summary>
     Private Sub btnContinue_Click(sender As Object, e As EventArgs) Handles btnContinue.Click
-        If selectedButtons.Count = 0 Then
-            MessageBox.Show("Please select at least one seat before continuing.", "No Seats Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        Dim maxSeatsAllowed As Integer = BookingSession.AdultCount + BookingSession.ChildCount
+        If selectedButtons.Count < maxSeatsAllowed Then
+            MessageBox.Show($"Please select {maxSeatsAllowed} seats before continuing.", "Missing Seats", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Exit Sub
         End If
 
-        ' Loop through current selections and lock them to Grey (Not Available)
+        Dim allSeats As String = ""
         For Each btn As Button In selectedButtons
-            btn.BackColor = Color.DarkGray
-            btn.Enabled = False
-
-            ' Update the local array status so it remembers the state change
-            For i As Integer = 0 To seatArray.Length - 1
-                If seatArray(i).SeatNumber = btn.Text Then
-                    seatArray(i).IsBooked = True
-                    Exit For
-                End If
-            Next
+            allSeats &= btn.Text & ", "
         Next
+        BookingSession.SelectedSeat = allSeats.TrimEnd(", ".ToCharArray())
 
-        MessageBox.Show($"Seats confirmed! Total Charge: ${totalPrice.ToString("N2")}", "Booking Saved", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        ' Add the seat selection fee to the total ticket price before going to payment
+        BookingSession.SelectedPrice += seatSelectionFeeTotal
 
-        ' Reset selection counters for the next customer purchase simulation
-        selectedButtons.Clear()
-        totalPrice = 0
-        lblPriceTotal.Text = "Seat Price Total: $0.00"
+        Me.Hide()
+        Dim payForm As New payment()
+        payForm.Show()
     End Sub
 
-    ' Helper to query our structural array items by seat identification names
     Private Function FindSeatInArray(seatNo As String) As SeatData
         For Each seat As SeatData In seatArray
             If seat.SeatNumber = seatNo Then Return seat

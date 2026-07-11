@@ -78,4 +78,14 @@ Public Class frmSignUp
         ' 4. Put the blinking cursor back in the Email box so they can start over
         txtEmail.Focus()
     End Sub
+
+
+    Private Sub lblSIgnUp_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles lblSIgnUp.LinkClicked
+        ' 1. Hide the Sign Up screen
+        Me.Hide()
+
+        ' 2. Open the Login screen
+        Dim loginForm As New frmLogin()
+        loginForm.Show()
+    End Sub
 End Class

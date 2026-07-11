@@ -36,9 +36,9 @@ Public Class frmLogin
                                 CurrentLoggedInUserID = Convert.ToInt32(reader("UserID"))
                                 MsgBox("Login Successful!", MsgBoxStyle.Information, "Success")
 
-                                ' Me.Hide()
-                                ' Dim searchForm As New frmSearchFlight()
-                                ' searchForm.Show()
+                                Me.Hide()
+                                Dim searchForm As New frmPath()
+                                searchForm.Show()
                             Else
                                 ' FAILED: The email is right, but the password is wrong
                                 MsgBox("Invalid Email or Password.", MsgBoxStyle.Critical, "Login Failed")
@@ -66,5 +66,6 @@ Public Class frmLogin
         Dim signUpForm As New frmSignUp()
         signUpForm.Show()
     End Sub
+
 
 End Class

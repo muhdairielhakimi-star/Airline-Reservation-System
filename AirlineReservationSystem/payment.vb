@@ -1,9 +1,10 @@
-﻿Public Class payment
+﻿Imports System.Data.SqlClient
+
+Public Class payment
 
     ' ========================================================
     ' FORM INITIALIZATION & LOAD EVENT
     ' ========================================================
-    ' FIXED: Changed name to payment_Load to match your class name "payment"
     Private Sub payment_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ' 1. Populate Online Banking Dropdown items
         cmbBanks.Items.Clear()
@@ -23,10 +24,6 @@
     ' ========================================================
     ' INTERFACE MANAGEMENT (PANELS & TABS)
     ' ========================================================
-
-    ''' <summary>
-    ''' Hides all interface layout containers and targets the requested panel view.
-    ''' </summary>
     Private Sub ShowPaymentPanel(panelToShow As Panel)
         ' Hide all panels to prevent overlap conflicts
         pnlCreditCard.Visible = False
@@ -38,9 +35,6 @@
         panelToShow.BringToFront()
     End Sub
 
-    ''' <summary>
-    ''' Styles the active navigation link to visually guide the user.
-    ''' </summary>
     Private Sub HighlightActiveButton(activeButton As Button)
         Dim navigationButtons() As Button = {btnCreditCard, btnOnlineBanking, btnEWallet}
 
@@ -80,43 +74,183 @@
     ' ========================================================
     Private Sub btnPayCreditCard_Click(sender As Object, e As EventArgs) Handles btnPayCreditCard.Click
         ' Enforce mandatory card formatting rules
-        If String.IsNullOrWhiteSpace(txtCardNumber.Text) OrElse
-           String.IsNullOrWhiteSpace(txtExpiry.Text) OrElse
-           String.IsNullOrWhiteSpace(txtCVV.Text) OrElse
-           String.IsNullOrWhiteSpace(txtHolderName.Text) Then
-
+        If String.IsNullOrWhiteSpace(txtCardNumber.Text) OrElse String.IsNullOrWhiteSpace(txtCVV.Text) Then
             MessageBox.Show("Please complete all required fields within the Credit/Debit card form.", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Exit Sub
         End If
 
-        ' TODO: Insert Database submission parameters here (e.g., using DatabaseHelper)
-        MessageBox.Show("Credit/Debit Card payment captured successfully! Your airline reservation has been processed.", "Payment Successful", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        ' --- DATABASE SYNC: SAVE MULTIPLE PASSENGERS ---
+        Dim pnrCode As String = "PNR" & New Random().Next(1000, 9999).ToString()
+        Dim newBookingID As Integer = 0
+
+        ' Grand Total = Base Flight Fare + Seat Add-on Fees
+        Dim grandTotal As Decimal = BookingSession.SelectedPrice
+
+        Using conn As New SqlConnection(DatabaseHelper.strConn)
+            Try
+                conn.Open()
+                ' 1. Insert into Bookings 
+                Dim bookQuery As String = "INSERT INTO Bookings (PNR, UserID, FlightID, TripType, ReturnDate, TotalPrice, BookingStatus) OUTPUT INSERTED.BookingID VALUES (@PNR, @UserID, @FlightID, @TripType, @ReturnDate, @Total, 'Confirmed')"
+                Using cmdBook As New SqlCommand(bookQuery, conn)
+                    cmdBook.Parameters.AddWithValue("@PNR", pnrCode)
+                    cmdBook.Parameters.AddWithValue("@UserID", DatabaseHelper.CurrentLoggedInUserID)
+                    cmdBook.Parameters.AddWithValue("@FlightID", BookingSession.SelectedFlightID)
+                    cmdBook.Parameters.AddWithValue("@TripType", BookingSession.TripType)
+
+                    If BookingSession.TripType = "Round-Trip" Then
+                        cmdBook.Parameters.AddWithValue("@ReturnDate", Convert.ToDateTime(BookingSession.ReturnDate))
+                    Else
+                        cmdBook.Parameters.AddWithValue("@ReturnDate", DBNull.Value)
+                    End If
+
+                    cmdBook.Parameters.AddWithValue("@Total", grandTotal)
+                    newBookingID = Convert.ToInt32(cmdBook.ExecuteScalar())
+                End Using
+
+                ' 2. LOOP TO INSERT EVERY PASSENGER
+                Dim seatArray() As String = BookingSession.SelectedSeat.Split(","c)
+
+                For i As Integer = 0 To BookingSession.PassengerNames.Count - 1
+                    Dim passQuery As String = "INSERT INTO Passengers (BookingID, FirstName, LastName, SeatNumber, FrequentFlyerProgram) VALUES (@BID, @FName, @LName, @Seat, @Prog)"
+                    Using cmdPass As New SqlCommand(passQuery, conn)
+                        cmdPass.Parameters.AddWithValue("@BID", newBookingID)
+
+                        Dim names() As String = BookingSession.PassengerNames(i).Trim().Split(" "c)
+                        cmdPass.Parameters.AddWithValue("@FName", names(0))
+                        cmdPass.Parameters.AddWithValue("@LName", If(names.Length > 1, names(names.Length - 1), ""))
+
+                        ' Give them a seat. If they are an infant without a seat, mark them as LAP
+                        If i < seatArray.Length Then
+                            cmdPass.Parameters.AddWithValue("@Seat", seatArray(i).Trim())
+                        Else
+                            cmdPass.Parameters.AddWithValue("@Seat", "LAP")
+                        End If
+
+                        cmdPass.Parameters.AddWithValue("@Prog", BookingSession.FrequentFlyerProgram)
+                        cmdPass.ExecuteNonQuery()
+                    End Using
+                Next
+
+            Catch ex As Exception
+                MessageBox.Show("Error saving ticket to Database: " & ex.Message)
+                Exit Sub
+            End Try
+        End Using
+
+        MessageBox.Show($"Payment Successful! Total charged: RM {grandTotal:N2}.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+        ' --- PREPARE THE FULL TICKET ---
+        Dim ticketScreen As New frmTicket()
+        ticketScreen.Departure = BookingSession.SelectedDeparture
+        ticketScreen.Destination = BookingSession.SelectedDestination
+
+        ' This lists ALL passenger names on the ticket!
+        ticketScreen.PassengerName = String.Join(vbCrLf, BookingSession.PassengerNames)
+
+        ticketScreen.ProgramName = BookingSession.FrequentFlyerProgram
+        ticketScreen.FlightDate = BookingSession.SelectedDate
+        ticketScreen.FlightTime = BookingSession.SelectedTime
+        ticketScreen.FlightName = BookingSession.SelectedFlight
+        ticketScreen.Gate = "G" & New Random().Next(1, 26).ToString()
+        ticketScreen.Seat = BookingSession.SelectedSeat
+        ticketScreen.TicketPrice = "RM " & BookingSession.SelectedPrice.ToString("N2")
+        Me.Hide()
+        ticketScreen.Show()
     End Sub
 
     ' ========================================================
     ' 2. ONLINE BANKING LOGIC
     ' ========================================================
-    Private Sub btnPayOnlineBanking_Click(sender As Object, e As EventArgs)
+    Private Sub btnPayOnlineBanking_Click(sender As Object, e As EventArgs) Handles btnPayOnlineBanking.Click
         Dim selectedBank As String = cmbBanks.SelectedItem.ToString()
 
-        MessageBox.Show("Routing to " & selectedBank & " portal payment processing engine...", "Secure Redirection", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        ' --- DATABASE SYNC: SAVE MULTIPLE PASSENGERS ---
+        Dim pnrCode As String = "PNR" & New Random().Next(1000, 9999).ToString()
+        Dim newBookingID As Integer = 0
 
-        ' TODO: Commit ticket update transactions to your DB here
-        MessageBox.Show("Transaction authorized by " & selectedBank & ". Order confirmation finalized!", "Payment Successful", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        ' Grand Total = Base Flight Fare + Seat Add-on Fees
+        Dim grandTotal As Decimal = BookingSession.SelectedPrice
+
+        Using conn As New SqlConnection(DatabaseHelper.strConn)
+            Try
+                conn.Open()
+                ' 1. Insert into Bookings 
+                Dim bookQuery As String = "INSERT INTO Bookings (PNR, UserID, FlightID, TripType, ReturnDate, TotalPrice, BookingStatus) OUTPUT INSERTED.BookingID VALUES (@PNR, @UserID, @FlightID, @TripType, @ReturnDate, @Total, 'Confirmed')"
+                Using cmdBook As New SqlCommand(bookQuery, conn)
+                    cmdBook.Parameters.AddWithValue("@PNR", pnrCode)
+                    cmdBook.Parameters.AddWithValue("@UserID", DatabaseHelper.CurrentLoggedInUserID)
+                    cmdBook.Parameters.AddWithValue("@FlightID", BookingSession.SelectedFlightID)
+                    cmdBook.Parameters.AddWithValue("@TripType", BookingSession.TripType)
+
+                    If BookingSession.TripType = "Round-Trip" Then
+                        cmdBook.Parameters.AddWithValue("@ReturnDate", Convert.ToDateTime(BookingSession.ReturnDate))
+                    Else
+                        cmdBook.Parameters.AddWithValue("@ReturnDate", DBNull.Value)
+                    End If
+
+                    cmdBook.Parameters.AddWithValue("@Total", grandTotal)
+                    newBookingID = Convert.ToInt32(cmdBook.ExecuteScalar())
+                End Using
+
+                ' 2. LOOP TO INSERT EVERY PASSENGER
+                Dim seatArray() As String = BookingSession.SelectedSeat.Split(","c)
+
+                For i As Integer = 0 To BookingSession.PassengerNames.Count - 1
+                    Dim passQuery As String = "INSERT INTO Passengers (BookingID, FirstName, LastName, SeatNumber, FrequentFlyerProgram) VALUES (@BID, @FName, @LName, @Seat, @Prog)"
+                    Using cmdPass As New SqlCommand(passQuery, conn)
+                        cmdPass.Parameters.AddWithValue("@BID", newBookingID)
+
+                        Dim names() As String = BookingSession.PassengerNames(i).Trim().Split(" "c)
+                        cmdPass.Parameters.AddWithValue("@FName", names(0))
+                        cmdPass.Parameters.AddWithValue("@LName", If(names.Length > 1, names(names.Length - 1), ""))
+
+                        ' Give them a seat. If they are an infant without a seat, mark them as LAP
+                        If i < seatArray.Length Then
+                            cmdPass.Parameters.AddWithValue("@Seat", seatArray(i).Trim())
+                        Else
+                            cmdPass.Parameters.AddWithValue("@Seat", "LAP")
+                        End If
+
+                        cmdPass.Parameters.AddWithValue("@Prog", BookingSession.FrequentFlyerProgram)
+                        cmdPass.ExecuteNonQuery()
+                    End Using
+                Next
+
+            Catch ex As Exception
+                MessageBox.Show("Error saving ticket to Database: " & ex.Message)
+                Exit Sub
+            End Try
+        End Using
+
+        MessageBox.Show($"Payment Successful! Total charged: RM {grandTotal:N2}.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+        ' --- PREPARE THE FULL TICKET ---
+        Dim ticketScreen As New frmTicket()
+        ticketScreen.Departure = BookingSession.SelectedDeparture
+        ticketScreen.Destination = BookingSession.SelectedDestination
+
+        ' This lists ALL passenger names on the ticket!
+        ticketScreen.PassengerName = String.Join(vbCrLf, BookingSession.PassengerNames)
+
+        ticketScreen.ProgramName = BookingSession.FrequentFlyerProgram
+        ticketScreen.FlightDate = BookingSession.SelectedDate
+        ticketScreen.FlightTime = BookingSession.SelectedTime
+        ticketScreen.FlightName = BookingSession.SelectedFlight
+        ticketScreen.Gate = "G" & New Random().Next(1, 26).ToString()
+        ticketScreen.Seat = BookingSession.SelectedSeat
+        ticketScreen.TicketPrice = "RM " & BookingSession.SelectedPrice.ToString("N2")
+
+        Me.Hide()
+        ticketScreen.Show()
     End Sub
 
     ' ========================================================
     ' 3. E-WALLET LOGIC & DYNAMIC QR ENGINE
     ' ========================================================
-
-    ' Triggers when user selects a different item from the dropdown
     Private Sub cmbEWalletType_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbEwalletType.SelectedIndexChanged
         UpdateQRCodeImage()
     End Sub
 
-    ''' <summary>
-    ''' Switches out placeholder imagery according to target provider selection.
-    ''' </summary>
     Private Sub UpdateQRCodeImage()
         If cmbEwalletType.SelectedItem Is Nothing Then Exit Sub
 
@@ -148,8 +282,84 @@
 
         Dim selectedWallet As String = cmbEwalletType.SelectedItem.ToString()
 
-        ' TODO: Process database state transitions here 
-        MessageBox.Show("A push payment alert has been dispatched to your mobile terminal through " & selectedWallet & ". Verify transaction details inside your phone app.", "Awaiting Account Authorization", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        ' --- DATABASE SYNC: SAVE MULTIPLE PASSENGERS ---
+        Dim pnrCode As String = "PNR" & New Random().Next(1000, 9999).ToString()
+        Dim newBookingID As Integer = 0
+
+        ' Grand Total = Base Flight Fare + Seat Add-on Fees
+        Dim grandTotal As Decimal = BookingSession.SelectedPrice
+
+        Using conn As New SqlConnection(DatabaseHelper.strConn)
+            Try
+                conn.Open()
+                ' 1. Insert into Bookings 
+                Dim bookQuery As String = "INSERT INTO Bookings (PNR, UserID, FlightID, TripType, ReturnDate, TotalPrice, BookingStatus) OUTPUT INSERTED.BookingID VALUES (@PNR, @UserID, @FlightID, @TripType, @ReturnDate, @Total, 'Confirmed')"
+                Using cmdBook As New SqlCommand(bookQuery, conn)
+                    cmdBook.Parameters.AddWithValue("@PNR", pnrCode)
+                    cmdBook.Parameters.AddWithValue("@UserID", DatabaseHelper.CurrentLoggedInUserID)
+                    cmdBook.Parameters.AddWithValue("@FlightID", BookingSession.SelectedFlightID)
+                    cmdBook.Parameters.AddWithValue("@TripType", BookingSession.TripType)
+
+                    If BookingSession.TripType = "Round-Trip" Then
+                        cmdBook.Parameters.AddWithValue("@ReturnDate", Convert.ToDateTime(BookingSession.ReturnDate))
+                    Else
+                        cmdBook.Parameters.AddWithValue("@ReturnDate", DBNull.Value)
+                    End If
+
+                    cmdBook.Parameters.AddWithValue("@Total", grandTotal)
+                    newBookingID = Convert.ToInt32(cmdBook.ExecuteScalar())
+                End Using
+
+                ' 2. LOOP TO INSERT EVERY PASSENGER
+                Dim seatArray() As String = BookingSession.SelectedSeat.Split(","c)
+
+                For i As Integer = 0 To BookingSession.PassengerNames.Count - 1
+                    Dim passQuery As String = "INSERT INTO Passengers (BookingID, FirstName, LastName, SeatNumber, FrequentFlyerProgram) VALUES (@BID, @FName, @LName, @Seat, @Prog)"
+                    Using cmdPass As New SqlCommand(passQuery, conn)
+                        cmdPass.Parameters.AddWithValue("@BID", newBookingID)
+
+                        Dim names() As String = BookingSession.PassengerNames(i).Trim().Split(" "c)
+                        cmdPass.Parameters.AddWithValue("@FName", names(0))
+                        cmdPass.Parameters.AddWithValue("@LName", If(names.Length > 1, names(names.Length - 1), ""))
+
+                        ' Give them a seat. If they are an infant without a seat, mark them as LAP
+                        If i < seatArray.Length Then
+                            cmdPass.Parameters.AddWithValue("@Seat", seatArray(i).Trim())
+                        Else
+                            cmdPass.Parameters.AddWithValue("@Seat", "LAP")
+                        End If
+
+                        cmdPass.Parameters.AddWithValue("@Prog", BookingSession.FrequentFlyerProgram)
+                        cmdPass.ExecuteNonQuery()
+                    End Using
+                Next
+
+            Catch ex As Exception
+                MessageBox.Show("Error saving ticket to Database: " & ex.Message)
+                Exit Sub
+            End Try
+        End Using
+
+        MessageBox.Show($"Payment Successful! Total charged: RM {grandTotal:N2}.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+        ' --- PREPARE THE FULL TICKET ---
+        Dim ticketScreen As New frmTicket()
+        ticketScreen.Departure = BookingSession.SelectedDeparture
+        ticketScreen.Destination = BookingSession.SelectedDestination
+
+        ' This lists ALL passenger names on the ticket!
+        ticketScreen.PassengerName = String.Join(vbCrLf, BookingSession.PassengerNames)
+
+        ticketScreen.ProgramName = BookingSession.FrequentFlyerProgram
+        ticketScreen.FlightDate = BookingSession.SelectedDate
+        ticketScreen.FlightTime = BookingSession.SelectedTime
+        ticketScreen.FlightName = BookingSession.SelectedFlight
+        ticketScreen.Gate = "G" & New Random().Next(1, 26).ToString()
+        ticketScreen.Seat = BookingSession.SelectedSeat
+        ticketScreen.TicketPrice = "RM " & BookingSession.SelectedPrice.ToString("N2")
+
+        Me.Hide()
+        ticketScreen.Show()
     End Sub
 
 End Class

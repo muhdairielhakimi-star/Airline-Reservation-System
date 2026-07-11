@@ -22,15 +22,17 @@ Partial Class frmPath
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.txtFrom = New System.Windows.Forms.TextBox()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.cmbTo = New System.Windows.Forms.ComboBox()
+        Me.cmbFrom = New System.Windows.Forms.ComboBox()
+        Me.Label5 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.dateReturn = New System.Windows.Forms.DateTimePicker()
         Me.dateDepart = New System.Windows.Forms.DateTimePicker()
-        Me.txtTo = New System.Windows.Forms.TextBox()
         Me.btnWay = New System.Windows.Forms.Button()
         Me.pnlPassengerPopup = New System.Windows.Forms.Panel()
+        Me.btnFirstClass = New System.Windows.Forms.Button()
         Me.btnInfantsMinus = New System.Windows.Forms.Button()
         Me.btnInfantsPlus = New System.Windows.Forms.Button()
         Me.lblInfantsCount = New System.Windows.Forms.Label()
@@ -48,36 +50,54 @@ Partial Class frmPath
         Me.btnFind = New System.Windows.Forms.Button()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.Label5 = New System.Windows.Forms.Label()
+        Me.dgvSchedule = New System.Windows.Forms.DataGridView()
         Me.Panel1.SuspendLayout()
         Me.pnlPassengerPopup.SuspendLayout()
+        CType(Me.dgvSchedule, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'txtFrom
-        '
-        Me.txtFrom.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtFrom.Location = New System.Drawing.Point(36, 53)
-        Me.txtFrom.Name = "txtFrom"
-        Me.txtFrom.Size = New System.Drawing.Size(80, 31)
-        Me.txtFrom.TabIndex = 0
-        Me.txtFrom.Text = "From"
         '
         'Panel1
         '
         Me.Panel1.BackColor = System.Drawing.SystemColors.ActiveCaption
+        Me.Panel1.Controls.Add(Me.cmbTo)
+        Me.Panel1.Controls.Add(Me.cmbFrom)
         Me.Panel1.Controls.Add(Me.Label5)
         Me.Panel1.Controls.Add(Me.Label2)
         Me.Panel1.Controls.Add(Me.Label1)
         Me.Panel1.Controls.Add(Me.dateReturn)
         Me.Panel1.Controls.Add(Me.dateDepart)
-        Me.Panel1.Controls.Add(Me.txtTo)
         Me.Panel1.Controls.Add(Me.btnWay)
-        Me.Panel1.Controls.Add(Me.txtFrom)
-        Me.Panel1.Location = New System.Drawing.Point(75, 116)
+        Me.Panel1.Location = New System.Drawing.Point(38, 378)
         Me.Panel1.Margin = New System.Windows.Forms.Padding(2)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(859, 137)
         Me.Panel1.TabIndex = 1
+        '
+        'cmbTo
+        '
+        Me.cmbTo.FormattingEnabled = True
+        Me.cmbTo.Location = New System.Drawing.Point(230, 53)
+        Me.cmbTo.Name = "cmbTo"
+        Me.cmbTo.Size = New System.Drawing.Size(117, 21)
+        Me.cmbTo.TabIndex = 9
+        '
+        'cmbFrom
+        '
+        Me.cmbFrom.FormattingEnabled = True
+        Me.cmbFrom.Location = New System.Drawing.Point(27, 53)
+        Me.cmbFrom.Name = "cmbFrom"
+        Me.cmbFrom.Size = New System.Drawing.Size(117, 21)
+        Me.cmbFrom.TabIndex = 8
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.Location = New System.Drawing.Point(662, 53)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(25, 33)
+        Me.Label5.TabIndex = 7
+        Me.Label5.Text = "-"
         '
         'Label2
         '
@@ -119,25 +139,15 @@ Partial Class frmPath
         Me.dateDepart.Size = New System.Drawing.Size(115, 31)
         Me.dateDepart.TabIndex = 3
         '
-        'txtTo
-        '
-        Me.txtTo.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtTo.Location = New System.Drawing.Point(243, 53)
-        Me.txtTo.Margin = New System.Windows.Forms.Padding(2)
-        Me.txtTo.Name = "txtTo"
-        Me.txtTo.Size = New System.Drawing.Size(76, 31)
-        Me.txtTo.TabIndex = 2
-        Me.txtTo.Text = "To"
-        '
         'btnWay
         '
         Me.btnWay.BackColor = System.Drawing.SystemColors.HotTrack
         Me.btnWay.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnWay.ForeColor = System.Drawing.SystemColors.ControlLight
-        Me.btnWay.Location = New System.Drawing.Point(135, 49)
+        Me.btnWay.Location = New System.Drawing.Point(153, 49)
         Me.btnWay.Margin = New System.Windows.Forms.Padding(2)
         Me.btnWay.Name = "btnWay"
-        Me.btnWay.Size = New System.Drawing.Size(81, 38)
+        Me.btnWay.Size = New System.Drawing.Size(72, 35)
         Me.btnWay.TabIndex = 1
         Me.btnWay.Text = "⇄"
         Me.btnWay.UseVisualStyleBackColor = False
@@ -146,6 +156,7 @@ Partial Class frmPath
         '
         Me.pnlPassengerPopup.BackColor = System.Drawing.SystemColors.ActiveCaption
         Me.pnlPassengerPopup.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.pnlPassengerPopup.Controls.Add(Me.btnFirstClass)
         Me.pnlPassengerPopup.Controls.Add(Me.btnInfantsMinus)
         Me.pnlPassengerPopup.Controls.Add(Me.btnInfantsPlus)
         Me.pnlPassengerPopup.Controls.Add(Me.lblInfantsCount)
@@ -160,11 +171,21 @@ Partial Class frmPath
         Me.pnlPassengerPopup.Controls.Add(Me.lblAdultsCount)
         Me.pnlPassengerPopup.Controls.Add(Me.btnAdultsMinus)
         Me.pnlPassengerPopup.Controls.Add(Me.lblAdults)
-        Me.pnlPassengerPopup.Location = New System.Drawing.Point(75, 269)
+        Me.pnlPassengerPopup.Location = New System.Drawing.Point(38, 550)
         Me.pnlPassengerPopup.Name = "pnlPassengerPopup"
-        Me.pnlPassengerPopup.Size = New System.Drawing.Size(247, 268)
+        Me.pnlPassengerPopup.Size = New System.Drawing.Size(261, 269)
         Me.pnlPassengerPopup.TabIndex = 4
-        Me.pnlPassengerPopup.Visible = False
+        '
+        'btnFirstClass
+        '
+        Me.btnFirstClass.BackColor = System.Drawing.SystemColors.HighlightText
+        Me.btnFirstClass.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnFirstClass.Location = New System.Drawing.Point(171, 230)
+        Me.btnFirstClass.Name = "btnFirstClass"
+        Me.btnFirstClass.Size = New System.Drawing.Size(75, 23)
+        Me.btnFirstClass.TabIndex = 15
+        Me.btnFirstClass.Text = "First Class"
+        Me.btnFirstClass.UseVisualStyleBackColor = False
         '
         'btnInfantsMinus
         '
@@ -313,7 +334,7 @@ Partial Class frmPath
         Me.btnFind.BackColor = System.Drawing.SystemColors.ControlDark
         Me.btnFind.FlatStyle = System.Windows.Forms.FlatStyle.System
         Me.btnFind.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnFind.Location = New System.Drawing.Point(72, 554)
+        Me.btnFind.Location = New System.Drawing.Point(35, 835)
         Me.btnFind.Name = "btnFind"
         Me.btnFind.Size = New System.Drawing.Size(147, 47)
         Me.btnFind.TabIndex = 5
@@ -342,26 +363,25 @@ Partial Class frmPath
         Me.Label4.TabIndex = 7
         Me.Label4.Text = "Fly with us to get more benefits"
         '
-        'Label5
+        'dgvSchedule
         '
-        Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(662, 53)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(25, 33)
-        Me.Label5.TabIndex = 7
-        Me.Label5.Text = "-"
+        Me.dgvSchedule.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvSchedule.Location = New System.Drawing.Point(148, 112)
+        Me.dgvSchedule.Name = "dgvSchedule"
+        Me.dgvSchedule.Size = New System.Drawing.Size(686, 251)
+        Me.dgvSchedule.TabIndex = 8
         '
         'frmPath
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ActiveBorder
-        Me.ClientSize = New System.Drawing.Size(1008, 729)
+        Me.ClientSize = New System.Drawing.Size(1008, 891)
+        Me.Controls.Add(Me.dgvSchedule)
+        Me.Controls.Add(Me.pnlPassengerPopup)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.btnFind)
-        Me.Controls.Add(Me.pnlPassengerPopup)
         Me.Controls.Add(Me.Panel1)
         Me.Name = "frmPath"
         Me.Text = "Flight Path"
@@ -369,16 +389,14 @@ Partial Class frmPath
         Me.Panel1.PerformLayout()
         Me.pnlPassengerPopup.ResumeLayout(False)
         Me.pnlPassengerPopup.PerformLayout()
+        CType(Me.dgvSchedule, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
-
-    Friend WithEvents txtFrom As TextBox
     Friend WithEvents Panel1 As Panel
     Friend WithEvents dateReturn As DateTimePicker
     Friend WithEvents dateDepart As DateTimePicker
-    Friend WithEvents txtTo As TextBox
     Friend WithEvents btnWay As Button
     Friend WithEvents Label2 As Label
     Friend WithEvents Label1 As Label
@@ -401,4 +419,8 @@ Partial Class frmPath
     Friend WithEvents Label5 As Label
     Friend WithEvents Label3 As Label
     Friend WithEvents Label4 As Label
+    Friend WithEvents cmbTo As ComboBox
+    Friend WithEvents cmbFrom As ComboBox
+    Friend WithEvents dgvSchedule As DataGridView
+    Friend WithEvents btnFirstClass As Button
 End Class

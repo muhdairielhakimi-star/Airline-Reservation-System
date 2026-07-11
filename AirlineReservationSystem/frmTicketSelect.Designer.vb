@@ -46,6 +46,7 @@ Partial Class frmTicketSelect
         Me.lblFlightRoute3 = New System.Windows.Forms.Label()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.Label17 = New System.Windows.Forms.Label()
+        Me.btnContinue = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -262,11 +263,21 @@ Partial Class frmTicketSelect
         Me.Label17.TabIndex = 18
         Me.Label17.Text = "Flight"
         '
+        'btnContinue
+        '
+        Me.btnContinue.Location = New System.Drawing.Point(340, 518)
+        Me.btnContinue.Name = "btnContinue"
+        Me.btnContinue.Size = New System.Drawing.Size(87, 27)
+        Me.btnContinue.TabIndex = 22
+        Me.btnContinue.Text = "Continue"
+        Me.btnContinue.UseVisualStyleBackColor = True
+        '
         'frmTicketSelect
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(761, 507)
+        Me.ClientSize = New System.Drawing.Size(761, 572)
+        Me.Controls.Add(Me.btnContinue)
         Me.Controls.Add(Me.lblAircraftCode3)
         Me.Controls.Add(Me.lblFlightRoute3)
         Me.Controls.Add(Me.Label16)
@@ -318,4 +329,5 @@ Partial Class frmTicketSelect
     Friend WithEvents lblFlightRoute3 As Label
     Friend WithEvents Label16 As Label
     Friend WithEvents Label17 As Label
+    Friend WithEvents btnContinue As Button
 End Class

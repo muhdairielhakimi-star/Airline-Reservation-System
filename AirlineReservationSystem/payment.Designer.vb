@@ -28,9 +28,6 @@ Partial Class payment
         Me.btnOnlineBanking = New System.Windows.Forms.Button()
         Me.btnEWallet = New System.Windows.Forms.Button()
         Me.pnlCreditCard = New System.Windows.Forms.Panel()
-        Me.pnlOnlineBanking = New System.Windows.Forms.Panel()
-        Me.Label12 = New System.Windows.Forms.Label()
-        Me.Label11 = New System.Windows.Forms.Label()
         Me.btnPayCreditCard = New System.Windows.Forms.Button()
         Me.txtEmail = New System.Windows.Forms.TextBox()
         Me.Label10 = New System.Windows.Forms.Label()
@@ -47,6 +44,11 @@ Partial Class payment
         Me.txtCardNumber = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
+        Me.pnlOnlineBanking = New System.Windows.Forms.Panel()
+        Me.cmbBanks = New System.Windows.Forms.ComboBox()
+        Me.btnPayOnlineBanking = New System.Windows.Forms.Button()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.Label11 = New System.Windows.Forms.Label()
         Me.pnlEWallet = New System.Windows.Forms.Panel()
         Me.btnPayEWallet = New System.Windows.Forms.Button()
         Me.txtWalletPhone = New System.Windows.Forms.TextBox()
@@ -54,8 +56,6 @@ Partial Class payment
         Me.cmbEwalletType = New System.Windows.Forms.ComboBox()
         Me.Label19 = New System.Windows.Forms.Label()
         Me.Label20 = New System.Windows.Forms.Label()
-        Me.btnPayOnlineBanking = New System.Windows.Forms.Button()
-        Me.cmbBanks = New System.Windows.Forms.ComboBox()
         Me.pnlCreditCard.SuspendLayout()
         Me.pnlOnlineBanking.SuspendLayout()
         Me.pnlEWallet.SuspendLayout()
@@ -138,39 +138,6 @@ Partial Class payment
         Me.pnlCreditCard.Name = "pnlCreditCard"
         Me.pnlCreditCard.Size = New System.Drawing.Size(579, 357)
         Me.pnlCreditCard.TabIndex = 8
-        '
-        'pnlOnlineBanking
-        '
-        Me.pnlOnlineBanking.BackColor = System.Drawing.SystemColors.ActiveCaption
-        Me.pnlOnlineBanking.Controls.Add(Me.cmbBanks)
-        Me.pnlOnlineBanking.Controls.Add(Me.btnPayOnlineBanking)
-        Me.pnlOnlineBanking.Controls.Add(Me.Label12)
-        Me.pnlOnlineBanking.Controls.Add(Me.Label11)
-        Me.pnlOnlineBanking.Location = New System.Drawing.Point(417, 100)
-        Me.pnlOnlineBanking.Name = "pnlOnlineBanking"
-        Me.pnlOnlineBanking.Size = New System.Drawing.Size(579, 357)
-        Me.pnlOnlineBanking.TabIndex = 9
-        Me.pnlOnlineBanking.Visible = False
-        '
-        'Label12
-        '
-        Me.Label12.AutoSize = True
-        Me.Label12.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label12.Location = New System.Drawing.Point(3, 59)
-        Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(133, 20)
-        Me.Label12.TabIndex = 15
-        Me.Label12.Text = "Select Your Bank"
-        '
-        'Label11
-        '
-        Me.Label11.AutoSize = True
-        Me.Label11.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label11.Location = New System.Drawing.Point(3, 12)
-        Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(153, 24)
-        Me.Label11.TabIndex = 15
-        Me.Label11.Text = "Online Banking"
         '
         'btnPayCreditCard
         '
@@ -311,6 +278,58 @@ Partial Class payment
         Me.Label3.TabIndex = 0
         Me.Label3.Text = "Debit/Credit Card"
         '
+        'pnlOnlineBanking
+        '
+        Me.pnlOnlineBanking.BackColor = System.Drawing.SystemColors.ActiveCaption
+        Me.pnlOnlineBanking.Controls.Add(Me.cmbBanks)
+        Me.pnlOnlineBanking.Controls.Add(Me.btnPayOnlineBanking)
+        Me.pnlOnlineBanking.Controls.Add(Me.Label12)
+        Me.pnlOnlineBanking.Controls.Add(Me.Label11)
+        Me.pnlOnlineBanking.Location = New System.Drawing.Point(417, 100)
+        Me.pnlOnlineBanking.Name = "pnlOnlineBanking"
+        Me.pnlOnlineBanking.Size = New System.Drawing.Size(579, 357)
+        Me.pnlOnlineBanking.TabIndex = 9
+        Me.pnlOnlineBanking.Visible = False
+        '
+        'cmbBanks
+        '
+        Me.cmbBanks.FormattingEnabled = True
+        Me.cmbBanks.Items.AddRange(New Object() {"Maybank2u", "CIMB Clicks", "Public Bank", "Rhb Now"})
+        Me.cmbBanks.Location = New System.Drawing.Point(7, 88)
+        Me.cmbBanks.Name = "cmbBanks"
+        Me.cmbBanks.Size = New System.Drawing.Size(164, 21)
+        Me.cmbBanks.TabIndex = 19
+        '
+        'btnPayOnlineBanking
+        '
+        Me.btnPayOnlineBanking.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnPayOnlineBanking.Location = New System.Drawing.Point(7, 312)
+        Me.btnPayOnlineBanking.Name = "btnPayOnlineBanking"
+        Me.btnPayOnlineBanking.Size = New System.Drawing.Size(205, 32)
+        Me.btnPayOnlineBanking.TabIndex = 18
+        Me.btnPayOnlineBanking.Text = "Proceed to Bank Page"
+        Me.btnPayOnlineBanking.UseVisualStyleBackColor = True
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label12.Location = New System.Drawing.Point(3, 59)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(133, 20)
+        Me.Label12.TabIndex = 15
+        Me.Label12.Text = "Select Your Bank"
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label11.Location = New System.Drawing.Point(3, 12)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(153, 24)
+        Me.Label11.TabIndex = 15
+        Me.Label11.Text = "Online Banking"
+        '
         'pnlEWallet
         '
         Me.pnlEWallet.BackColor = System.Drawing.SystemColors.ActiveCaption
@@ -379,25 +398,6 @@ Partial Class payment
         Me.Label20.Size = New System.Drawing.Size(88, 24)
         Me.Label20.TabIndex = 0
         Me.Label20.Text = "E-Wallet"
-        '
-        'btnPayOnlineBanking
-        '
-        Me.btnPayOnlineBanking.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnPayOnlineBanking.Location = New System.Drawing.Point(7, 312)
-        Me.btnPayOnlineBanking.Name = "btnPayOnlineBanking"
-        Me.btnPayOnlineBanking.Size = New System.Drawing.Size(205, 32)
-        Me.btnPayOnlineBanking.TabIndex = 18
-        Me.btnPayOnlineBanking.Text = "Proceed to Bank Page"
-        Me.btnPayOnlineBanking.UseVisualStyleBackColor = True
-        '
-        'cmbBanks
-        '
-        Me.cmbBanks.FormattingEnabled = True
-        Me.cmbBanks.Items.AddRange(New Object() {"Maybank2u", "CIMB Clicks", "Public Bank", "Rhb Now"})
-        Me.cmbBanks.Location = New System.Drawing.Point(7, 88)
-        Me.cmbBanks.Name = "cmbBanks"
-        Me.cmbBanks.Size = New System.Drawing.Size(164, 21)
-        Me.cmbBanks.TabIndex = 19
         '
         'payment
         '

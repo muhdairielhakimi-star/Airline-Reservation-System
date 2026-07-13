@@ -122,6 +122,18 @@ Public Class frmTicketSelect
         BookingSession.SelectedPrice = selectedFlight.Price ' Save the flight ticket cost
     End Sub
 
+    Private Sub Label1_Click(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Private Sub Panel1_Paint(sender As Object, e As PaintEventArgs)
+
+    End Sub
+
+    Private Sub Label12_Click(sender As Object, e As EventArgs) Handles lblFlightTime3.Click
+
+    End Sub
+
     Private Sub HighlightSelectedCard(cardNumber As Integer)
         btnOption1.BackColor = Color.White
         btnOption2.BackColor = Color.White

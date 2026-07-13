@@ -28,14 +28,6 @@ Partial Class payment
         Me.btnEWallet = New System.Windows.Forms.Button()
         Me.pnlCreditCard = New System.Windows.Forms.Panel()
         Me.btnPayCreditCard = New System.Windows.Forms.Button()
-        Me.pnlEWallet = New System.Windows.Forms.Panel()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.btnPayEWallet = New System.Windows.Forms.Button()
-        Me.txtWalletPhone = New System.Windows.Forms.TextBox()
-        Me.picQRCode = New System.Windows.Forms.PictureBox()
-        Me.cmbEwalletType = New System.Windows.Forms.ComboBox()
-        Me.Label19 = New System.Windows.Forms.Label()
-        Me.Label20 = New System.Windows.Forms.Label()
         Me.txtEmail = New System.Windows.Forms.TextBox()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.txtPhone = New System.Windows.Forms.TextBox()
@@ -56,11 +48,19 @@ Partial Class payment
         Me.btnPayOnlineBanking = New System.Windows.Forms.Button()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.Label11 = New System.Windows.Forms.Label()
+        Me.pnlEWallet = New System.Windows.Forms.Panel()
+        Me.btnPayEWallet = New System.Windows.Forms.Button()
+        Me.txtWalletPhone = New System.Windows.Forms.TextBox()
+        Me.picQRCode = New System.Windows.Forms.PictureBox()
+        Me.cmbEwalletType = New System.Windows.Forms.ComboBox()
+        Me.Label19 = New System.Windows.Forms.Label()
+        Me.Label20 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.btnCancelPayment = New System.Windows.Forms.Button()
         Me.pnlCreditCard.SuspendLayout()
+        Me.pnlOnlineBanking.SuspendLayout()
         Me.pnlEWallet.SuspendLayout()
         CType(Me.picQRCode, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.pnlOnlineBanking.SuspendLayout()
         Me.SuspendLayout()
         '
         'Label1
@@ -112,7 +112,7 @@ Partial Class payment
         'pnlCreditCard
         '
         Me.pnlCreditCard.BackColor = System.Drawing.Color.White
-        Me.pnlCreditCard.Controls.Add(Me.pnlOnlineBanking)
+        Me.pnlCreditCard.Controls.Add(Me.pnlEWallet)
         Me.pnlCreditCard.Controls.Add(Me.btnPayCreditCard)
         Me.pnlCreditCard.Controls.Add(Me.txtEmail)
         Me.pnlCreditCard.Controls.Add(Me.Label10)
@@ -130,9 +130,9 @@ Partial Class payment
         Me.pnlCreditCard.Controls.Add(Me.Label4)
         Me.pnlCreditCard.Controls.Add(Me.Label3)
         Me.pnlCreditCard.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.pnlCreditCard.Location = New System.Drawing.Point(307, 69)
+        Me.pnlCreditCard.Location = New System.Drawing.Point(354, 65)
         Me.pnlCreditCard.Name = "pnlCreditCard"
-        Me.pnlCreditCard.Size = New System.Drawing.Size(671, 513)
+        Me.pnlCreditCard.Size = New System.Drawing.Size(620, 500)
         Me.pnlCreditCard.TabIndex = 8
         '
         'btnPayCreditCard
@@ -146,94 +146,6 @@ Partial Class payment
         Me.btnPayCreditCard.TabIndex = 15
         Me.btnPayCreditCard.Text = "Pay Now"
         Me.btnPayCreditCard.UseVisualStyleBackColor = False
-        '
-        'pnlEWallet
-        '
-        Me.pnlEWallet.BackColor = System.Drawing.Color.White
-        Me.pnlEWallet.Controls.Add(Me.Label2)
-        Me.pnlEWallet.Controls.Add(Me.btnPayEWallet)
-        Me.pnlEWallet.Controls.Add(Me.txtWalletPhone)
-        Me.pnlEWallet.Controls.Add(Me.picQRCode)
-        Me.pnlEWallet.Controls.Add(Me.cmbEwalletType)
-        Me.pnlEWallet.Controls.Add(Me.Label19)
-        Me.pnlEWallet.Controls.Add(Me.Label20)
-        Me.pnlEWallet.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.pnlEWallet.Location = New System.Drawing.Point(0, 15)
-        Me.pnlEWallet.Name = "pnlEWallet"
-        Me.pnlEWallet.Size = New System.Drawing.Size(671, 485)
-        Me.pnlEWallet.TabIndex = 15
-        Me.pnlEWallet.Visible = False
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.ForeColor = System.Drawing.Color.DimGray
-        Me.Label2.Location = New System.Drawing.Point(4, 299)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(123, 21)
-        Me.Label2.TabIndex = 19
-        Me.Label2.Text = "Phone Number :"
-        '
-        'btnPayEWallet
-        '
-        Me.btnPayEWallet.BackColor = System.Drawing.Color.Blue
-        Me.btnPayEWallet.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnPayEWallet.ForeColor = System.Drawing.Color.White
-        Me.btnPayEWallet.Location = New System.Drawing.Point(426, 438)
-        Me.btnPayEWallet.Name = "btnPayEWallet"
-        Me.btnPayEWallet.Size = New System.Drawing.Size(180, 50)
-        Me.btnPayEWallet.TabIndex = 18
-        Me.btnPayEWallet.Text = "Pay Now"
-        Me.btnPayEWallet.UseVisualStyleBackColor = False
-        '
-        'txtWalletPhone
-        '
-        Me.txtWalletPhone.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtWalletPhone.Location = New System.Drawing.Point(8, 323)
-        Me.txtWalletPhone.Name = "txtWalletPhone"
-        Me.txtWalletPhone.Size = New System.Drawing.Size(216, 25)
-        Me.txtWalletPhone.TabIndex = 17
-        '
-        'picQRCode
-        '
-        Me.picQRCode.Location = New System.Drawing.Point(8, 131)
-        Me.picQRCode.Name = "picQRCode"
-        Me.picQRCode.Size = New System.Drawing.Size(186, 165)
-        Me.picQRCode.TabIndex = 16
-        Me.picQRCode.TabStop = False
-        '
-        'cmbEwalletType
-        '
-        Me.cmbEwalletType.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmbEwalletType.FormattingEnabled = True
-        Me.cmbEwalletType.Items.AddRange(New Object() {"Touch 'n Go", "GrabPay", "Boost", "ShoppePay", "ShoppePay Later"})
-        Me.cmbEwalletType.Location = New System.Drawing.Point(7, 87)
-        Me.cmbEwalletType.Name = "cmbEwalletType"
-        Me.cmbEwalletType.Size = New System.Drawing.Size(217, 28)
-        Me.cmbEwalletType.TabIndex = 15
-        '
-        'Label19
-        '
-        Me.Label19.AutoSize = True
-        Me.Label19.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label19.ForeColor = System.Drawing.Color.DimGray
-        Me.Label19.Location = New System.Drawing.Point(3, 59)
-        Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(175, 21)
-        Me.Label19.TabIndex = 1
-        Me.Label19.Text = "Select E-Wallet Provider"
-        '
-        'Label20
-        '
-        Me.Label20.AutoSize = True
-        Me.Label20.Font = New System.Drawing.Font("Segoe UI Semibold", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label20.ForeColor = System.Drawing.Color.Blue
-        Me.Label20.Location = New System.Drawing.Point(3, 13)
-        Me.Label20.Name = "Label20"
-        Me.Label20.Size = New System.Drawing.Size(84, 25)
-        Me.Label20.TabIndex = 0
-        Me.Label20.Text = "E-Wallet"
         '
         'txtEmail
         '
@@ -383,14 +295,13 @@ Partial Class payment
         '
         Me.pnlOnlineBanking.BackColor = System.Drawing.Color.White
         Me.pnlOnlineBanking.Controls.Add(Me.cmbBanks)
-        Me.pnlOnlineBanking.Controls.Add(Me.pnlEWallet)
         Me.pnlOnlineBanking.Controls.Add(Me.btnPayOnlineBanking)
         Me.pnlOnlineBanking.Controls.Add(Me.Label12)
         Me.pnlOnlineBanking.Controls.Add(Me.Label11)
         Me.pnlOnlineBanking.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.pnlOnlineBanking.Location = New System.Drawing.Point(0, 13)
+        Me.pnlOnlineBanking.Location = New System.Drawing.Point(0, 3)
         Me.pnlOnlineBanking.Name = "pnlOnlineBanking"
-        Me.pnlOnlineBanking.Size = New System.Drawing.Size(671, 500)
+        Me.pnlOnlineBanking.Size = New System.Drawing.Size(620, 500)
         Me.pnlOnlineBanking.TabIndex = 9
         Me.pnlOnlineBanking.Visible = False
         '
@@ -439,6 +350,95 @@ Partial Class payment
         Me.Label11.TabIndex = 15
         Me.Label11.Text = "Online Banking"
         '
+        'pnlEWallet
+        '
+        Me.pnlEWallet.BackColor = System.Drawing.Color.White
+        Me.pnlEWallet.Controls.Add(Me.pnlOnlineBanking)
+        Me.pnlEWallet.Controls.Add(Me.Label2)
+        Me.pnlEWallet.Controls.Add(Me.btnPayEWallet)
+        Me.pnlEWallet.Controls.Add(Me.txtWalletPhone)
+        Me.pnlEWallet.Controls.Add(Me.picQRCode)
+        Me.pnlEWallet.Controls.Add(Me.cmbEwalletType)
+        Me.pnlEWallet.Controls.Add(Me.Label19)
+        Me.pnlEWallet.Controls.Add(Me.Label20)
+        Me.pnlEWallet.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.pnlEWallet.Location = New System.Drawing.Point(0, 4)
+        Me.pnlEWallet.Name = "pnlEWallet"
+        Me.pnlEWallet.Size = New System.Drawing.Size(620, 500)
+        Me.pnlEWallet.TabIndex = 15
+        Me.pnlEWallet.Visible = False
+        '
+        'btnPayEWallet
+        '
+        Me.btnPayEWallet.BackColor = System.Drawing.Color.Blue
+        Me.btnPayEWallet.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnPayEWallet.ForeColor = System.Drawing.Color.White
+        Me.btnPayEWallet.Location = New System.Drawing.Point(426, 438)
+        Me.btnPayEWallet.Name = "btnPayEWallet"
+        Me.btnPayEWallet.Size = New System.Drawing.Size(180, 50)
+        Me.btnPayEWallet.TabIndex = 18
+        Me.btnPayEWallet.Text = "Pay Now"
+        Me.btnPayEWallet.UseVisualStyleBackColor = False
+        '
+        'txtWalletPhone
+        '
+        Me.txtWalletPhone.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtWalletPhone.Location = New System.Drawing.Point(8, 323)
+        Me.txtWalletPhone.Name = "txtWalletPhone"
+        Me.txtWalletPhone.Size = New System.Drawing.Size(216, 25)
+        Me.txtWalletPhone.TabIndex = 17
+        '
+        'picQRCode
+        '
+        Me.picQRCode.Location = New System.Drawing.Point(8, 131)
+        Me.picQRCode.Name = "picQRCode"
+        Me.picQRCode.Size = New System.Drawing.Size(186, 165)
+        Me.picQRCode.TabIndex = 16
+        Me.picQRCode.TabStop = False
+        '
+        'cmbEwalletType
+        '
+        Me.cmbEwalletType.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmbEwalletType.FormattingEnabled = True
+        Me.cmbEwalletType.Items.AddRange(New Object() {"Touch 'n Go", "GrabPay", "Boost", "ShoppePay", "ShoppePay Later"})
+        Me.cmbEwalletType.Location = New System.Drawing.Point(7, 87)
+        Me.cmbEwalletType.Name = "cmbEwalletType"
+        Me.cmbEwalletType.Size = New System.Drawing.Size(217, 28)
+        Me.cmbEwalletType.TabIndex = 15
+        '
+        'Label19
+        '
+        Me.Label19.AutoSize = True
+        Me.Label19.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label19.ForeColor = System.Drawing.Color.DimGray
+        Me.Label19.Location = New System.Drawing.Point(3, 59)
+        Me.Label19.Name = "Label19"
+        Me.Label19.Size = New System.Drawing.Size(175, 21)
+        Me.Label19.TabIndex = 1
+        Me.Label19.Text = "Select E-Wallet Provider"
+        '
+        'Label20
+        '
+        Me.Label20.AutoSize = True
+        Me.Label20.Font = New System.Drawing.Font("Segoe UI Semibold", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label20.ForeColor = System.Drawing.Color.Blue
+        Me.Label20.Location = New System.Drawing.Point(3, 13)
+        Me.Label20.Name = "Label20"
+        Me.Label20.Size = New System.Drawing.Size(84, 25)
+        Me.Label20.TabIndex = 0
+        Me.Label20.Text = "E-Wallet"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.ForeColor = System.Drawing.Color.DimGray
+        Me.Label2.Location = New System.Drawing.Point(4, 299)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(123, 21)
+        Me.Label2.TabIndex = 19
+        Me.Label2.Text = "Phone Number :"
+        '
         'btnCancelPayment
         '
         Me.btnCancelPayment.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -465,11 +465,11 @@ Partial Class payment
         Me.Text = "payment"
         Me.pnlCreditCard.ResumeLayout(False)
         Me.pnlCreditCard.PerformLayout()
+        Me.pnlOnlineBanking.ResumeLayout(False)
+        Me.pnlOnlineBanking.PerformLayout()
         Me.pnlEWallet.ResumeLayout(False)
         Me.pnlEWallet.PerformLayout()
         CType(Me.picQRCode, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.pnlOnlineBanking.ResumeLayout(False)
-        Me.pnlOnlineBanking.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

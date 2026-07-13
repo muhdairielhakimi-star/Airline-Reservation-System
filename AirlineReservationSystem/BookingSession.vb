@@ -21,4 +21,7 @@ Module BookingSession
     Public CabinClass As String
     Public PassengerNames As New List(Of String)
     Public CurrentPassengerIndex As Integer = 1
+    Public ContactEmail As String
+    Public ContactPhone As String
+
 End Module

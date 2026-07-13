@@ -23,7 +23,7 @@ Public Class frmSignUp
         Using conn As New SqlConnection(strConn)
             Using cmd As New SqlCommand(query, conn)
                 cmd.Parameters.AddWithValue("@Email", txtEmail.Text.Trim())
-                cmd.Parameters.AddWithValue("@Password", txtPassword.Text.Trim())
+                cmd.Parameters.AddWithValue("@Password", HashPassword(txtPassword.Text.Trim()))
                 cmd.Parameters.AddWithValue("@Title", cmbTitle.Text)
                 cmd.Parameters.AddWithValue("@FirstName", txtFirstName.Text.Trim())
                 cmd.Parameters.AddWithValue("@LastName", txtLastName.Text.Trim())
@@ -57,6 +57,7 @@ Public Class frmSignUp
         End Using
     End Sub
 
+
     Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
 
         ' 1. Clear all standard textboxes
@@ -87,5 +88,9 @@ Public Class frmSignUp
         ' 2. Open the Login screen
         Dim loginForm As New frmLogin()
         loginForm.Show()
+    End Sub
+
+    Private Sub frmSignUp_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
     End Sub
 End Class

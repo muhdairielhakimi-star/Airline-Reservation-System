@@ -51,6 +51,7 @@ Partial Class frmPath
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.dgvSchedule = New System.Windows.Forms.DataGridView()
+        Me.btnProfile = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         Me.pnlPassengerPopup.SuspendLayout()
         CType(Me.dgvSchedule, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -371,12 +372,25 @@ Partial Class frmPath
         Me.dgvSchedule.Size = New System.Drawing.Size(686, 251)
         Me.dgvSchedule.TabIndex = 8
         '
+        'btnProfile
+        '
+        Me.btnProfile.BackColor = System.Drawing.SystemColors.ControlDark
+        Me.btnProfile.FlatStyle = System.Windows.Forms.FlatStyle.System
+        Me.btnProfile.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnProfile.Location = New System.Drawing.Point(787, 832)
+        Me.btnProfile.Name = "btnProfile"
+        Me.btnProfile.Size = New System.Drawing.Size(147, 47)
+        Me.btnProfile.TabIndex = 10
+        Me.btnProfile.Text = "Profile"
+        Me.btnProfile.UseVisualStyleBackColor = False
+        '
         'frmPath
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ActiveBorder
         Me.ClientSize = New System.Drawing.Size(1008, 891)
+        Me.Controls.Add(Me.btnProfile)
         Me.Controls.Add(Me.dgvSchedule)
         Me.Controls.Add(Me.pnlPassengerPopup)
         Me.Controls.Add(Me.Label4)
@@ -423,4 +437,5 @@ Partial Class frmPath
     Friend WithEvents cmbFrom As ComboBox
     Friend WithEvents dgvSchedule As DataGridView
     Friend WithEvents btnFirstClass As Button
+    Friend WithEvents btnProfile As Button
 End Class

@@ -64,7 +64,7 @@ Partial Class frmLogin
         'txtEmail
         '
         Me.txtEmail.Location = New System.Drawing.Point(261, 124)
-        Me.txtEmail.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtEmail.Margin = New System.Windows.Forms.Padding(2)
         Me.txtEmail.Name = "txtEmail"
         Me.txtEmail.Size = New System.Drawing.Size(76, 20)
         Me.txtEmail.TabIndex = 4
@@ -72,7 +72,7 @@ Partial Class frmLogin
         'txtPassword
         '
         Me.txtPassword.Location = New System.Drawing.Point(261, 155)
-        Me.txtPassword.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtPassword.Margin = New System.Windows.Forms.Padding(2)
         Me.txtPassword.Name = "txtPassword"
         Me.txtPassword.Size = New System.Drawing.Size(76, 20)
         Me.txtPassword.TabIndex = 5
@@ -81,7 +81,7 @@ Partial Class frmLogin
         'btnLogin
         '
         Me.btnLogin.Location = New System.Drawing.Point(241, 239)
-        Me.btnLogin.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnLogin.Margin = New System.Windows.Forms.Padding(2)
         Me.btnLogin.Name = "btnLogin"
         Me.btnLogin.Size = New System.Drawing.Size(65, 29)
         Me.btnLogin.TabIndex = 6
@@ -111,7 +111,7 @@ Partial Class frmLogin
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
-        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "frmLogin"
         Me.Text = "Login"
         Me.ResumeLayout(False)

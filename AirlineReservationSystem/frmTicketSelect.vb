@@ -24,7 +24,19 @@ Public Class frmTicketSelect
     End Sub
 
     Private Sub LoadFlightsFromDatabase()
-        Dim query As String = "SELECT TOP 3 * FROM Flights WHERE Origin = @Origin AND Destination = @Destination AND DepartureDate = @Date AND CabinClass = @Class"
+        ' Reset all 3 slots to a known "empty" state before querying
+        lblFlightRoute1.Text = ""
+        lblAircraftCode1.Text = ""
+        lblFlightRoute2.Text = "No flight available"
+        lblAircraftCode2.Text = ""
+        lblFlightRoute3.Text = "No flight available"
+        lblAircraftCode3.Text = ""
+        btnOption1.Enabled = False
+        btnOption2.Enabled = False
+        btnOption3.Enabled = False
+
+        Dim query As String = "SELECT TOP 3 * FROM Flights WHERE Origin = @Origin AND Destination = @Destination " &
+                  "AND DepartureDate = @Date AND CabinClass = @Class ORDER BY DepartureTime ASC"
 
         Using conn As New SqlConnection(DatabaseHelper.strConn)
             Using cmd As New SqlCommand(query, conn)
@@ -41,11 +53,10 @@ Public Class frmTicketSelect
                             Dim f As New FlightData()
                             f.FlightID = Convert.ToInt32(reader("FlightID"))
 
-                            ' --- ROLE BASED PRICING MATH ---
                             Dim baseCost As Decimal = Convert.ToDecimal(reader("BasePrice"))
                             Dim adultTotal As Decimal = baseCost * BookingSession.AdultCount
-                            Dim childTotal As Decimal = (baseCost * 0.75D) * BookingSession.ChildCount ' Kids are 75%
-                            Dim infantTotal As Decimal = (baseCost * 0.1D) * BookingSession.InfantCount ' Infants are 10%
+                            Dim childTotal As Decimal = (baseCost * 0.75D) * BookingSession.ChildCount
+                            Dim infantTotal As Decimal = (baseCost * 0.1D) * BookingSession.InfantCount
                             f.Price = adultTotal + childTotal + infantTotal
 
                             f.AircraftCode = reader("FlightNumber").ToString()
@@ -60,14 +71,17 @@ Public Class frmTicketSelect
                                 Flight1 = f
                                 lblFlightRoute1.Text = $"{f.FromAirport} ({f.DepartureTime}) ---> {f.ToAirport}"
                                 lblAircraftCode1.Text = f.AircraftCode
+                                btnOption1.Enabled = True
                             ElseIf count = 2 Then
                                 Flight2 = f
                                 lblFlightRoute2.Text = $"{f.FromAirport} ({f.DepartureTime}) ---> {f.ToAirport}"
                                 lblAircraftCode2.Text = f.AircraftCode
+                                btnOption2.Enabled = True
                             ElseIf count = 3 Then
                                 Flight3 = f
                                 lblFlightRoute3.Text = $"{f.FromAirport} ({f.DepartureTime}) ---> {f.ToAirport}"
                                 lblAircraftCode3.Text = f.AircraftCode
+                                btnOption3.Enabled = True
                             End If
                             count += 1
                         End While

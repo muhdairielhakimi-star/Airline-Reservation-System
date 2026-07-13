@@ -12,10 +12,10 @@ Public Class selectSeat
     Private seatSelectionFeeTotal As Decimal = 0
 
     Private seatPriceMap As New Dictionary(Of String, Decimal) From {
-        {"First", 150.0},
-        {"Business", 80.0},
-        {"Economy", 40.0}
-    }
+    {"First Class", 150.0},
+    {"Business", 80.0},
+    {"Economy", 40.0}
+}
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.BackColor = SystemColors.Control ' REMOVED PURPLE BACKGROUND
@@ -42,7 +42,7 @@ Public Class selectSeat
                 seatArray(index).IsBooked = False
 
                 If r < 2 Then
-                    seatArray(index).CabinClass = "First"
+                    seatArray(index).CabinClass = "First Class"
                 ElseIf r < 5 Then
                     seatArray(index).CabinClass = "Business"
                 Else
@@ -106,6 +106,12 @@ Public Class selectSeat
 
         If seat.IsBooked Then
             btnSeat.BackColor = Color.DarkGray
+            btnSeat.ForeColor = Color.White
+            btnSeat.Enabled = False
+        ElseIf seat.CabinClass <> BookingSession.CabinClass Then
+            ' Not booked, but wrong class for this ticket — show it exists, but block it
+            btnSeat.BackColor = Color.WhiteSmoke
+            btnSeat.ForeColor = Color.Silver
             btnSeat.Enabled = False
         Else
             btnSeat.BackColor = Color.White

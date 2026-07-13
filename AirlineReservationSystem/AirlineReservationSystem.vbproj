@@ -97,6 +97,19 @@
     <Compile Include="DisplayTicket.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmEditField.Designer.vb">
+      <DependentUpon>frmEditField.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmEditField.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PasswordHelper.vb" />
+    <Compile Include="Profile.Designer.vb">
+      <DependentUpon>Profile.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Profile.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="selectSeat.Designer.vb">
       <DependentUpon>selectSeat.vb</DependentUpon>
     </Compile>
@@ -158,8 +171,14 @@
     <EmbeddedResource Include="DisplayTicket.resx">
       <DependentUpon>DisplayTicket.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmEditField.resx">
+      <DependentUpon>frmEditField.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PassangerDetail.resx">
       <DependentUpon>PassangerDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Profile.resx">
+      <DependentUpon>Profile.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="selectSeat.resx">
       <DependentUpon>selectSeat.vb</DependentUpon>

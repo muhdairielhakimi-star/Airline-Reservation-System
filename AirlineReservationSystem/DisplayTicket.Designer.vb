@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class frmTicket
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
+Partial Class frmDisplayTicket
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class frmTicket
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.pnlTicket = New System.Windows.Forms.Panel()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
@@ -29,6 +29,7 @@ Partial Class frmTicket
         Me.lblAirline = New System.Windows.Forms.Label()
         Me.lblTitle = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.lblPrice = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.lblSeat = New System.Windows.Forms.Label()
         Me.lblGate = New System.Windows.Forms.Label()
@@ -44,7 +45,10 @@ Partial Class frmTicket
         Me.Label2 = New System.Windows.Forms.Label()
         Me.lblName = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.lblPrice = New System.Windows.Forms.Label()
+        Me.btnPrev = New System.Windows.Forms.Button()
+        Me.btnNext = New System.Windows.Forms.Button()
+        Me.lblTicketCounter = New System.Windows.Forms.Label()
+        Me.btnBack = New System.Windows.Forms.Button()
         Me.pnlTicket.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
@@ -109,7 +113,7 @@ Partial Class frmTicket
         '
         Me.lblTitle.AutoSize = True
         Me.lblTitle.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblTitle.Location = New System.Drawing.Point(426, 9)
+        Me.lblTitle.Location = New System.Drawing.Point(371, 9)
         Me.lblTitle.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblTitle.Name = "lblTitle"
         Me.lblTitle.Size = New System.Drawing.Size(70, 19)
@@ -139,6 +143,17 @@ Partial Class frmTicket
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(713, 279)
         Me.Panel1.TabIndex = 2
+        '
+        'lblPrice
+        '
+        Me.lblPrice.AutoSize = True
+        Me.lblPrice.Font = New System.Drawing.Font("Tahoma", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblPrice.Location = New System.Drawing.Point(466, 108)
+        Me.lblPrice.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lblPrice.Name = "lblPrice"
+        Me.lblPrice.Size = New System.Drawing.Size(53, 17)
+        Me.lblPrice.TabIndex = 20
+        Me.lblPrice.Text = "PRICE"
         '
         'Label8
         '
@@ -313,27 +328,57 @@ Partial Class frmTicket
         Me.Label1.TabIndex = 5
         Me.Label1.Text = "Name:"
         '
-        'lblPrice
+        'btnPrev
         '
-        Me.lblPrice.AutoSize = True
-        Me.lblPrice.Font = New System.Drawing.Font("Tahoma", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblPrice.Location = New System.Drawing.Point(466, 108)
-        Me.lblPrice.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.lblPrice.Name = "lblPrice"
-        Me.lblPrice.Size = New System.Drawing.Size(53, 17)
-        Me.lblPrice.TabIndex = 20
-        Me.lblPrice.Text = "PRICE"
+        Me.btnPrev.Location = New System.Drawing.Point(562, 466)
+        Me.btnPrev.Name = "btnPrev"
+        Me.btnPrev.Size = New System.Drawing.Size(75, 23)
+        Me.btnPrev.TabIndex = 3
+        Me.btnPrev.Text = "< Prev"
+        Me.btnPrev.UseVisualStyleBackColor = True
         '
-        'frmTicket
+        'btnNext
+        '
+        Me.btnNext.Location = New System.Drawing.Point(658, 466)
+        Me.btnNext.Name = "btnNext"
+        Me.btnNext.Size = New System.Drawing.Size(75, 23)
+        Me.btnNext.TabIndex = 4
+        Me.btnNext.Text = "Next >"
+        Me.btnNext.UseVisualStyleBackColor = True
+        '
+        'lblTicketCounter
+        '
+        Me.lblTicketCounter.AutoSize = True
+        Me.lblTicketCounter.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblTicketCounter.Location = New System.Drawing.Point(444, 9)
+        Me.lblTicketCounter.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lblTicketCounter.Name = "lblTicketCounter"
+        Me.lblTicketCounter.Size = New System.Drawing.Size(0, 19)
+        Me.lblTicketCounter.TabIndex = 5
+        '
+        'btnBack
+        '
+        Me.btnBack.Location = New System.Drawing.Point(12, 466)
+        Me.btnBack.Name = "btnBack"
+        Me.btnBack.Size = New System.Drawing.Size(75, 23)
+        Me.btnBack.TabIndex = 34
+        Me.btnBack.Text = "< Back"
+        Me.btnBack.UseVisualStyleBackColor = True
+        '
+        'frmDisplayTicket
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(852, 519)
+        Me.Controls.Add(Me.btnBack)
+        Me.Controls.Add(Me.lblTicketCounter)
+        Me.Controls.Add(Me.btnNext)
+        Me.Controls.Add(Me.btnPrev)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.lblTitle)
         Me.Controls.Add(Me.pnlTicket)
         Me.Margin = New System.Windows.Forms.Padding(2)
-        Me.Name = "frmTicket"
+        Me.Name = "frmDisplayTicket"
         Me.Text = "Ticket"
         Me.pnlTicket.ResumeLayout(False)
         Me.pnlTicket.PerformLayout()
@@ -368,4 +413,8 @@ Partial Class frmTicket
     Friend WithEvents lblGate As Label
     Friend WithEvents Label8 As Label
     Friend WithEvents lblPrice As Label
+    Friend WithEvents btnPrev As Button
+    Friend WithEvents btnNext As Button
+    Friend WithEvents lblTicketCounter As Label
+    Friend WithEvents btnBack As Button
 End Class

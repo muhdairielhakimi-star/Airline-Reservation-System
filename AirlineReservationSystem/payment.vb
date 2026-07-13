@@ -70,6 +70,35 @@ Public Class payment
     End Sub
 
     ' ========================================================
+    ' SHARED HELPER: Assigns (or reuses) a Gate for a given flight and persists it
+    ' NEW: Centralizes the gate logic so all three payment methods behave identically
+    ' and so a bug fix only ever needs to happen in one place going forward.
+    ' ========================================================
+    Private Function GetOrAssignGate(conn As SqlConnection, flightID As Integer) As String
+        Dim checkGateQuery As String = "SELECT Gate FROM Flights WHERE FlightID = @FlightID"
+        Using cmdCheckGate As New SqlCommand(checkGateQuery, conn)
+            cmdCheckGate.Parameters.AddWithValue("@FlightID", flightID)
+            Dim existingGate As Object = cmdCheckGate.ExecuteScalar()
+
+            If existingGate Is Nothing OrElse existingGate Is DBNull.Value Then
+                ' No gate yet — generate one and save it
+                Dim newGate As String = "G" & New Random().Next(1, 26).ToString()
+                Dim updateGateQuery As String = "UPDATE Flights SET Gate = @Gate WHERE FlightID = @FlightID"
+                Using cmdUpdateGate As New SqlCommand(updateGateQuery, conn)
+                    cmdUpdateGate.Parameters.AddWithValue("@Gate", newGate)
+                    cmdUpdateGate.Parameters.AddWithValue("@FlightID", flightID)
+                    cmdUpdateGate.ExecuteNonQuery()
+                End Using
+                Return newGate
+            Else
+                ' Gate already assigned for this flight — reuse it so every passenger on
+                ' the same flight sees the same value
+                Return existingGate.ToString()
+            End If
+        End Using
+    End Function
+
+    ' ========================================================
     ' 1. CREDIT/DEBIT CARD LOGIC
     ' ========================================================
     Private Sub btnPayCreditCard_Click(sender As Object, e As EventArgs) Handles btnPayCreditCard.Click
@@ -83,8 +112,9 @@ Public Class payment
         Dim pnrCode As String = "PNR" & New Random().Next(1000, 9999).ToString()
         Dim newBookingID As Integer = 0
 
-        ' Grand Total = Base Flight Fare + Seat Add-on Fees
         Dim grandTotal As Decimal = BookingSession.SelectedPrice
+        Dim assignedSeats As New List(Of String)
+        Dim assignedGate As String = "" ' Holds the flight's actual gate, read from or written to the DB
 
         Using conn As New SqlConnection(DatabaseHelper.strConn)
             Try
@@ -107,7 +137,10 @@ Public Class payment
                     newBookingID = Convert.ToInt32(cmdBook.ExecuteScalar())
                 End Using
 
-                ' 2. LOOP TO INSERT EVERY PASSENGER
+                ' 2. Get or assign this flight's Gate (persisted, shared across all passengers/bookings on this flight)
+                assignedGate = GetOrAssignGate(conn, BookingSession.SelectedFlightID)
+
+                ' 3. LOOP TO INSERT EVERY PASSENGER
                 Dim seatArray() As String = BookingSession.SelectedSeat.Split(","c)
 
                 For i As Integer = 0 To BookingSession.PassengerNames.Count - 1
@@ -120,11 +153,9 @@ Public Class payment
                         cmdPass.Parameters.AddWithValue("@LName", If(names.Length > 1, names(names.Length - 1), ""))
 
                         ' Give them a seat. If they are an infant without a seat, mark them as LAP
-                        If i < seatArray.Length Then
-                            cmdPass.Parameters.AddWithValue("@Seat", seatArray(i).Trim())
-                        Else
-                            cmdPass.Parameters.AddWithValue("@Seat", "LAP")
-                        End If
+                        Dim thisSeat As String = If(i < seatArray.Length, seatArray(i).Trim(), "LAP")
+                        cmdPass.Parameters.AddWithValue("@Seat", thisSeat)
+                        assignedSeats.Add(thisSeat)
 
                         cmdPass.Parameters.AddWithValue("@Prog", BookingSession.FrequentFlyerProgram)
                         cmdPass.ExecuteNonQuery()
@@ -140,20 +171,23 @@ Public Class payment
         MessageBox.Show($"Payment Successful! Total charged: RM {grandTotal:N2}.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
         ' --- PREPARE THE FULL TICKET ---
-        Dim ticketScreen As New frmTicket()
-        ticketScreen.Departure = BookingSession.SelectedDeparture
-        ticketScreen.Destination = BookingSession.SelectedDestination
+        Dim ticketScreen As New frmDisplayTicket()
 
-        ' This lists ALL passenger names on the ticket!
-        ticketScreen.PassengerName = String.Join(vbCrLf, BookingSession.PassengerNames)
+        For i As Integer = 0 To BookingSession.PassengerNames.Count - 1
+            Dim t As New frmDisplayTicket.TicketData()
+            t.Departure = BookingSession.SelectedDeparture
+            t.Destination = BookingSession.SelectedDestination
+            t.PassengerName = BookingSession.PassengerNames(i)
+            t.ProgramName = BookingSession.FrequentFlyerProgram
+            t.FlightDate = BookingSession.SelectedDate
+            t.FlightTime = BookingSession.SelectedTime
+            t.FlightName = BookingSession.SelectedFlight
+            t.Gate = assignedGate ' Uses the real persisted gate instead of a throwaway random one
+            t.Seat = assignedSeats(i)
+            t.TicketPrice = "RM " & (grandTotal / BookingSession.TotalPassengers).ToString("N2")
+            ticketScreen.Tickets.Add(t)
+        Next
 
-        ticketScreen.ProgramName = BookingSession.FrequentFlyerProgram
-        ticketScreen.FlightDate = BookingSession.SelectedDate
-        ticketScreen.FlightTime = BookingSession.SelectedTime
-        ticketScreen.FlightName = BookingSession.SelectedFlight
-        ticketScreen.Gate = "G" & New Random().Next(1, 26).ToString()
-        ticketScreen.Seat = BookingSession.SelectedSeat
-        ticketScreen.TicketPrice = "RM " & BookingSession.SelectedPrice.ToString("N2")
         Me.Hide()
         ticketScreen.Show()
     End Sub
@@ -168,8 +202,9 @@ Public Class payment
         Dim pnrCode As String = "PNR" & New Random().Next(1000, 9999).ToString()
         Dim newBookingID As Integer = 0
 
-        ' Grand Total = Base Flight Fare + Seat Add-on Fees
         Dim grandTotal As Decimal = BookingSession.SelectedPrice
+        Dim assignedSeats As New List(Of String)
+        Dim assignedGate As String = "" ' Holds the flight's actual gate, read from or written to the DB
 
         Using conn As New SqlConnection(DatabaseHelper.strConn)
             Try
@@ -192,7 +227,10 @@ Public Class payment
                     newBookingID = Convert.ToInt32(cmdBook.ExecuteScalar())
                 End Using
 
-                ' 2. LOOP TO INSERT EVERY PASSENGER
+                ' 2. Get or assign this flight's Gate (persisted, shared across all passengers/bookings on this flight)
+                assignedGate = GetOrAssignGate(conn, BookingSession.SelectedFlightID)
+
+                ' 3. LOOP TO INSERT EVERY PASSENGER
                 Dim seatArray() As String = BookingSession.SelectedSeat.Split(","c)
 
                 For i As Integer = 0 To BookingSession.PassengerNames.Count - 1
@@ -205,11 +243,9 @@ Public Class payment
                         cmdPass.Parameters.AddWithValue("@LName", If(names.Length > 1, names(names.Length - 1), ""))
 
                         ' Give them a seat. If they are an infant without a seat, mark them as LAP
-                        If i < seatArray.Length Then
-                            cmdPass.Parameters.AddWithValue("@Seat", seatArray(i).Trim())
-                        Else
-                            cmdPass.Parameters.AddWithValue("@Seat", "LAP")
-                        End If
+                        Dim thisSeat As String = If(i < seatArray.Length, seatArray(i).Trim(), "LAP")
+                        cmdPass.Parameters.AddWithValue("@Seat", thisSeat)
+                        assignedSeats.Add(thisSeat)
 
                         cmdPass.Parameters.AddWithValue("@Prog", BookingSession.FrequentFlyerProgram)
                         cmdPass.ExecuteNonQuery()
@@ -225,20 +261,22 @@ Public Class payment
         MessageBox.Show($"Payment Successful! Total charged: RM {grandTotal:N2}.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
         ' --- PREPARE THE FULL TICKET ---
-        Dim ticketScreen As New frmTicket()
-        ticketScreen.Departure = BookingSession.SelectedDeparture
-        ticketScreen.Destination = BookingSession.SelectedDestination
+        Dim ticketScreen As New frmDisplayTicket()
 
-        ' This lists ALL passenger names on the ticket!
-        ticketScreen.PassengerName = String.Join(vbCrLf, BookingSession.PassengerNames)
-
-        ticketScreen.ProgramName = BookingSession.FrequentFlyerProgram
-        ticketScreen.FlightDate = BookingSession.SelectedDate
-        ticketScreen.FlightTime = BookingSession.SelectedTime
-        ticketScreen.FlightName = BookingSession.SelectedFlight
-        ticketScreen.Gate = "G" & New Random().Next(1, 26).ToString()
-        ticketScreen.Seat = BookingSession.SelectedSeat
-        ticketScreen.TicketPrice = "RM " & BookingSession.SelectedPrice.ToString("N2")
+        For i As Integer = 0 To BookingSession.PassengerNames.Count - 1
+            Dim t As New frmDisplayTicket.TicketData()
+            t.Departure = BookingSession.SelectedDeparture
+            t.Destination = BookingSession.SelectedDestination
+            t.PassengerName = BookingSession.PassengerNames(i)
+            t.ProgramName = BookingSession.FrequentFlyerProgram
+            t.FlightDate = BookingSession.SelectedDate
+            t.FlightTime = BookingSession.SelectedTime
+            t.FlightName = BookingSession.SelectedFlight
+            t.Gate = assignedGate ' Uses the real persisted gate instead of a throwaway random one
+            t.Seat = assignedSeats(i)
+            t.TicketPrice = "RM " & (grandTotal / BookingSession.TotalPassengers).ToString("N2")
+            ticketScreen.Tickets.Add(t)
+        Next
 
         Me.Hide()
         ticketScreen.Show()
@@ -286,8 +324,9 @@ Public Class payment
         Dim pnrCode As String = "PNR" & New Random().Next(1000, 9999).ToString()
         Dim newBookingID As Integer = 0
 
-        ' Grand Total = Base Flight Fare + Seat Add-on Fees
         Dim grandTotal As Decimal = BookingSession.SelectedPrice
+        Dim assignedSeats As New List(Of String)
+        Dim assignedGate As String = "" ' Holds the flight's actual gate, read from or written to the DB
 
         Using conn As New SqlConnection(DatabaseHelper.strConn)
             Try
@@ -310,7 +349,10 @@ Public Class payment
                     newBookingID = Convert.ToInt32(cmdBook.ExecuteScalar())
                 End Using
 
-                ' 2. LOOP TO INSERT EVERY PASSENGER
+                ' 2. Get or assign this flight's Gate (persisted, shared across all passengers/bookings on this flight)
+                assignedGate = GetOrAssignGate(conn, BookingSession.SelectedFlightID)
+
+                ' 3. LOOP TO INSERT EVERY PASSENGER
                 Dim seatArray() As String = BookingSession.SelectedSeat.Split(","c)
 
                 For i As Integer = 0 To BookingSession.PassengerNames.Count - 1
@@ -323,11 +365,9 @@ Public Class payment
                         cmdPass.Parameters.AddWithValue("@LName", If(names.Length > 1, names(names.Length - 1), ""))
 
                         ' Give them a seat. If they are an infant without a seat, mark them as LAP
-                        If i < seatArray.Length Then
-                            cmdPass.Parameters.AddWithValue("@Seat", seatArray(i).Trim())
-                        Else
-                            cmdPass.Parameters.AddWithValue("@Seat", "LAP")
-                        End If
+                        Dim thisSeat As String = If(i < seatArray.Length, seatArray(i).Trim(), "LAP")
+                        cmdPass.Parameters.AddWithValue("@Seat", thisSeat)
+                        assignedSeats.Add(thisSeat)
 
                         cmdPass.Parameters.AddWithValue("@Prog", BookingSession.FrequentFlyerProgram)
                         cmdPass.ExecuteNonQuery()
@@ -343,20 +383,22 @@ Public Class payment
         MessageBox.Show($"Payment Successful! Total charged: RM {grandTotal:N2}.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
         ' --- PREPARE THE FULL TICKET ---
-        Dim ticketScreen As New frmTicket()
-        ticketScreen.Departure = BookingSession.SelectedDeparture
-        ticketScreen.Destination = BookingSession.SelectedDestination
+        Dim ticketScreen As New frmDisplayTicket()
 
-        ' This lists ALL passenger names on the ticket!
-        ticketScreen.PassengerName = String.Join(vbCrLf, BookingSession.PassengerNames)
-
-        ticketScreen.ProgramName = BookingSession.FrequentFlyerProgram
-        ticketScreen.FlightDate = BookingSession.SelectedDate
-        ticketScreen.FlightTime = BookingSession.SelectedTime
-        ticketScreen.FlightName = BookingSession.SelectedFlight
-        ticketScreen.Gate = "G" & New Random().Next(1, 26).ToString()
-        ticketScreen.Seat = BookingSession.SelectedSeat
-        ticketScreen.TicketPrice = "RM " & BookingSession.SelectedPrice.ToString("N2")
+        For i As Integer = 0 To BookingSession.PassengerNames.Count - 1
+            Dim t As New frmDisplayTicket.TicketData()
+            t.Departure = BookingSession.SelectedDeparture
+            t.Destination = BookingSession.SelectedDestination
+            t.PassengerName = BookingSession.PassengerNames(i)
+            t.ProgramName = BookingSession.FrequentFlyerProgram
+            t.FlightDate = BookingSession.SelectedDate
+            t.FlightTime = BookingSession.SelectedTime
+            t.FlightName = BookingSession.SelectedFlight
+            t.Gate = assignedGate ' Uses the real persisted gate instead of a throwaway random one
+            t.Seat = assignedSeats(i)
+            t.TicketPrice = "RM " & (grandTotal / BookingSession.TotalPassengers).ToString("N2")
+            ticketScreen.Tickets.Add(t)
+        Next
 
         Me.Hide()
         ticketScreen.Show()

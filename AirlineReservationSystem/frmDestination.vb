@@ -201,5 +201,9 @@ Public Class frmPath
         End Using
     End Sub
 
-
+    Private Sub btnProfile_Click(sender As Object, e As EventArgs) Handles btnProfile.Click
+        Me.Hide()
+        Dim profileForm As New Profile()
+        profileForm.Show()
+    End Sub
 End Class

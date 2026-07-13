@@ -1,5 +1,6 @@
 ﻿Imports System.Data.SqlClient
 
+
 Public Class frmLogin
 
     Private Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
@@ -31,7 +32,8 @@ Public Class frmLogin
                             Dim dbPassword As String = reader("Password").ToString()
 
                             ' Now we check if the password they typed matches the database
-                            If dbPassword = txtPassword.Text.Trim() Then
+                            If dbPassword = HashPassword(txtPassword.Text.Trim()) Then
+
                                 ' SUCCESS! Passwords match.
                                 CurrentLoggedInUserID = Convert.ToInt32(reader("UserID"))
                                 MsgBox("Login Successful!", MsgBoxStyle.Information, "Success")
@@ -66,6 +68,7 @@ Public Class frmLogin
         Dim signUpForm As New frmSignUp()
         signUpForm.Show()
     End Sub
+
 
 
 End Class

@@ -49,6 +49,8 @@ Partial Class frmDisplayTicket
         Me.btnNext = New System.Windows.Forms.Button()
         Me.lblTicketCounter = New System.Windows.Forms.Label()
         Me.btnBack = New System.Windows.Forms.Button()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.Label10 = New System.Windows.Forms.Label()
         Me.pnlTicket.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
@@ -56,22 +58,24 @@ Partial Class frmDisplayTicket
         '
         'pnlTicket
         '
-        Me.pnlTicket.Controls.Add(Me.PictureBox1)
+        Me.pnlTicket.BackColor = System.Drawing.Color.Goldenrod
+        Me.pnlTicket.Controls.Add(Me.Label9)
         Me.pnlTicket.Controls.Add(Me.lblTo)
         Me.pnlTicket.Controls.Add(Me.lblFrom)
         Me.pnlTicket.Controls.Add(Me.lblAirline)
-        Me.pnlTicket.Location = New System.Drawing.Point(65, 41)
+        Me.pnlTicket.Font = New System.Drawing.Font("Segoe UI", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.pnlTicket.Location = New System.Drawing.Point(149, 145)
         Me.pnlTicket.Margin = New System.Windows.Forms.Padding(2)
         Me.pnlTicket.Name = "pnlTicket"
-        Me.pnlTicket.Size = New System.Drawing.Size(668, 115)
+        Me.pnlTicket.Size = New System.Drawing.Size(713, 115)
         Me.pnlTicket.TabIndex = 0
         '
         'PictureBox1
         '
-        Me.PictureBox1.Location = New System.Drawing.Point(182, 63)
+        Me.PictureBox1.Location = New System.Drawing.Point(543, 181)
         Me.PictureBox1.Margin = New System.Windows.Forms.Padding(2)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(92, 41)
+        Me.PictureBox1.Size = New System.Drawing.Size(144, 64)
         Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBox1.TabIndex = 4
         Me.PictureBox1.TabStop = False
@@ -79,18 +83,20 @@ Partial Class frmDisplayTicket
         'lblTo
         '
         Me.lblTo.AutoSize = True
-        Me.lblTo.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblTo.Location = New System.Drawing.Point(344, 63)
+        Me.lblTo.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblTo.ForeColor = System.Drawing.Color.White
+        Me.lblTo.Location = New System.Drawing.Point(642, 54)
         Me.lblTo.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblTo.Name = "lblTo"
-        Me.lblTo.Size = New System.Drawing.Size(32, 19)
+        Me.lblTo.Size = New System.Drawing.Size(30, 21)
         Me.lblTo.TabIndex = 3
         Me.lblTo.Text = "TO"
         '
         'lblFrom
         '
-        Me.lblFrom.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblFrom.Location = New System.Drawing.Point(6, 63)
+        Me.lblFrom.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblFrom.ForeColor = System.Drawing.Color.White
+        Me.lblFrom.Location = New System.Drawing.Point(539, 54)
         Me.lblFrom.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblFrom.Name = "lblFrom"
         Me.lblFrom.Size = New System.Drawing.Size(172, 31)
@@ -100,29 +106,30 @@ Partial Class frmDisplayTicket
         'lblAirline
         '
         Me.lblAirline.AutoSize = True
-        Me.lblAirline.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblAirline.ForeColor = System.Drawing.SystemColors.HotTrack
+        Me.lblAirline.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblAirline.ForeColor = System.Drawing.Color.White
         Me.lblAirline.Location = New System.Drawing.Point(2, 0)
         Me.lblAirline.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblAirline.Name = "lblAirline"
-        Me.lblAirline.Size = New System.Drawing.Size(152, 19)
+        Me.lblAirline.Size = New System.Drawing.Size(132, 21)
         Me.lblAirline.TabIndex = 2
         Me.lblAirline.Text = "SAUJANA FLIGHT"
         '
         'lblTitle
         '
         Me.lblTitle.AutoSize = True
-        Me.lblTitle.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblTitle.Location = New System.Drawing.Point(371, 9)
+        Me.lblTitle.Font = New System.Drawing.Font("Segoe UI", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblTitle.Location = New System.Drawing.Point(36, 9)
         Me.lblTitle.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblTitle.Name = "lblTitle"
-        Me.lblTitle.Size = New System.Drawing.Size(70, 19)
+        Me.lblTitle.Size = New System.Drawing.Size(327, 45)
         Me.lblTitle.TabIndex = 1
-        Me.lblTitle.Text = "TICKET"
+        Me.lblTitle.Text = "Flight Boarding Pass"
         '
         'Panel1
         '
         Me.Panel1.Controls.Add(Me.lblPrice)
+        Me.Panel1.Controls.Add(Me.PictureBox1)
         Me.Panel1.Controls.Add(Me.Label8)
         Me.Panel1.Controls.Add(Me.lblSeat)
         Me.Panel1.Controls.Add(Me.lblGate)
@@ -138,7 +145,8 @@ Partial Class frmDisplayTicket
         Me.Panel1.Controls.Add(Me.Label2)
         Me.Panel1.Controls.Add(Me.lblName)
         Me.Panel1.Controls.Add(Me.Label1)
-        Me.Panel1.Location = New System.Drawing.Point(65, 160)
+        Me.Panel1.Font = New System.Drawing.Font("Segoe UI", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Panel1.Location = New System.Drawing.Point(149, 255)
         Me.Panel1.Margin = New System.Windows.Forms.Padding(2)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(713, 279)
@@ -147,229 +155,259 @@ Partial Class frmDisplayTicket
         'lblPrice
         '
         Me.lblPrice.AutoSize = True
-        Me.lblPrice.Font = New System.Drawing.Font("Tahoma", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblPrice.Location = New System.Drawing.Point(466, 108)
+        Me.lblPrice.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblPrice.Location = New System.Drawing.Point(551, 48)
         Me.lblPrice.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblPrice.Name = "lblPrice"
-        Me.lblPrice.Size = New System.Drawing.Size(53, 17)
+        Me.lblPrice.Size = New System.Drawing.Size(50, 20)
         Me.lblPrice.TabIndex = 20
         Me.lblPrice.Text = "PRICE"
         '
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Font = New System.Drawing.Font("Tahoma", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label8.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label8.ForeColor = System.Drawing.Color.DimGray
-        Me.Label8.Location = New System.Drawing.Point(380, 108)
+        Me.Label8.Location = New System.Drawing.Point(551, 28)
         Me.Label8.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(46, 17)
+        Me.Label8.Size = New System.Drawing.Size(84, 20)
         Me.Label8.TabIndex = 19
-        Me.Label8.Text = "Price:"
+        Me.Label8.Text = "FARE PAID"
         '
         'lblSeat
         '
         Me.lblSeat.AutoSize = True
-        Me.lblSeat.Font = New System.Drawing.Font("Tahoma", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblSeat.Location = New System.Drawing.Point(610, 238)
+        Me.lblSeat.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblSeat.Location = New System.Drawing.Point(223, 225)
         Me.lblSeat.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblSeat.Name = "lblSeat"
-        Me.lblSeat.Size = New System.Drawing.Size(45, 17)
+        Me.lblSeat.Size = New System.Drawing.Size(42, 20)
         Me.lblSeat.TabIndex = 18
         Me.lblSeat.Text = "SEAT"
         '
         'lblGate
         '
         Me.lblGate.AutoSize = True
-        Me.lblGate.Font = New System.Drawing.Font("Tahoma", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblGate.Location = New System.Drawing.Point(456, 238)
+        Me.lblGate.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblGate.Location = New System.Drawing.Point(112, 225)
         Me.lblGate.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblGate.Name = "lblGate"
-        Me.lblGate.Size = New System.Drawing.Size(46, 17)
+        Me.lblGate.Size = New System.Drawing.Size(44, 20)
         Me.lblGate.TabIndex = 17
         Me.lblGate.Text = "GATE"
         '
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Font = New System.Drawing.Font("Tahoma", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label7.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label7.ForeColor = System.Drawing.Color.DimGray
-        Me.Label7.Location = New System.Drawing.Point(610, 205)
+        Me.Label7.Location = New System.Drawing.Point(223, 205)
         Me.Label7.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(44, 17)
+        Me.Label7.Size = New System.Drawing.Size(44, 20)
         Me.Label7.TabIndex = 16
-        Me.Label7.Text = "Seat:"
+        Me.Label7.Text = "SEAT"
         '
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Font = New System.Drawing.Font("Tahoma", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label6.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.ForeColor = System.Drawing.Color.DimGray
-        Me.Label6.Location = New System.Drawing.Point(456, 205)
+        Me.Label6.Location = New System.Drawing.Point(112, 205)
         Me.Label6.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(45, 17)
+        Me.Label6.Size = New System.Drawing.Size(47, 20)
         Me.Label6.TabIndex = 15
-        Me.Label6.Text = "Gate:"
+        Me.Label6.Text = "GATE"
         '
         'lblFlight
         '
         Me.lblFlight.AutoSize = True
-        Me.lblFlight.Font = New System.Drawing.Font("Tahoma", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblFlight.Location = New System.Drawing.Point(466, 73)
+        Me.lblFlight.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblFlight.Location = New System.Drawing.Point(16, 109)
         Me.lblFlight.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblFlight.Name = "lblFlight"
-        Me.lblFlight.Size = New System.Drawing.Size(107, 17)
+        Me.lblFlight.Size = New System.Drawing.Size(102, 20)
         Me.lblFlight.TabIndex = 14
         Me.lblFlight.Text = "FLIGHT NAME"
         '
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("Tahoma", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.ForeColor = System.Drawing.Color.DimGray
-        Me.Label5.Location = New System.Drawing.Point(380, 73)
+        Me.Label5.Location = New System.Drawing.Point(16, 89)
         Me.Label5.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(51, 17)
+        Me.Label5.Size = New System.Drawing.Size(61, 20)
         Me.Label5.TabIndex = 13
-        Me.Label5.Text = "Flight:"
+        Me.Label5.Text = "FLIGHT"
         '
         'lblTime
         '
         Me.lblTime.AutoSize = True
-        Me.lblTime.Font = New System.Drawing.Font("Tahoma", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblTime.Location = New System.Drawing.Point(89, 248)
+        Me.lblTime.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblTime.Location = New System.Drawing.Point(444, 225)
         Me.lblTime.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblTime.Name = "lblTime"
-        Me.lblTime.Size = New System.Drawing.Size(45, 17)
+        Me.lblTime.Size = New System.Drawing.Size(42, 20)
         Me.lblTime.TabIndex = 12
         Me.lblTime.Text = "TIME"
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Tahoma", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.Color.DimGray
-        Me.Label3.Location = New System.Drawing.Point(28, 248)
+        Me.Label3.Location = New System.Drawing.Point(442, 205)
         Me.Label3.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(46, 17)
+        Me.Label3.Size = New System.Drawing.Size(45, 20)
         Me.Label3.TabIndex = 11
-        Me.Label3.Text = "Time:"
+        Me.Label3.Text = "TIME"
         '
         'lblDate
         '
         Me.lblDate.AutoSize = True
-        Me.lblDate.Font = New System.Drawing.Font("Tahoma", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblDate.Location = New System.Drawing.Point(88, 222)
+        Me.lblDate.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblDate.Location = New System.Drawing.Point(332, 225)
         Me.lblDate.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblDate.Name = "lblDate"
-        Me.lblDate.Size = New System.Drawing.Size(46, 17)
+        Me.lblDate.Size = New System.Drawing.Size(45, 20)
         Me.lblDate.TabIndex = 10
         Me.lblDate.Text = "DATE"
         '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Tahoma", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.ForeColor = System.Drawing.Color.DimGray
-        Me.Label4.Location = New System.Drawing.Point(29, 222)
+        Me.Label4.Location = New System.Drawing.Point(331, 205)
         Me.Label4.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(45, 17)
+        Me.Label4.Size = New System.Drawing.Size(47, 20)
         Me.Label4.TabIndex = 9
-        Me.Label4.Text = "Date:"
+        Me.Label4.Text = "DATE"
         '
         'lblProgram
         '
         Me.lblProgram.AutoSize = True
-        Me.lblProgram.Font = New System.Drawing.Font("Tahoma", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblProgram.Location = New System.Drawing.Point(88, 187)
+        Me.lblProgram.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblProgram.Location = New System.Drawing.Point(241, 109)
         Me.lblProgram.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblProgram.Name = "lblProgram"
-        Me.lblProgram.Size = New System.Drawing.Size(80, 17)
+        Me.lblProgram.Size = New System.Drawing.Size(79, 20)
         Me.lblProgram.TabIndex = 8
         Me.lblProgram.Text = "PROGRAM"
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Tahoma", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.DimGray
-        Me.Label2.Location = New System.Drawing.Point(4, 187)
+        Me.Label2.Location = New System.Drawing.Point(241, 89)
         Me.Label2.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(73, 17)
+        Me.Label2.Size = New System.Drawing.Size(132, 20)
         Me.Label2.TabIndex = 7
-        Me.Label2.Text = "Program:"
+        Me.Label2.Text = "FREQUENT FLYER"
         '
         'lblName
         '
         Me.lblName.AutoSize = True
-        Me.lblName.Font = New System.Drawing.Font("Tahoma", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblName.Location = New System.Drawing.Point(84, 73)
+        Me.lblName.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblName.Location = New System.Drawing.Point(16, 48)
         Me.lblName.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblName.Name = "lblName"
-        Me.lblName.Size = New System.Drawing.Size(50, 17)
+        Me.lblName.Size = New System.Drawing.Size(54, 20)
         Me.lblName.TabIndex = 6
         Me.lblName.Text = "NAME"
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Tahoma", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.Color.DimGray
-        Me.Label1.Location = New System.Drawing.Point(4, 73)
+        Me.Label1.Location = New System.Drawing.Point(16, 28)
         Me.Label1.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(53, 17)
+        Me.Label1.Size = New System.Drawing.Size(142, 20)
         Me.Label1.TabIndex = 5
-        Me.Label1.Text = "Name:"
+        Me.Label1.Text = "PASSENGER NAME"
         '
         'btnPrev
         '
-        Me.btnPrev.Location = New System.Drawing.Point(562, 466)
+        Me.btnPrev.Font = New System.Drawing.Font("Segoe UI", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnPrev.Location = New System.Drawing.Point(668, 780)
         Me.btnPrev.Name = "btnPrev"
-        Me.btnPrev.Size = New System.Drawing.Size(75, 23)
+        Me.btnPrev.Size = New System.Drawing.Size(140, 50)
         Me.btnPrev.TabIndex = 3
         Me.btnPrev.Text = "< Prev"
         Me.btnPrev.UseVisualStyleBackColor = True
         '
         'btnNext
         '
-        Me.btnNext.Location = New System.Drawing.Point(658, 466)
+        Me.btnNext.BackColor = System.Drawing.Color.DarkOrange
+        Me.btnNext.Font = New System.Drawing.Font("Segoe UI", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnNext.ForeColor = System.Drawing.Color.White
+        Me.btnNext.Location = New System.Drawing.Point(826, 780)
         Me.btnNext.Name = "btnNext"
-        Me.btnNext.Size = New System.Drawing.Size(75, 23)
+        Me.btnNext.Size = New System.Drawing.Size(140, 50)
         Me.btnNext.TabIndex = 4
         Me.btnNext.Text = "Next >"
-        Me.btnNext.UseVisualStyleBackColor = True
+        Me.btnNext.UseVisualStyleBackColor = False
         '
         'lblTicketCounter
         '
         Me.lblTicketCounter.AutoSize = True
-        Me.lblTicketCounter.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblTicketCounter.Font = New System.Drawing.Font("Segoe UI", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblTicketCounter.Location = New System.Drawing.Point(444, 9)
         Me.lblTicketCounter.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblTicketCounter.Name = "lblTicketCounter"
-        Me.lblTicketCounter.Size = New System.Drawing.Size(0, 19)
+        Me.lblTicketCounter.Size = New System.Drawing.Size(0, 32)
         Me.lblTicketCounter.TabIndex = 5
         '
         'btnBack
         '
-        Me.btnBack.Location = New System.Drawing.Point(12, 466)
+        Me.btnBack.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnBack.ForeColor = System.Drawing.Color.DimGray
+        Me.btnBack.Location = New System.Drawing.Point(12, 782)
         Me.btnBack.Name = "btnBack"
-        Me.btnBack.Size = New System.Drawing.Size(75, 23)
+        Me.btnBack.Size = New System.Drawing.Size(120, 57)
         Me.btnBack.TabIndex = 34
         Me.btnBack.Text = "< Back"
         Me.btnBack.UseVisualStyleBackColor = True
+        '
+        'Label9
+        '
+        Me.Label9.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label9.ForeColor = System.Drawing.Color.White
+        Me.Label9.Location = New System.Drawing.Point(2, 21)
+        Me.Label9.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(172, 31)
+        Me.Label9.TabIndex = 5
+        Me.Label9.Text = "BOARDING PASS"
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label10.ForeColor = System.Drawing.Color.Black
+        Me.Label10.Location = New System.Drawing.Point(40, 54)
+        Me.Label10.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(231, 20)
+        Me.Label10.TabIndex = 21
+        Me.Label10.Text = "Makesure all your detail is correct"
         '
         'frmDisplayTicket
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(852, 519)
+        Me.ClientSize = New System.Drawing.Size(1012, 881)
+        Me.Controls.Add(Me.Label10)
         Me.Controls.Add(Me.btnBack)
         Me.Controls.Add(Me.lblTicketCounter)
         Me.Controls.Add(Me.btnNext)
@@ -417,4 +455,6 @@ Partial Class frmDisplayTicket
     Friend WithEvents btnNext As Button
     Friend WithEvents lblTicketCounter As Label
     Friend WithEvents btnBack As Button
+    Friend WithEvents Label9 As Label
+    Friend WithEvents Label10 As Label
 End Class

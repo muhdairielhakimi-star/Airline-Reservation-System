@@ -33,20 +33,21 @@ Partial Class frmEditField
         'lblPrompt
         '
         Me.lblPrompt.AutoSize = True
-        Me.lblPrompt.Font = New System.Drawing.Font("Tahoma", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblPrompt.Font = New System.Drawing.Font("Segoe UI", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblPrompt.ForeColor = System.Drawing.Color.DimGray
-        Me.lblPrompt.Location = New System.Drawing.Point(124, 92)
+        Me.lblPrompt.Location = New System.Drawing.Point(244, 279)
         Me.lblPrompt.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblPrompt.Name = "lblPrompt"
-        Me.lblPrompt.Size = New System.Drawing.Size(112, 17)
+        Me.lblPrompt.Size = New System.Drawing.Size(157, 30)
         Me.lblPrompt.TabIndex = 7
         Me.lblPrompt.Text = "Enter new (   ):"
         '
         'txtNewValue
         '
-        Me.txtNewValue.Location = New System.Drawing.Point(393, 92)
+        Me.txtNewValue.Font = New System.Drawing.Font("Segoe UI", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtNewValue.Location = New System.Drawing.Point(429, 274)
         Me.txtNewValue.Name = "txtNewValue"
-        Me.txtNewValue.Size = New System.Drawing.Size(197, 20)
+        Me.txtNewValue.Size = New System.Drawing.Size(339, 35)
         Me.txtNewValue.TabIndex = 8
         '
         'ContextMenuStrip1
@@ -57,10 +58,11 @@ Partial Class frmEditField
         'btnSave
         '
         Me.btnSave.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.btnSave.Font = New System.Drawing.Font("Segoe UI", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSave.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.btnSave.Location = New System.Drawing.Point(199, 229)
+        Me.btnSave.Location = New System.Drawing.Point(345, 427)
         Me.btnSave.Name = "btnSave"
-        Me.btnSave.Size = New System.Drawing.Size(108, 40)
+        Me.btnSave.Size = New System.Drawing.Size(140, 50)
         Me.btnSave.TabIndex = 10
         Me.btnSave.Text = "Save"
         Me.btnSave.UseVisualStyleBackColor = False
@@ -68,10 +70,11 @@ Partial Class frmEditField
         'btnCancel
         '
         Me.btnCancel.BackColor = System.Drawing.Color.Red
+        Me.btnCancel.Font = New System.Drawing.Font("Segoe UI", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnCancel.ForeColor = System.Drawing.SystemColors.ButtonFace
-        Me.btnCancel.Location = New System.Drawing.Point(404, 229)
+        Me.btnCancel.Location = New System.Drawing.Point(527, 427)
         Me.btnCancel.Name = "btnCancel"
-        Me.btnCancel.Size = New System.Drawing.Size(108, 40)
+        Me.btnCancel.Size = New System.Drawing.Size(140, 50)
         Me.btnCancel.TabIndex = 11
         Me.btnCancel.Text = "Cancel"
         Me.btnCancel.UseVisualStyleBackColor = False
@@ -80,7 +83,7 @@ Partial Class frmEditField
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.ClientSize = New System.Drawing.Size(1012, 881)
         Me.Controls.Add(Me.btnCancel)
         Me.Controls.Add(Me.btnSave)
         Me.Controls.Add(Me.txtNewValue)

@@ -17,14 +17,13 @@ Public Class frmTicketSelect
 
     Private Sub frmTicketSelect_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.Text = "Ticket Select"
-        Me.BackColor = SystemColors.Control ' REMOVED PURPLE BACKGROUND
+        Me.BackColor = SystemColors.Control
 
         ResetSummaryDisplay()
         LoadFlightsFromDatabase()
     End Sub
 
     Private Sub LoadFlightsFromDatabase()
-        ' Reset all 3 slots to a known "empty" state before querying
         lblFlightRoute1.Text = ""
         lblAircraftCode1.Text = ""
         lblFlightRoute2.Text = "No flight available"
@@ -119,19 +118,7 @@ Public Class frmTicketSelect
         BookingSession.SelectedFlight = selectedFlight.AircraftCode
         BookingSession.SelectedDate = selectedFlight.DateString
         BookingSession.SelectedTime = selectedFlight.DepartureTime
-        BookingSession.SelectedPrice = selectedFlight.Price ' Save the flight ticket cost
-    End Sub
-
-    Private Sub Label1_Click(sender As Object, e As EventArgs)
-
-    End Sub
-
-    Private Sub Panel1_Paint(sender As Object, e As PaintEventArgs)
-
-    End Sub
-
-    Private Sub Label12_Click(sender As Object, e As EventArgs) Handles lblFlightTime3.Click
-
+        BookingSession.SelectedPrice = selectedFlight.Price
     End Sub
 
     Private Sub HighlightSelectedCard(cardNumber As Integer)

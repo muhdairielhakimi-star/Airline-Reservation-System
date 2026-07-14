@@ -7,24 +7,19 @@ Public Class frmPath
     Private selectedClass As String = "Economy"
 
     Private Sub frmPath_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ' BUILD THE DROPDOWN LISTS
         cmbFrom.Items.AddRange(New Object() {"Kuala Lumpur", "Penang", "Johor Bahru", "Singapore", "Jakarta", "Tokyo", "London"})
         cmbTo.Items.AddRange(New Object() {"Kuala Lumpur", "Penang", "Johor Bahru", "Singapore", "Jakarta", "Tokyo", "London"})
         cmbFrom.DropDownStyle = ComboBoxStyle.DropDownList
         cmbTo.DropDownStyle = ComboBoxStyle.DropDownList
 
-        ' STOP TIME TRAVEL
         dateDepart.MinDate = DateTime.Today
         dateReturn.MinDate = DateTime.Today
 
-        ' UPDATE PASSENGER UI
         UpdateUI()
 
-        ' --- NEW CODE: LOAD THE SCHEDULE BOARD! ---
         LoadFlightSchedule()
     End Sub
 
-    ' --- COUNTER LOGIC ---
     Private Sub btnAdultsPlus_Click(sender As Object, e As EventArgs) Handles btnAdultsPlus.Click
         If (adultCount + childCount + infantCount) < 9 Then adultCount += 1 : UpdateUI()
     End Sub
@@ -48,15 +43,10 @@ Public Class frmPath
         If infantCount > 0 Then infantCount -= 1 : UpdateUI()
     End Sub
 
-    ' --- CABIN CLASS LOGIC ---
     Private Sub btnEconomy_Click(sender As Object, e As EventArgs) Handles btnEconomy.Click
         selectedClass = "Economy"
-
-        ' Set Economy to Blue
         btnEconomy.BackColor = Color.FromArgb(0, 90, 190)
         btnEconomy.ForeColor = Color.White
-
-        ' Reset Business and First Class to White
         btnBusiness.BackColor = Color.White
         btnBusiness.ForeColor = Color.Black
         btnFirstClass.BackColor = Color.White
@@ -65,12 +55,8 @@ Public Class frmPath
 
     Private Sub btnBusiness_Click(sender As Object, e As EventArgs) Handles btnBusiness.Click
         selectedClass = "Business"
-
-        ' Set Business to Blue
         btnBusiness.BackColor = Color.FromArgb(0, 90, 190)
         btnBusiness.ForeColor = Color.White
-
-        ' Reset Economy and First Class to White
         btnEconomy.BackColor = Color.White
         btnEconomy.ForeColor = Color.Black
         btnFirstClass.BackColor = Color.White
@@ -79,35 +65,27 @@ Public Class frmPath
 
     Private Sub btnFirstClass_Click(sender As Object, e As EventArgs) Handles btnFirstClass.Click
         selectedClass = "First Class"
-
-        ' Set First Class to Blue
         btnFirstClass.BackColor = Color.FromArgb(0, 90, 190)
         btnFirstClass.ForeColor = Color.White
-
-        ' Reset Economy and Business to White
         btnEconomy.BackColor = Color.White
         btnEconomy.ForeColor = Color.Black
         btnBusiness.BackColor = Color.White
         btnBusiness.ForeColor = Color.Black
     End Sub
 
-    ' --- SWAP BUTTON LOGIC ---
     Private Sub btnWay_Click(sender As Object, e As EventArgs) Handles btnWay.Click
-        ' Swap the dropdown selections instantly
         Dim tempIndex As Integer = cmbFrom.SelectedIndex
         cmbFrom.SelectedIndex = cmbTo.SelectedIndex
         cmbTo.SelectedIndex = tempIndex
     End Sub
 
-    ' --- UI REFRESHER ---
+
     Private Sub UpdateUI()
         lblAdultsCount.Text = adultCount.ToString()
         lblChildrenCount.Text = childCount.ToString()
         lblInfantsCount.Text = infantCount.ToString()
     End Sub
-    ' ==========================================
-    ' SMART DATABASE SEARCH LOGIC
-    ' ==========================================
+
     Private Sub btnFind_Click(sender As Object, e As EventArgs) Handles btnFind.Click
         If cmbFrom.SelectedIndex = -1 OrElse cmbTo.SelectedIndex = -1 Then
             MessageBox.Show("Please select both Departure and Destination cities from the dropdown lists.", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning)
@@ -119,14 +97,12 @@ Public Class frmPath
             Exit Sub
         End If
 
-        ' --- NEW: REJECT AN INVALID RETURN DATE INSTEAD OF SILENTLY DROPPING IT ---
         If dateReturn.Value.Date < dateDepart.Value.Date Then
             MessageBox.Show("Your return date cannot be before your departure date. Please correct it, or leave it unchanged for a one-way trip.",
                          "Invalid Return Date", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Exit Sub
         End If
 
-        ' --- SMART ROUND-TRIP LOGIC ---
         If dateReturn.Value.Date > dateDepart.Value.Date Then
             BookingSession.TripType = "Round-Trip"
             BookingSession.ReturnDate = dateReturn.Value.ToShortDateString()
@@ -135,7 +111,6 @@ Public Class frmPath
             BookingSession.ReturnDate = ""
         End If
 
-        ' 1. Check if flight exists FIRST
         Dim flightExists As Integer = 0
         Dim query As String = "SELECT COUNT(*) FROM Flights WHERE Origin = @Origin AND Destination = @Destination AND DepartureDate = @Date AND CabinClass = @Class"
 
@@ -161,7 +136,6 @@ Public Class frmPath
             Exit Sub
         End If
 
-        ' Save data and proceed
         BookingSession.SelectedDeparture = cmbFrom.SelectedItem.ToString()
         BookingSession.SelectedDestination = cmbTo.SelectedItem.ToString()
         BookingSession.SelectedDate = dateDepart.Value.ToShortDateString()
@@ -179,7 +153,6 @@ Public Class frmPath
     End Sub
 
     Private Sub LoadFlightSchedule()
-        ' This query grabs all future flights and sorts them by date
         Dim query As String = "SELECT FlightNumber AS [Flight], Origin, Destination, DepartureDate AS [Date], DepartureTime AS [Time], CabinClass AS [Class], BasePrice AS [Price] FROM Flights WHERE DepartureDate >= @Today ORDER BY DepartureDate ASC"
 
         Using conn As New SqlConnection(DatabaseHelper.strConn)
@@ -190,11 +163,8 @@ Public Class frmPath
                 Dim dt As New DataTable()
 
                 Try
-                    ' Fill the data table and bind it to your visual grid
                     da.Fill(dt)
                     dgvSchedule.DataSource = dt
-
-                    ' Make the grid look clean and professional
                     dgvSchedule.ReadOnly = True
                     dgvSchedule.AllowUserToAddRows = False
                     dgvSchedule.RowHeadersVisible = False
@@ -214,15 +184,5 @@ Public Class frmPath
         profileForm.Show()
     End Sub
 
-    Private Sub Panel1_Paint(sender As Object, e As PaintEventArgs)
 
-    End Sub
-
-    Private Sub Label6_Click(sender As Object, e As EventArgs)
-
-    End Sub
-
-    Private Sub Label1_Click(sender As Object, e As EventArgs) Handles Label1.Click
-
-    End Sub
 End Class

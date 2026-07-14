@@ -10,7 +10,7 @@ Public Class Profile
         popup.IsPasswordField = True
 
         If popup.ShowDialog() <> DialogResult.OK Then
-            Return False ' user cancelled
+            Return False
         End If
 
         Dim enteredPassword As String = popup.ResultValue
@@ -73,11 +73,9 @@ Public Class Profile
         End Using
     End Sub
 
-    ' ========================================================
-    ' CHANGE EMAIL
-    ' ========================================================
+
     Private Sub btnChangeEmail_Click(sender As Object, e As EventArgs) Handles btnChangeEmail.Click
-        ' NEW: Require password verification first
+
         If Not VerifyCurrentPassword() Then Exit Sub
 
         Dim popup As New frmEditField()
@@ -108,11 +106,9 @@ Public Class Profile
             End Using
         End If
     End Sub
-    ' ========================================================
-    ' CHANGE PASSWORD
-    ' ========================================================
+
     Private Sub btnChangePassword_Click(sender As Object, e As EventArgs) Handles btnChangePassword.Click
-        ' NEW: Require password verification first
+
         If Not VerifyCurrentPassword() Then Exit Sub
 
         Dim popup As New frmEditField()
@@ -139,11 +135,9 @@ Public Class Profile
         End If
     End Sub
 
-    ' ========================================================
-    ' CHANGE PHONE
-    ' ========================================================
+
     Private Sub btnChangePhone_Click(sender As Object, e As EventArgs) Handles btnChangePhone.Click
-        ' NEW: Require password verification first
+
         If Not VerifyCurrentPassword() Then Exit Sub
 
         Dim popup As New frmEditField()
@@ -171,16 +165,9 @@ Public Class Profile
         End If
     End Sub
 
-    ' ========================================================
-    ' VIEW MY TICKETS
-    ' ========================================================
-    ' ========================================================
-    ' VIEW MY TICKETS
-    ' ========================================================
     Private Sub btnViewTicket_Click(sender As Object, e As EventArgs) Handles btnViewTicket.Click
         Dim tickets As New List(Of frmDisplayTicket.TicketData)
 
-        ' One row per PASSENGER, not per booking — lets us loop through all passengers on a booking
         Dim query As String = "
             SELECT p.FirstName, p.LastName, p.FrequentFlyerProgram, p.SeatNumber,
                    f.Origin, f.Destination, f.DepartureDate, f.DepartureTime, f.FlightNumber, f.Gate,
@@ -225,9 +212,6 @@ Public Class Profile
         ticketForm.Show()
     End Sub
 
-    ' ========================================================
-    ' DELETE ACCOUNT (blocked if bookings exist)
-    ' ========================================================
     Private Sub btnDeleteAccount_Click(sender As Object, e As EventArgs) Handles btnDeleteAccount.Click
         Dim bookingCount As Integer = 0
         Dim checkQuery As String = "SELECT COUNT(*) FROM Bookings WHERE UserID = @UserID"
@@ -279,9 +263,7 @@ Public Class Profile
         loginForm.Show()
     End Sub
 
-    ' ========================================================
-    ' LOG OUT
-    ' ========================================================
+
     Private Sub btnLogout_Click(sender As Object, e As EventArgs) Handles btnLogout.Click
         DatabaseHelper.CurrentLoggedInUserID = 0
         Me.Hide()
@@ -289,20 +271,15 @@ Public Class Profile
         loginForm.Show()
     End Sub
 
-    ' ========================================================
-    ' BACK
-    ' ========================================================
+
     Private Sub btnBack_Click(sender As Object, e As EventArgs) Handles btnBack.Click
         Me.Hide()
         Dim pathForm As New frmPath()
         pathForm.Show()
     End Sub
 
-    ' ========================================================
-    ' CANCEL ALL TICKETS (full refund of all bookings)
-    ' ========================================================
+
     Private Sub btnCancelTicket_Click(sender As Object, e As EventArgs) Handles btnCancelTicket.Click
-        ' Step 1: Confirm the user actually has bookings to cancel
         Dim bookingCount As Integer = 0
         Dim checkQuery As String = "SELECT COUNT(*) FROM Bookings WHERE UserID = @UserID"
 
@@ -324,18 +301,14 @@ Public Class Profile
             Exit Sub
         End If
 
-        ' Step 2: Warn before asking for password — this is destructive and irreversible
         Dim confirm As DialogResult = MessageBox.Show(
             $"This will cancel ALL {bookingCount} of your booking(s) and cannot be undone. Continue?",
             "Confirm Cancellation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
 
         If confirm <> DialogResult.Yes Then Exit Sub
 
-        ' Step 3: Require password verification — reuses the same helper as Change Email/Password/Phone
         If Not VerifyCurrentPassword() Then Exit Sub
 
-        ' Step 4: Delete Passengers first (child rows), then Bookings (parent rows) — FK order matters.
-        ' Wrapped in a transaction so a failure partway through doesn't leave orphaned data.
         Using conn As New SqlConnection(DatabaseHelper.strConn)
             conn.Open()
             Dim transaction As SqlTransaction = conn.BeginTransaction()
@@ -362,7 +335,6 @@ Public Class Profile
             End Try
         End Using
 
-        ' Step 5: Confirm success and refresh both button states
         MessageBox.Show("All your tickets have been cancelled. Your refund will be processed within approximately 24 hours.",
                          "Cancellation Successful", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
@@ -371,7 +343,6 @@ Public Class Profile
     End Sub
 
 
-    ' UPDATED: Now also refreshes the Cancel Tickets button alongside View Tickets
     Private Sub UpdateViewTicketButtonState()
         Dim ticketCount As Integer = 0
         Dim query As String = "SELECT COUNT(*) FROM Bookings WHERE UserID = @UserID"
@@ -403,7 +374,6 @@ Public Class Profile
         End If
     End Sub
 
-    ' NEW: Greys out the Cancel All Tickets button if there's nothing to cancel
     Private Sub UpdateCancelTicketButtonState()
         Dim ticketCount As Integer = 0
         Dim query As String = "SELECT COUNT(*) FROM Bookings WHERE UserID = @UserID"
@@ -425,7 +395,7 @@ Public Class Profile
         btnCancelTicket.Enabled = hasTickets
 
         If hasTickets Then
-            btnCancelTicket.BackColor = Color.FromArgb(200, 20, 40) ' matches your existing red
+            btnCancelTicket.BackColor = Color.FromArgb(200, 20, 40)
             btnCancelTicket.ForeColor = Color.White
             btnCancelTicket.Cursor = Cursors.Hand
         Else

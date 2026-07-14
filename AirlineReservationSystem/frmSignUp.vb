@@ -3,19 +3,17 @@
 Public Class frmSignUp
 
     Private Sub btnRegister_Click(sender As Object, e As EventArgs) Handles btnRegister.Click
-        ' 1. Strict Validation: Check textboxes AND make sure Dropdowns are actually selected
         If txtEmail.Text.Trim() = "" Or txtPassword.Text.Trim() = "" Or txtFirstName.Text.Trim() = "" Or txtDocumentNo.Text.Trim() = "" Then
             MsgBox("Please fill in all text fields (Email, Password, Name, and IC/Passport).", MsgBoxStyle.Exclamation, "Missing Data")
             Return
         End If
 
-        ' SelectedIndex = -1 means they haven't picked anything from the dropdown yet
         If cmbTitle.SelectedIndex = -1 Or cmbGender.SelectedIndex = -1 Or cmbNationality.SelectedIndex = -1 Then
             MsgBox("Please select your Title, Gender, and Nationality from the dropdown lists.", MsgBoxStyle.Exclamation, "Missing Selection")
             Return
         End If
 
-        ' --- NEW: AGE VALIDATION ---
+
         Dim age As Integer = DateTime.Today.Year - dtpDOB.Value.Year
         If dtpDOB.Value.Date > DateTime.Today.AddYears(-age) Then
             age -= 1
@@ -31,11 +29,10 @@ Public Class frmSignUp
             Return
         End If
 
-        ' 2. The SQL INSERT Query
         Dim query As String = "INSERT INTO Users (Email, Password, Title, FirstName, LastName, DateOfBirth, Gender, Nationality, DocumentNo, Phone, Role) " &
                               "VALUES (@Email, @Password, @Title, @FirstName, @LastName, @DOB, @Gender, @Nationality, @DocumentNo, @Phone, 'Passenger')"
 
-        ' 3. Connect and Save
+
         Using conn As New SqlConnection(strConn)
             Using cmd As New SqlCommand(query, conn)
                 cmd.Parameters.AddWithValue("@Email", txtEmail.Text.Trim())
@@ -46,7 +43,7 @@ Public Class frmSignUp
                 cmd.Parameters.AddWithValue("@DOB", dtpDOB.Value.Date)
                 cmd.Parameters.AddWithValue("@Gender", cmbGender.Text)
 
-                ' Updated to grab text from the new locked ComboBox
+
                 cmd.Parameters.AddWithValue("@Nationality", cmbNationality.Text)
 
                 cmd.Parameters.AddWithValue("@DocumentNo", txtDocumentNo.Text.Trim())
@@ -76,7 +73,7 @@ Public Class frmSignUp
 
     Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
 
-        ' 1. Clear all standard textboxes
+
         txtEmail.Clear()
         txtPassword.Clear()
         txtFirstName.Clear()
@@ -84,33 +81,23 @@ Public Class frmSignUp
         txtDocumentNo.Clear()
         txtPhone.Clear()
 
-        ' Reset the Dropdowns (ComboBoxes) to be blank
         cmbTitle.SelectedIndex = -1
         cmbGender.SelectedIndex = -1
         cmbNationality.SelectedIndex = -1
-
-        ' 3. Reset the Calendar to today's date
         dtpDOB.Value = Date.Now
 
-        ' 4. Put the blinking cursor back in the Email box so they can start over
+
         txtEmail.Focus()
     End Sub
 
 
     Private Sub lblSIgnUp_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles lblSIgnUp.LinkClicked
-        ' 1. Hide the Sign Up screen
+
         Me.Hide()
 
-        ' 2. Open the Login screen
+
         Dim loginForm As New frmLogin()
         loginForm.Show()
     End Sub
 
-    Private Sub frmSignUp_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
-    End Sub
-
-    Private Sub Label4_Click(sender As Object, e As EventArgs) Handles Label4.Click
-
-    End Sub
 End Class

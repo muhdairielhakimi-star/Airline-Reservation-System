@@ -78,7 +78,7 @@ Partial Class frmDisplayTicket
         '
         Me.PictureBox2.Image = CType(resources.GetObject("PictureBox2.Image"), System.Drawing.Image)
         Me.PictureBox2.InitialImage = CType(resources.GetObject("PictureBox2.InitialImage"), System.Drawing.Image)
-        Me.PictureBox2.Location = New System.Drawing.Point(483, 36)
+        Me.PictureBox2.Location = New System.Drawing.Point(436, 36)
         Me.PictureBox2.Margin = New System.Windows.Forms.Padding(2)
         Me.PictureBox2.Name = "PictureBox2"
         Me.PictureBox2.Size = New System.Drawing.Size(101, 49)
@@ -102,7 +102,7 @@ Partial Class frmDisplayTicket
         Me.lblTo.AutoSize = True
         Me.lblTo.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblTo.ForeColor = System.Drawing.Color.White
-        Me.lblTo.Location = New System.Drawing.Point(629, 54)
+        Me.lblTo.Location = New System.Drawing.Point(605, 54)
         Me.lblTo.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblTo.Name = "lblTo"
         Me.lblTo.Size = New System.Drawing.Size(30, 21)
@@ -113,7 +113,7 @@ Partial Class frmDisplayTicket
         '
         Me.lblFrom.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblFrom.ForeColor = System.Drawing.Color.White
-        Me.lblFrom.Location = New System.Drawing.Point(379, 54)
+        Me.lblFrom.Location = New System.Drawing.Point(281, 54)
         Me.lblFrom.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblFrom.Name = "lblFrom"
         Me.lblFrom.Size = New System.Drawing.Size(296, 31)

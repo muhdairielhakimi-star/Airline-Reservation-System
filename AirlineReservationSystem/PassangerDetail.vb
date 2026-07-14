@@ -2,7 +2,7 @@
 Partial Class PassengerDetails
     Inherits System.Windows.Forms.Form
 
-    'Form overrides dispose to clean up the component list.
+
     <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
@@ -24,12 +24,8 @@ Partial Class PassengerDetails
     Friend WithEvents Panel1 As Panel
     Friend WithEvents Label9 As Label
 
-    'Required by the Windows Form Designer
     Private components As System.ComponentModel.IContainer
 
-    'NOTE: The following procedure is required by the Windows Form Designer
-    'It can be modified using the Windows Form Designer.  
-    'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.lblTitle = New System.Windows.Forms.Label()
@@ -456,23 +452,20 @@ Partial Class PassengerDetails
     Friend WithEvents btnConfirm As System.Windows.Forms.Button
 
     Private Sub PassengerDetails_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ' Setup the UI to show which passenger we are currently entering
-        ' Example: "Passenger 1 of 3"
+
         lblPass.Text = $"Passenger {BookingSession.CurrentPassengerIndex} of {BookingSession.TotalPassengers}"
     End Sub
 
     Private Sub btnConfirm_Click(sender As Object, e As EventArgs) Handles btnConfirm.Click
-        ' 1. Basic validation: Make sure they typed a name
+
         If txtFirstName.Text.Trim() = "" Or txtLastName.Text.Trim() = "" Then
             MsgBox("Please enter the passenger's first and last name.", MsgBoxStyle.Exclamation, "Missing Information")
             Exit Sub
         End If
 
-        ' 2. Save THIS passenger to our Brain's List
         Dim fullName As String = txtFirstName.Text.Trim() & " " & txtLastName.Text.Trim()
         BookingSession.PassengerNames.Add(fullName)
 
-        ' We only save frequent flyer + contact info for the very first person (the main booker)
         If BookingSession.CurrentPassengerIndex = 1 Then
             If cmbProgram.SelectedIndex <> -1 Then
                 BookingSession.FrequentFlyerProgram = cmbProgram.Text
@@ -480,7 +473,6 @@ Partial Class PassengerDetails
                 BookingSession.FrequentFlyerProgram = "None"
             End If
 
-            ' Validate email match before saving contact info
             If txtEmail.Text.Trim() = "" Or txtConfirmEmail.Text.Trim() = "" Then
                 MsgBox("Please enter and confirm your email address.", MsgBoxStyle.Exclamation, "Missing Contact Info")
                 Exit Sub
@@ -500,29 +492,26 @@ Partial Class PassengerDetails
             BookingSession.ContactPhone = cmbCountryCode.Text & txtPhoneNumber.Text.Trim()
         End If
 
-        ' 3. THE LOOP CHECK: Are there more passengers to enter?
+
         If BookingSession.CurrentPassengerIndex < BookingSession.TotalPassengers Then
-            ' Increase the counter
+
             BookingSession.CurrentPassengerIndex += 1
 
             MessageBox.Show($"Passenger saved! Please enter details for Passenger {BookingSession.CurrentPassengerIndex}.", "Next Passenger", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
-            ' Clear the text boxes so the screen is blank for the next person!
+
             txtFirstName.Clear()
             txtLastName.Clear()
             cmbTitle.SelectedIndex = -1
 
-            ' Hide loyalty + contact info groups — those only apply to Passenger 1
             GroupBox2.Visible = False
             gpContact.Visible = False
 
-            ' Update the label at the top to say "Passenger 2 of 3"
             lblPass.Text = $"Passenger {BookingSession.CurrentPassengerIndex} of {BookingSession.TotalPassengers}"
 
-            ' Put the blinking cursor back in the first name box
             txtFirstName.Focus()
         Else
-            ' EVERYONE IS ENTERED! Move to the Seat Selection screen!
+
             Me.Hide()
             Dim seatForm As New selectSeat()
             seatForm.Show()
@@ -530,7 +519,6 @@ Partial Class PassengerDetails
     End Sub
 
     Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
-        ' Clears absolutely everything if they make a mistake
         txtFirstName.Clear()
         txtLastName.Clear()
         txtEmail.Clear()
@@ -542,7 +530,7 @@ Partial Class PassengerDetails
     End Sub
 
     Private Sub grpPersonal_Enter(sender As Object, e As EventArgs) Handles grpPersonal.Enter
-        ' Leave empty
+
     End Sub
 
 

@@ -18,13 +18,11 @@ Public Class selectSeat
 }
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Me.BackColor = SystemColors.Control ' REMOVED PURPLE BACKGROUND
-
-        ' Lock the UI to the Class they chose in frmPath!
+        Me.BackColor = SystemColors.Control
         cmbCabinClass.Items.Clear()
         cmbCabinClass.Items.Add("LOCKED TO: " & BookingSession.CabinClass & " CLASS")
         cmbCabinClass.SelectedIndex = 0
-        cmbCabinClass.Enabled = False ' Prevent them from changing it
+        cmbCabinClass.Enabled = False
 
         lblPriceTotal.Text = "Seat Add-on Fee: RM 0.00"
 
@@ -52,7 +50,6 @@ Public Class selectSeat
             Next
         Next
 
-        ' LIVE DATABASE CHECK FOR TAKEN SEATS
         Dim query As String = "SELECT p.SeatNumber FROM Passengers p INNER JOIN Bookings b ON p.BookingID = b.BookingID WHERE b.FlightID = @FlightID"
         Using conn As New SqlConnection(DatabaseHelper.strConn)
             Using cmd As New SqlCommand(query, conn)
@@ -109,7 +106,6 @@ Public Class selectSeat
             btnSeat.ForeColor = Color.White
             btnSeat.Enabled = False
         ElseIf seat.CabinClass <> BookingSession.CabinClass Then
-            ' Not booked, but wrong class for this ticket — show it exists, but block it
             btnSeat.BackColor = Color.WhiteSmoke
             btnSeat.ForeColor = Color.Silver
             btnSeat.Enabled = False
@@ -124,13 +120,12 @@ Public Class selectSeat
         Dim btn As Button = CType(sender, Button)
         Dim seat As SeatData = CType(btn.Tag, SeatData)
 
-        ' 1. STRICT CLASS LOCK CHECK
+
         If seat.CabinClass <> BookingSession.CabinClass Then
             MessageBox.Show($"You paid for a {BookingSession.CabinClass} ticket! You cannot select a seat in the {seat.CabinClass} section.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Exit Sub
         End If
 
-        ' 2. PASSENGER LIMIT CHECK (Only Adults & Children get seats. Infants sit on laps!)
         Dim maxSeatsAllowed As Integer = BookingSession.AdultCount + BookingSession.ChildCount
         If selectedButtons.Count >= maxSeatsAllowed AndAlso btn.BackColor = Color.White Then
             MessageBox.Show($"You only have {maxSeatsAllowed} seat-requiring passengers on this booking. You cannot select extra seats.", "Seat Limit Reached", MessageBoxButtons.OK, MessageBoxIcon.Warning)
@@ -165,7 +160,7 @@ Public Class selectSeat
         Next
         BookingSession.SelectedSeat = allSeats.TrimEnd(", ".ToCharArray())
 
-        ' Add the seat selection fee to the total ticket price before going to payment
+
         BookingSession.SelectedPrice += seatSelectionFeeTotal
 
         Me.Hide()

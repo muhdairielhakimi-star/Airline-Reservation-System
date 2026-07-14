@@ -22,11 +22,14 @@ Partial Class frmDisplayTicket
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmDisplayTicket))
         Me.pnlTicket = New System.Windows.Forms.Panel()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
+        Me.Label9 = New System.Windows.Forms.Label()
         Me.lblTo = New System.Windows.Forms.Label()
         Me.lblFrom = New System.Windows.Forms.Label()
         Me.lblAirline = New System.Windows.Forms.Label()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.lblTitle = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.lblPrice = New System.Windows.Forms.Label()
@@ -49,9 +52,9 @@ Partial Class frmDisplayTicket
         Me.btnNext = New System.Windows.Forms.Button()
         Me.lblTicketCounter = New System.Windows.Forms.Label()
         Me.btnBack = New System.Windows.Forms.Button()
-        Me.Label9 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.pnlTicket.SuspendLayout()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
@@ -59,6 +62,7 @@ Partial Class frmDisplayTicket
         'pnlTicket
         '
         Me.pnlTicket.BackColor = System.Drawing.Color.Goldenrod
+        Me.pnlTicket.Controls.Add(Me.PictureBox2)
         Me.pnlTicket.Controls.Add(Me.Label9)
         Me.pnlTicket.Controls.Add(Me.lblTo)
         Me.pnlTicket.Controls.Add(Me.lblFrom)
@@ -70,22 +74,35 @@ Partial Class frmDisplayTicket
         Me.pnlTicket.Size = New System.Drawing.Size(713, 115)
         Me.pnlTicket.TabIndex = 0
         '
-        'PictureBox1
+        'PictureBox2
         '
-        Me.PictureBox1.Location = New System.Drawing.Point(543, 181)
-        Me.PictureBox1.Margin = New System.Windows.Forms.Padding(2)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(144, 64)
-        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.PictureBox1.TabIndex = 4
-        Me.PictureBox1.TabStop = False
+        Me.PictureBox2.Image = CType(resources.GetObject("PictureBox2.Image"), System.Drawing.Image)
+        Me.PictureBox2.InitialImage = CType(resources.GetObject("PictureBox2.InitialImage"), System.Drawing.Image)
+        Me.PictureBox2.Location = New System.Drawing.Point(483, 36)
+        Me.PictureBox2.Margin = New System.Windows.Forms.Padding(2)
+        Me.PictureBox2.Name = "PictureBox2"
+        Me.PictureBox2.Size = New System.Drawing.Size(101, 49)
+        Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PictureBox2.TabIndex = 21
+        Me.PictureBox2.TabStop = False
+        '
+        'Label9
+        '
+        Me.Label9.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label9.ForeColor = System.Drawing.Color.White
+        Me.Label9.Location = New System.Drawing.Point(2, 21)
+        Me.Label9.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(172, 31)
+        Me.Label9.TabIndex = 5
+        Me.Label9.Text = "BOARDING PASS"
         '
         'lblTo
         '
         Me.lblTo.AutoSize = True
         Me.lblTo.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblTo.ForeColor = System.Drawing.Color.White
-        Me.lblTo.Location = New System.Drawing.Point(642, 54)
+        Me.lblTo.Location = New System.Drawing.Point(629, 54)
         Me.lblTo.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblTo.Name = "lblTo"
         Me.lblTo.Size = New System.Drawing.Size(30, 21)
@@ -96,10 +113,10 @@ Partial Class frmDisplayTicket
         '
         Me.lblFrom.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblFrom.ForeColor = System.Drawing.Color.White
-        Me.lblFrom.Location = New System.Drawing.Point(539, 54)
+        Me.lblFrom.Location = New System.Drawing.Point(379, 54)
         Me.lblFrom.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblFrom.Name = "lblFrom"
-        Me.lblFrom.Size = New System.Drawing.Size(172, 31)
+        Me.lblFrom.Size = New System.Drawing.Size(296, 31)
         Me.lblFrom.TabIndex = 2
         Me.lblFrom.Text = "FROM"
         '
@@ -114,6 +131,18 @@ Partial Class frmDisplayTicket
         Me.lblAirline.Size = New System.Drawing.Size(132, 21)
         Me.lblAirline.TabIndex = 2
         Me.lblAirline.Text = "SAUJANA FLIGHT"
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
+        Me.PictureBox1.InitialImage = CType(resources.GetObject("PictureBox1.InitialImage"), System.Drawing.Image)
+        Me.PictureBox1.Location = New System.Drawing.Point(519, 187)
+        Me.PictureBox1.Margin = New System.Windows.Forms.Padding(2)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(170, 58)
+        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PictureBox1.TabIndex = 4
+        Me.PictureBox1.TabStop = False
         '
         'lblTitle
         '
@@ -379,17 +408,6 @@ Partial Class frmDisplayTicket
         Me.btnBack.Text = "< Back"
         Me.btnBack.UseVisualStyleBackColor = True
         '
-        'Label9
-        '
-        Me.Label9.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.ForeColor = System.Drawing.Color.White
-        Me.Label9.Location = New System.Drawing.Point(2, 21)
-        Me.Label9.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(172, 31)
-        Me.Label9.TabIndex = 5
-        Me.Label9.Text = "BOARDING PASS"
-        '
         'Label10
         '
         Me.Label10.AutoSize = True
@@ -420,6 +438,7 @@ Partial Class frmDisplayTicket
         Me.Text = "Ticket"
         Me.pnlTicket.ResumeLayout(False)
         Me.pnlTicket.PerformLayout()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
@@ -457,4 +476,5 @@ Partial Class frmDisplayTicket
     Friend WithEvents btnBack As Button
     Friend WithEvents Label9 As Label
     Friend WithEvents Label10 As Label
+    Friend WithEvents PictureBox2 As PictureBox
 End Class

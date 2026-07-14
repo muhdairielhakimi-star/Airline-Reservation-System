@@ -22,6 +22,7 @@ Partial Class frmLogin
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmLogin))
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -30,7 +31,9 @@ Partial Class frmLogin
         Me.btnLogin = New System.Windows.Forms.Button()
         Me.lblSIgnUp = New System.Windows.Forms.LinkLabel()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.Panel1.SuspendLayout()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
@@ -59,7 +62,7 @@ Partial Class frmLogin
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Segoe UI", 26.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(370, 132)
+        Me.Label3.Location = New System.Drawing.Point(327, 153)
         Me.Label3.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(268, 47)
@@ -123,19 +126,33 @@ Partial Class frmLogin
         Me.Panel1.Size = New System.Drawing.Size(473, 329)
         Me.Panel1.TabIndex = 8
         '
+        'PictureBox2
+        '
+        Me.PictureBox2.Image = CType(resources.GetObject("PictureBox2.Image"), System.Drawing.Image)
+        Me.PictureBox2.InitialImage = CType(resources.GetObject("PictureBox2.InitialImage"), System.Drawing.Image)
+        Me.PictureBox2.Location = New System.Drawing.Point(518, 153)
+        Me.PictureBox2.Margin = New System.Windows.Forms.Padding(2)
+        Me.PictureBox2.Name = "PictureBox2"
+        Me.PictureBox2.Size = New System.Drawing.Size(199, 57)
+        Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PictureBox2.TabIndex = 22
+        Me.PictureBox2.TabStop = False
+        '
         'frmLogin
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1012, 881)
-        Me.Controls.Add(Me.lblSIgnUp)
         Me.Controls.Add(Me.Label3)
+        Me.Controls.Add(Me.lblSIgnUp)
         Me.Controls.Add(Me.Panel1)
+        Me.Controls.Add(Me.PictureBox2)
         Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "frmLogin"
         Me.Text = "Login"
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -149,4 +166,5 @@ Partial Class frmLogin
     Friend WithEvents btnLogin As Button
     Friend WithEvents lblSIgnUp As LinkLabel
     Friend WithEvents Panel1 As Panel
+    Friend WithEvents PictureBox2 As PictureBox
 End Class

@@ -35,7 +35,7 @@ Partial Class frmEditField
         Me.lblPrompt.AutoSize = True
         Me.lblPrompt.Font = New System.Drawing.Font("Segoe UI", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblPrompt.ForeColor = System.Drawing.Color.DimGray
-        Me.lblPrompt.Location = New System.Drawing.Point(244, 279)
+        Me.lblPrompt.Location = New System.Drawing.Point(117, 279)
         Me.lblPrompt.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblPrompt.Name = "lblPrompt"
         Me.lblPrompt.Size = New System.Drawing.Size(157, 30)
@@ -45,7 +45,7 @@ Partial Class frmEditField
         'txtNewValue
         '
         Me.txtNewValue.Font = New System.Drawing.Font("Segoe UI", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtNewValue.Location = New System.Drawing.Point(429, 274)
+        Me.txtNewValue.Location = New System.Drawing.Point(580, 274)
         Me.txtNewValue.Name = "txtNewValue"
         Me.txtNewValue.Size = New System.Drawing.Size(339, 35)
         Me.txtNewValue.TabIndex = 8

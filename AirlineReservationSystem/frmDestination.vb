@@ -119,6 +119,13 @@ Public Class frmPath
             Exit Sub
         End If
 
+        ' --- NEW: REJECT AN INVALID RETURN DATE INSTEAD OF SILENTLY DROPPING IT ---
+        If dateReturn.Value.Date < dateDepart.Value.Date Then
+            MessageBox.Show("Your return date cannot be before your departure date. Please correct it, or leave it unchanged for a one-way trip.",
+                         "Invalid Return Date", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Exit Sub
+        End If
+
         ' --- SMART ROUND-TRIP LOGIC ---
         If dateReturn.Value.Date > dateDepart.Value.Date Then
             BookingSession.TripType = "Round-Trip"

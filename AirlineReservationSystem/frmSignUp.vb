@@ -15,6 +15,22 @@ Public Class frmSignUp
             Return
         End If
 
+        ' --- NEW: AGE VALIDATION ---
+        Dim age As Integer = DateTime.Today.Year - dtpDOB.Value.Year
+        If dtpDOB.Value.Date > DateTime.Today.AddYears(-age) Then
+            age -= 1
+        End If
+
+        If age < 18 Then
+            MsgBox("You must be at least 18 years old to register an account.", MsgBoxStyle.Exclamation, "Age Restriction")
+            Return
+        End If
+
+        If dtpDOB.Value.Date > DateTime.Today Then
+            MsgBox("Date of birth cannot be in the future.", MsgBoxStyle.Exclamation, "Invalid Date")
+            Return
+        End If
+
         ' 2. The SQL INSERT Query
         Dim query As String = "INSERT INTO Users (Email, Password, Title, FirstName, LastName, DateOfBirth, Gender, Nationality, DocumentNo, Phone, Role) " &
                               "VALUES (@Email, @Password, @Title, @FirstName, @LastName, @DOB, @Gender, @Nationality, @DocumentNo, @Phone, 'Passenger')"

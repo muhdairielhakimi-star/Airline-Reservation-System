@@ -27,6 +27,28 @@ Public Class selectSeat
         lblPriceTotal.Text = "Seat Add-on Fee: RM 0.00"
 
         SetupSeatsAndCheckDatabase()
+
+        Dim availableCount As Integer = 0
+        For Each seat As SeatData In seatArray
+            If seat.CabinClass = BookingSession.CabinClass AndAlso Not seat.IsBooked Then
+                availableCount += 1
+            End If
+        Next
+
+        Dim seatsNeeded As Integer = BookingSession.AdultCount + BookingSession.ChildCount
+
+        If availableCount < seatsNeeded Then
+            MessageBox.Show(
+            $"Sorry, this flight only has {availableCount} available seat(s) left in {BookingSession.CabinClass}, " &
+            $"but your booking needs {seatsNeeded}. Please go back and choose a different flight.",
+            "Not Enough Seats Available", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+            Me.Hide()
+            Dim ticketSelectForm As New frmTicketSelect()
+            ticketSelectForm.Show()
+            Exit Sub
+        End If
+
         RenderEntirePlaneGrid()
     End Sub
 
@@ -174,4 +196,48 @@ Public Class selectSeat
         Next
         Return New SeatData()
     End Function
+
+    Private Sub Label9_Paint(sender As Object, e As PaintEventArgs) Handles Label9.Paint
+        Dim g As Graphics = e.Graphics
+        Dim displayText As String = "First Class"
+
+        g.TranslateTransform(Label9.Width / 2, Label9.Height / 2)
+        g.RotateTransform(-90)
+
+        Dim textSize As SizeF = g.MeasureString(displayText, Label9.Font)
+        g.DrawString(displayText, Label9.Font, Brushes.Black,
+                 -textSize.Width / 2, -textSize.Height / 2)
+
+        g.ResetTransform()
+    End Sub
+
+    Private Sub Label10_Paint(sender As Object, e As PaintEventArgs) Handles Label10.Paint
+        Dim g As Graphics = e.Graphics
+        Dim displayText As String = "Business"
+
+        g.TranslateTransform(Label10.Width / 2, Label10.Height / 2)
+        g.RotateTransform(-90)
+
+        Dim textSize As SizeF = g.MeasureString(displayText, Label10.Font)
+        g.DrawString(displayText, Label10.Font, Brushes.Black,
+                 -textSize.Width / 2, -textSize.Height / 2)
+
+        g.ResetTransform()
+    End Sub
+
+    Private Sub Label11_Paint(sender As Object, e As PaintEventArgs) Handles Label11.Paint
+        Dim g As Graphics = e.Graphics
+        Dim displayText As String = "Economy"
+
+        g.TranslateTransform(Label11.Width / 2, Label11.Height / 2)
+        g.RotateTransform(-90)
+
+        Dim textSize As SizeF = g.MeasureString(displayText, Label11.Font)
+        g.DrawString(displayText, Label11.Font, Brushes.Black,
+                 -textSize.Width / 2, -textSize.Height / 2)
+
+        g.ResetTransform()
+    End Sub
+
+
 End Class

@@ -68,18 +68,24 @@ Public Class frmTicketSelect
 
                             If count = 1 Then
                                 Flight1 = f
-                                lblFlightRoute1.Text = $"{f.FromAirport} ({f.DepartureTime}) ---> {f.ToAirport}"
+                                lblFlightRoute1.Text = $"{f.FromAirport} ---> {f.ToAirport}"
                                 lblAircraftCode1.Text = f.AircraftCode
+                                lblTime.Text = f.DepartureTime
+                                lblPrice.Text = $"RM {f.Price:N2}"
                                 btnOption1.Enabled = True
                             ElseIf count = 2 Then
                                 Flight2 = f
-                                lblFlightRoute2.Text = $"{f.FromAirport} ({f.DepartureTime}) ---> {f.ToAirport}"
+                                lblFlightRoute2.Text = $"{f.FromAirport} ---> {f.ToAirport}"
                                 lblAircraftCode2.Text = f.AircraftCode
+                                lblTime2.Text = f.DepartureTime
+                                lblPrice2.Text = $"RM {f.Price:N2}"
                                 btnOption2.Enabled = True
                             ElseIf count = 3 Then
                                 Flight3 = f
-                                lblFlightRoute3.Text = $"{f.FromAirport} ({f.DepartureTime}) ---> {f.ToAirport}"
+                                lblFlightRoute3.Text = $"{f.FromAirport} ---> {f.ToAirport}"
                                 lblAircraftCode3.Text = f.AircraftCode
+                                lblTime3.Text = f.DepartureTime
+                                lblPrice3.Text = $"RM {f.Price:N2}"
                                 btnOption3.Enabled = True
                             End If
                             count += 1
@@ -120,6 +126,7 @@ Public Class frmTicketSelect
         BookingSession.SelectedTime = selectedFlight.DepartureTime
         BookingSession.SelectedPrice = selectedFlight.Price
     End Sub
+
 
     Private Sub HighlightSelectedCard(cardNumber As Integer)
         btnOption1.BackColor = Color.White

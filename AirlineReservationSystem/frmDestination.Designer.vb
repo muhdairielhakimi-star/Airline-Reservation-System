@@ -23,13 +23,19 @@ Partial Class frmPath
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.Label6 = New System.Windows.Forms.Label()
         Me.cmbTo = New System.Windows.Forms.ComboBox()
         Me.cmbFrom = New System.Windows.Forms.ComboBox()
-        Me.Label5 = New System.Windows.Forms.Label()
         Me.dateReturn = New System.Windows.Forms.DateTimePicker()
         Me.dateDepart = New System.Windows.Forms.DateTimePicker()
         Me.btnWay = New System.Windows.Forms.Button()
+        Me.Label5 = New System.Windows.Forms.Label()
         Me.pnlPassengerPopup = New System.Windows.Forms.Panel()
+        Me.lblTotalPassenger = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.btnFirstClass = New System.Windows.Forms.Button()
         Me.btnInfantsMinus = New System.Windows.Forms.Button()
         Me.btnInfantsPlus = New System.Windows.Forms.Button()
@@ -50,12 +56,6 @@ Partial Class frmPath
         Me.Label4 = New System.Windows.Forms.Label()
         Me.dgvSchedule = New System.Windows.Forms.DataGridView()
         Me.btnProfile = New System.Windows.Forms.Button()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.lblTotalPassenger = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         Me.pnlPassengerPopup.SuspendLayout()
         CType(Me.dgvSchedule, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -78,6 +78,46 @@ Partial Class frmPath
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(901, 175)
         Me.Panel1.TabIndex = 1
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(458, 91)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(91, 17)
+        Me.Label1.TabIndex = 13
+        Me.Label1.Text = "RETURN DATE"
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label8.Location = New System.Drawing.Point(35, 91)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(110, 17)
+        Me.Label8.TabIndex = 12
+        Me.Label8.Text = "DEPARTURE DATE"
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label7.Location = New System.Drawing.Point(506, 18)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(117, 17)
+        Me.Label7.TabIndex = 11
+        Me.Label7.Text = "DESTINATION CITY"
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label6.Location = New System.Drawing.Point(35, 18)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(80, 17)
+        Me.Label6.TabIndex = 10
+        Me.Label6.Text = "ORIGIN CITY"
         '
         'cmbTo
         '
@@ -102,14 +142,6 @@ Partial Class frmPath
         Me.cmbFrom.Name = "cmbFrom"
         Me.cmbFrom.Size = New System.Drawing.Size(375, 29)
         Me.cmbFrom.TabIndex = 8
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(160, 688)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(0, 13)
-        Me.Label5.TabIndex = 7
         '
         'dateReturn
         '
@@ -146,6 +178,14 @@ Partial Class frmPath
         Me.btnWay.Text = "⇄"
         Me.btnWay.UseVisualStyleBackColor = False
         '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(160, 688)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(0, 13)
+        Me.Label5.TabIndex = 7
+        '
         'pnlPassengerPopup
         '
         Me.pnlPassengerPopup.BackColor = System.Drawing.Color.White
@@ -171,6 +211,29 @@ Partial Class frmPath
         Me.pnlPassengerPopup.Name = "pnlPassengerPopup"
         Me.pnlPassengerPopup.Size = New System.Drawing.Size(523, 282)
         Me.pnlPassengerPopup.TabIndex = 4
+        '
+        'lblTotalPassenger
+        '
+        Me.lblTotalPassenger.AutoSize = True
+        Me.lblTotalPassenger.BackColor = System.Drawing.Color.LightBlue
+        Me.lblTotalPassenger.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblTotalPassenger.ForeColor = System.Drawing.Color.RoyalBlue
+        Me.lblTotalPassenger.Location = New System.Drawing.Point(386, 9)
+        Me.lblTotalPassenger.Name = "lblTotalPassenger"
+        Me.lblTotalPassenger.Size = New System.Drawing.Size(107, 21)
+        Me.lblTotalPassenger.TabIndex = 17
+        Me.lblTotalPassenger.Text = "1 Passengers"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.ForeColor = System.Drawing.Color.DimGray
+        Me.Label2.Location = New System.Drawing.Point(5, 9)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(162, 21)
+        Me.Label2.TabIndex = 16
+        Me.Label2.Text = "Passenger and Class"
         '
         'btnFirstClass
         '
@@ -382,69 +445,6 @@ Partial Class frmPath
         Me.btnProfile.TabIndex = 10
         Me.btnProfile.Text = "Profile"
         Me.btnProfile.UseVisualStyleBackColor = False
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(35, 18)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(80, 17)
-        Me.Label6.TabIndex = 10
-        Me.Label6.Text = "ORIGIN CITY"
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.Location = New System.Drawing.Point(506, 18)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(117, 17)
-        Me.Label7.TabIndex = 11
-        Me.Label7.Text = "DESTINATION CITY"
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label8.Location = New System.Drawing.Point(35, 91)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(110, 17)
-        Me.Label8.TabIndex = 12
-        Me.Label8.Text = "DEPARTURE DATE"
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(458, 91)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(91, 17)
-        Me.Label1.TabIndex = 13
-        Me.Label1.Text = "RETURN DATE"
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.ForeColor = System.Drawing.Color.DimGray
-        Me.Label2.Location = New System.Drawing.Point(5, 9)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(162, 21)
-        Me.Label2.TabIndex = 16
-        Me.Label2.Text = "Passenger and Class"
-        '
-        'lblTotalPassenger
-        '
-        Me.lblTotalPassenger.AutoSize = True
-        Me.lblTotalPassenger.BackColor = System.Drawing.Color.LightBlue
-        Me.lblTotalPassenger.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblTotalPassenger.ForeColor = System.Drawing.Color.RoyalBlue
-        Me.lblTotalPassenger.Location = New System.Drawing.Point(386, 9)
-        Me.lblTotalPassenger.Name = "lblTotalPassenger"
-        Me.lblTotalPassenger.Size = New System.Drawing.Size(107, 21)
-        Me.lblTotalPassenger.TabIndex = 17
-        Me.lblTotalPassenger.Text = "1 Passengers"
         '
         'frmPath
         '

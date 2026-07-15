@@ -1,4 +1,5 @@
 ﻿Imports System.Data.SqlClient
+Imports System.Linq
 
 Public Class payment
 
@@ -77,11 +78,45 @@ Public Class payment
 
 
     Private Sub btnPayCreditCard_Click(sender As Object, e As EventArgs) Handles btnPayCreditCard.Click
-        If String.IsNullOrWhiteSpace(txtCardNumber.Text) OrElse String.IsNullOrWhiteSpace(txtCVV.Text) Then
+
+        If String.IsNullOrWhiteSpace(txtHolderName.Text) OrElse
+       String.IsNullOrWhiteSpace(txtCardNumber.Text) OrElse
+       String.IsNullOrWhiteSpace(txtCVV.Text) OrElse
+       String.IsNullOrWhiteSpace(txtExpiry.Text) Then
             MessageBox.Show("Please complete all required fields within the Credit/Debit card form.", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Exit Sub
         End If
 
+        Dim cleanCardNumber As String = txtCardNumber.Text.Trim()
+        If Not cleanCardNumber.All(AddressOf Char.IsDigit) OrElse cleanCardNumber.Length <> 16 Then
+            MessageBox.Show("Please enter a valid 16-digit card number.", "Invalid Card Number", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Exit Sub
+        End If
+
+        Dim cleanCVV As String = txtCVV.Text.Trim()
+        If Not cleanCVV.All(AddressOf Char.IsDigit) OrElse (cleanCVV.Length <> 3 AndAlso cleanCVV.Length <> 4) Then
+            MessageBox.Show("Please enter a valid 3 or 4 digit CVV.", "Invalid CVV", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Exit Sub
+        End If
+
+        Dim expiryDate As DateTime
+        Dim expiryParsedOK As Boolean = DateTime.TryParseExact(
+        txtExpiry.Text.Trim(),
+        "MM/yy",
+        System.Globalization.CultureInfo.InvariantCulture,
+        System.Globalization.DateTimeStyles.None,
+        expiryDate)
+
+        If Not expiryParsedOK Then
+            MessageBox.Show("Please enter the expiry date in MM/YY format (e.g. 08/27).", "Invalid Expiry Date", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Exit Sub
+        End If
+
+        Dim lastDayOfExpiryMonth As DateTime = New DateTime(expiryDate.Year, expiryDate.Month, DateTime.DaysInMonth(expiryDate.Year, expiryDate.Month))
+        If lastDayOfExpiryMonth < DateTime.Today Then
+            MessageBox.Show("This card has expired. Please use a valid card.", "Card Expired", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Exit Sub
+        End If
         Dim pnrCode As String = "PNR" & New Random().Next(1000, 9999).ToString()
         Dim newBookingID As Integer = 0
 
@@ -136,7 +171,6 @@ Public Class payment
         End Using
 
         MessageBox.Show($"Payment Successful! Total charged: RM {grandTotal:N2}.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
-
 
         Dim ticketScreen As New frmDisplayTicket()
 
@@ -350,5 +384,6 @@ Public Class payment
         Me.Hide()
         ticketScreen.Show()
     End Sub
+
 
 End Class

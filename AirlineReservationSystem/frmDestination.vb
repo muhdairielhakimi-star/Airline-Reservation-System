@@ -84,6 +84,9 @@ Public Class frmPath
         lblAdultsCount.Text = adultCount.ToString()
         lblChildrenCount.Text = childCount.ToString()
         lblInfantsCount.Text = infantCount.ToString()
+
+        Dim totalPassengers As Integer = adultCount + childCount + infantCount
+        lblTotalPassenger.Text = $"{totalPassengers} Passenger{If(totalPassengers = 1, "", "s")}"
     End Sub
 
     Private Sub btnFind_Click(sender As Object, e As EventArgs) Handles btnFind.Click
@@ -183,6 +186,5 @@ Public Class frmPath
         Dim profileForm As New Profile()
         profileForm.Show()
     End Sub
-
 
 End Class

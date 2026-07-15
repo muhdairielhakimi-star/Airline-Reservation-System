@@ -169,14 +169,15 @@ Public Class Profile
         Dim tickets As New List(Of frmDisplayTicket.TicketData)
 
         Dim query As String = "
-            SELECT p.FirstName, p.LastName, p.FrequentFlyerProgram, p.SeatNumber,
-                   f.Origin, f.Destination, f.DepartureDate, f.DepartureTime, f.FlightNumber, f.Gate,
-                   b.TotalPrice
-            FROM Passengers p
-            INNER JOIN Bookings b ON p.BookingID = b.BookingID
-            INNER JOIN Flights f ON b.FlightID = f.FlightID
-            WHERE b.UserID = @UserID
-            ORDER BY f.DepartureDate ASC, p.PassengerID ASC"
+        SELECT p.FirstName, p.LastName, p.FrequentFlyerProgram, p.SeatNumber,
+               f.Origin, f.Destination, f.DepartureDate, f.DepartureTime, f.FlightNumber, f.Gate,
+               b.BookingID, b.TotalPrice,
+               (SELECT COUNT(*) FROM Passengers p2 WHERE p2.BookingID = b.BookingID) AS PassengerCountForBooking
+        FROM Passengers p
+        INNER JOIN Bookings b ON p.BookingID = b.BookingID
+        INNER JOIN Flights f ON b.FlightID = f.FlightID
+        WHERE b.UserID = @UserID
+        ORDER BY f.DepartureDate ASC, p.PassengerID ASC"
 
         Using conn As New SqlConnection(DatabaseHelper.strConn)
             Using cmd As New SqlCommand(query, conn)
@@ -191,11 +192,16 @@ Public Class Profile
                             t.PassengerName = reader("FirstName").ToString() & " " & reader("LastName").ToString()
                             t.ProgramName = If(reader.IsDBNull(reader.GetOrdinal("FrequentFlyerProgram")), "N/A", reader("FrequentFlyerProgram").ToString())
                             t.FlightDate = Convert.ToDateTime(reader("DepartureDate")).ToShortDateString()
-                            t.FlightTime = DateTime.Today.Add(CType(reader("DepartureTime"), TimeSpan)).ToShortTimeString() ' FIXED: TIME columns read back as TimeSpan, not DateTime — Convert.ToDateTime crashed on this
+                            t.FlightTime = DateTime.Today.Add(CType(reader("DepartureTime"), TimeSpan)).ToShortTimeString()
                             t.FlightName = reader("FlightNumber").ToString()
                             t.Gate = If(reader.IsDBNull(reader.GetOrdinal("Gate")), "TBA", reader("Gate").ToString())
                             t.Seat = If(reader.IsDBNull(reader.GetOrdinal("SeatNumber")), "Not Assigned", reader("SeatNumber").ToString())
-                            t.TicketPrice = Convert.ToDecimal(reader("TotalPrice")).ToString("C")
+
+                            Dim bookingTotal As Decimal = Convert.ToDecimal(reader("TotalPrice"))
+                            Dim passengerCount As Integer = Convert.ToInt32(reader("PassengerCountForBooking"))
+                            Dim perPassengerFare As Decimal = bookingTotal / passengerCount
+                            t.TicketPrice = perPassengerFare.ToString("C")
+
                             tickets.Add(t)
                         End While
                     End Using
@@ -240,6 +246,7 @@ Public Class Profile
             "Confirm Account Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
 
         If confirm <> DialogResult.Yes Then Exit Sub
+        If Not VerifyCurrentPassword() Then Exit Sub
 
         Dim deleteQuery As String = "DELETE FROM Users WHERE UserID = @UserID"
         Using conn As New SqlConnection(DatabaseHelper.strConn)

@@ -43,20 +43,26 @@ Partial Class frmTicketSelect
         Me.Label17 = New System.Windows.Forms.Label()
         Me.btnContinue = New System.Windows.Forms.Button()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.Panel3 = New System.Windows.Forms.Panel()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.lblTicketPrice1 = New System.Windows.Forms.Label()
-        Me.lblTicketPrice2 = New System.Windows.Forms.Label()
-        Me.lblTicketPrice3 = New System.Windows.Forms.Label()
-        Me.btnHome = New System.Windows.Forms.Button()
+        Me.lblTime = New System.Windows.Forms.Label()
+        Me.lblPrice = New System.Windows.Forms.Label()
         Me.lblFlightTime1 = New System.Windows.Forms.Label()
+        Me.lblTicketPrice1 = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.lblTime2 = New System.Windows.Forms.Label()
+        Me.lblPrice2 = New System.Windows.Forms.Label()
         Me.lblFlightTime2 = New System.Windows.Forms.Label()
+        Me.lblTicketPrice2 = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.lblTime3 = New System.Windows.Forms.Label()
+        Me.lblPrice3 = New System.Windows.Forms.Label()
         Me.lblFlightTime3 = New System.Windows.Forms.Label()
+        Me.lblTicketPrice3 = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.btnHome = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
@@ -267,6 +273,8 @@ Partial Class frmTicketSelect
         '
         Me.Panel1.BackColor = System.Drawing.Color.White
         Me.Panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.Panel1.Controls.Add(Me.lblTime)
+        Me.Panel1.Controls.Add(Me.lblPrice)
         Me.Panel1.Controls.Add(Me.lblFlightTime1)
         Me.Panel1.Controls.Add(Me.lblTicketPrice1)
         Me.Panel1.Controls.Add(Me.Label1)
@@ -280,35 +288,43 @@ Partial Class frmTicketSelect
         Me.Panel1.Size = New System.Drawing.Size(488, 179)
         Me.Panel1.TabIndex = 23
         '
-        'Panel2
+        'lblTime
         '
-        Me.Panel2.BackColor = System.Drawing.Color.White
-        Me.Panel2.Controls.Add(Me.lblFlightTime2)
-        Me.Panel2.Controls.Add(Me.lblTicketPrice2)
-        Me.Panel2.Controls.Add(Me.Label3)
-        Me.Panel2.Controls.Add(Me.Label2)
-        Me.Panel2.Controls.Add(Me.btnOption2)
-        Me.Panel2.Controls.Add(Me.lblFlightRoute2)
-        Me.Panel2.Controls.Add(Me.lblAircraftCode2)
-        Me.Panel2.Location = New System.Drawing.Point(44, 275)
-        Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(488, 179)
-        Me.Panel2.TabIndex = 24
+        Me.lblTime.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.lblTime.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblTime.Location = New System.Drawing.Point(7, 125)
+        Me.lblTime.Name = "lblTime"
+        Me.lblTime.Size = New System.Drawing.Size(49, 25)
+        Me.lblTime.TabIndex = 23
         '
-        'Panel3
+        'lblPrice
         '
-        Me.Panel3.BackColor = System.Drawing.Color.White
-        Me.Panel3.Controls.Add(Me.lblFlightTime3)
-        Me.Panel3.Controls.Add(Me.lblTicketPrice3)
-        Me.Panel3.Controls.Add(Me.Label5)
-        Me.Panel3.Controls.Add(Me.Label4)
-        Me.Panel3.Controls.Add(Me.lblFlightRoute3)
-        Me.Panel3.Controls.Add(Me.lblAircraftCode3)
-        Me.Panel3.Controls.Add(Me.btnOption3)
-        Me.Panel3.Location = New System.Drawing.Point(44, 478)
-        Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(488, 179)
-        Me.Panel3.TabIndex = 24
+        Me.lblPrice.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.lblPrice.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblPrice.Location = New System.Drawing.Point(355, 12)
+        Me.lblPrice.Name = "lblPrice"
+        Me.lblPrice.Size = New System.Drawing.Size(130, 25)
+        Me.lblPrice.TabIndex = 22
+        '
+        'lblFlightTime1
+        '
+        Me.lblFlightTime1.AutoSize = True
+        Me.lblFlightTime1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.lblFlightTime1.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblFlightTime1.Location = New System.Drawing.Point(7, 125)
+        Me.lblFlightTime1.Name = "lblFlightTime1"
+        Me.lblFlightTime1.Size = New System.Drawing.Size(2, 19)
+        Me.lblFlightTime1.TabIndex = 21
+        '
+        'lblTicketPrice1
+        '
+        Me.lblTicketPrice1.AutoSize = True
+        Me.lblTicketPrice1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.lblTicketPrice1.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblTicketPrice1.Location = New System.Drawing.Point(436, 12)
+        Me.lblTicketPrice1.Name = "lblTicketPrice1"
+        Me.lblTicketPrice1.Size = New System.Drawing.Size(2, 17)
+        Me.lblTicketPrice1.TabIndex = 20
         '
         'Label1
         '
@@ -321,16 +337,60 @@ Partial Class frmTicketSelect
         Me.Label1.TabIndex = 19
         Me.Label1.Text = "Aircraft Code"
         '
-        'Label2
+        'Panel2
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.ForeColor = System.Drawing.Color.DimGray
-        Me.Label2.Location = New System.Drawing.Point(10, 22)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(84, 17)
-        Me.Label2.TabIndex = 20
-        Me.Label2.Text = "Destination:"
+        Me.Panel2.BackColor = System.Drawing.Color.White
+        Me.Panel2.Controls.Add(Me.lblTime2)
+        Me.Panel2.Controls.Add(Me.lblPrice2)
+        Me.Panel2.Controls.Add(Me.lblFlightTime2)
+        Me.Panel2.Controls.Add(Me.lblTicketPrice2)
+        Me.Panel2.Controls.Add(Me.Label3)
+        Me.Panel2.Controls.Add(Me.Label2)
+        Me.Panel2.Controls.Add(Me.btnOption2)
+        Me.Panel2.Controls.Add(Me.lblFlightRoute2)
+        Me.Panel2.Controls.Add(Me.lblAircraftCode2)
+        Me.Panel2.Location = New System.Drawing.Point(44, 275)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(488, 179)
+        Me.Panel2.TabIndex = 24
+        '
+        'lblTime2
+        '
+        Me.lblTime2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.lblTime2.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblTime2.Location = New System.Drawing.Point(10, 136)
+        Me.lblTime2.Name = "lblTime2"
+        Me.lblTime2.Size = New System.Drawing.Size(49, 25)
+        Me.lblTime2.TabIndex = 24
+        '
+        'lblPrice2
+        '
+        Me.lblPrice2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.lblPrice2.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblPrice2.Location = New System.Drawing.Point(355, 22)
+        Me.lblPrice2.Name = "lblPrice2"
+        Me.lblPrice2.Size = New System.Drawing.Size(130, 25)
+        Me.lblPrice2.TabIndex = 24
+        '
+        'lblFlightTime2
+        '
+        Me.lblFlightTime2.AutoSize = True
+        Me.lblFlightTime2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.lblFlightTime2.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblFlightTime2.Location = New System.Drawing.Point(10, 136)
+        Me.lblFlightTime2.Name = "lblFlightTime2"
+        Me.lblFlightTime2.Size = New System.Drawing.Size(2, 19)
+        Me.lblFlightTime2.TabIndex = 22
+        '
+        'lblTicketPrice2
+        '
+        Me.lblTicketPrice2.AutoSize = True
+        Me.lblTicketPrice2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.lblTicketPrice2.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblTicketPrice2.Location = New System.Drawing.Point(436, 22)
+        Me.lblTicketPrice2.Name = "lblTicketPrice2"
+        Me.lblTicketPrice2.Size = New System.Drawing.Size(2, 17)
+        Me.lblTicketPrice2.TabIndex = 21
         '
         'Label3
         '
@@ -343,16 +403,71 @@ Partial Class frmTicketSelect
         Me.Label3.TabIndex = 20
         Me.Label3.Text = "Aircraft Code"
         '
-        'Label4
+        'Label2
         '
-        Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.ForeColor = System.Drawing.Color.DimGray
-        Me.Label4.Location = New System.Drawing.Point(10, 17)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(84, 17)
-        Me.Label4.TabIndex = 21
-        Me.Label4.Text = "Destination:"
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.ForeColor = System.Drawing.Color.DimGray
+        Me.Label2.Location = New System.Drawing.Point(10, 22)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(84, 17)
+        Me.Label2.TabIndex = 20
+        Me.Label2.Text = "Destination:"
+        '
+        'Panel3
+        '
+        Me.Panel3.BackColor = System.Drawing.Color.White
+        Me.Panel3.Controls.Add(Me.lblTime3)
+        Me.Panel3.Controls.Add(Me.lblPrice3)
+        Me.Panel3.Controls.Add(Me.lblFlightTime3)
+        Me.Panel3.Controls.Add(Me.lblTicketPrice3)
+        Me.Panel3.Controls.Add(Me.Label5)
+        Me.Panel3.Controls.Add(Me.Label4)
+        Me.Panel3.Controls.Add(Me.lblFlightRoute3)
+        Me.Panel3.Controls.Add(Me.lblAircraftCode3)
+        Me.Panel3.Controls.Add(Me.btnOption3)
+        Me.Panel3.Location = New System.Drawing.Point(44, 478)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(488, 179)
+        Me.Panel3.TabIndex = 24
+        '
+        'lblTime3
+        '
+        Me.lblTime3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.lblTime3.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblTime3.Location = New System.Drawing.Point(10, 131)
+        Me.lblTime3.Name = "lblTime3"
+        Me.lblTime3.Size = New System.Drawing.Size(49, 25)
+        Me.lblTime3.TabIndex = 25
+        '
+        'lblPrice3
+        '
+        Me.lblPrice3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.lblPrice3.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblPrice3.Location = New System.Drawing.Point(355, 17)
+        Me.lblPrice3.Name = "lblPrice3"
+        Me.lblPrice3.Size = New System.Drawing.Size(130, 25)
+        Me.lblPrice3.TabIndex = 25
+        '
+        'lblFlightTime3
+        '
+        Me.lblFlightTime3.AutoSize = True
+        Me.lblFlightTime3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.lblFlightTime3.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblFlightTime3.Location = New System.Drawing.Point(10, 129)
+        Me.lblFlightTime3.Name = "lblFlightTime3"
+        Me.lblFlightTime3.Size = New System.Drawing.Size(2, 19)
+        Me.lblFlightTime3.TabIndex = 23
+        '
+        'lblTicketPrice3
+        '
+        Me.lblTicketPrice3.AutoSize = True
+        Me.lblTicketPrice3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.lblTicketPrice3.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblTicketPrice3.Location = New System.Drawing.Point(436, 17)
+        Me.lblTicketPrice3.Name = "lblTicketPrice3"
+        Me.lblTicketPrice3.Size = New System.Drawing.Size(2, 17)
+        Me.lblTicketPrice3.TabIndex = 22
         '
         'Label5
         '
@@ -365,35 +480,16 @@ Partial Class frmTicketSelect
         Me.Label5.TabIndex = 21
         Me.Label5.Text = "Aircraft Code"
         '
-        'lblTicketPrice1
+        'Label4
         '
-        Me.lblTicketPrice1.AutoSize = True
-        Me.lblTicketPrice1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.lblTicketPrice1.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblTicketPrice1.Location = New System.Drawing.Point(436, 12)
-        Me.lblTicketPrice1.Name = "lblTicketPrice1"
-        Me.lblTicketPrice1.Size = New System.Drawing.Size(2, 17)
-        Me.lblTicketPrice1.TabIndex = 20
-        '
-        'lblTicketPrice2
-        '
-        Me.lblTicketPrice2.AutoSize = True
-        Me.lblTicketPrice2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.lblTicketPrice2.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblTicketPrice2.Location = New System.Drawing.Point(436, 22)
-        Me.lblTicketPrice2.Name = "lblTicketPrice2"
-        Me.lblTicketPrice2.Size = New System.Drawing.Size(2, 17)
-        Me.lblTicketPrice2.TabIndex = 21
-        '
-        'lblTicketPrice3
-        '
-        Me.lblTicketPrice3.AutoSize = True
-        Me.lblTicketPrice3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.lblTicketPrice3.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblTicketPrice3.Location = New System.Drawing.Point(436, 17)
-        Me.lblTicketPrice3.Name = "lblTicketPrice3"
-        Me.lblTicketPrice3.Size = New System.Drawing.Size(2, 17)
-        Me.lblTicketPrice3.TabIndex = 22
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.ForeColor = System.Drawing.Color.DimGray
+        Me.Label4.Location = New System.Drawing.Point(10, 17)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(84, 17)
+        Me.Label4.TabIndex = 21
+        Me.Label4.Text = "Destination:"
         '
         'btnHome
         '
@@ -405,36 +501,6 @@ Partial Class frmTicketSelect
         Me.btnHome.TabIndex = 25
         Me.btnHome.Text = "🏠 RETURN HOME"
         Me.btnHome.UseVisualStyleBackColor = True
-        '
-        'lblFlightTime1
-        '
-        Me.lblFlightTime1.AutoSize = True
-        Me.lblFlightTime1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.lblFlightTime1.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblFlightTime1.Location = New System.Drawing.Point(7, 125)
-        Me.lblFlightTime1.Name = "lblFlightTime1"
-        Me.lblFlightTime1.Size = New System.Drawing.Size(2, 19)
-        Me.lblFlightTime1.TabIndex = 21
-        '
-        'lblFlightTime2
-        '
-        Me.lblFlightTime2.AutoSize = True
-        Me.lblFlightTime2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.lblFlightTime2.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblFlightTime2.Location = New System.Drawing.Point(10, 136)
-        Me.lblFlightTime2.Name = "lblFlightTime2"
-        Me.lblFlightTime2.Size = New System.Drawing.Size(2, 19)
-        Me.lblFlightTime2.TabIndex = 22
-        '
-        'lblFlightTime3
-        '
-        Me.lblFlightTime3.AutoSize = True
-        Me.lblFlightTime3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.lblFlightTime3.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblFlightTime3.Location = New System.Drawing.Point(10, 129)
-        Me.lblFlightTime3.Name = "lblFlightTime3"
-        Me.lblFlightTime3.Size = New System.Drawing.Size(2, 19)
-        Me.lblFlightTime3.TabIndex = 23
         '
         'frmTicketSelect
         '
@@ -499,4 +565,10 @@ Partial Class frmTicketSelect
     Friend WithEvents lblFlightTime1 As Label
     Friend WithEvents lblFlightTime3 As Label
     Friend WithEvents lblFlightTime2 As Label
+    Friend WithEvents lblTime As Label
+    Friend WithEvents lblPrice As Label
+    Friend WithEvents lblPrice2 As Label
+    Friend WithEvents lblTime2 As Label
+    Friend WithEvents lblTime3 As Label
+    Friend WithEvents lblPrice3 As Label
 End Class
